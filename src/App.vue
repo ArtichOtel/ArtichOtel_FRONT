@@ -1,26 +1,39 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-
   <h1 class="text-3xl font-bold underline">
-  Hello world!
+  Click to get users
 </h1>
-
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper underline bg-green-600">
-      <HelloWorld class="" msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <GetUsers @receiveList="getUsers" />
+  <UsersList :allUsers="allUsers"/>
+  <br><br>
+  <RouterView/>
 </template>
+
+<script>
+import GetUsers from './components/GetUser.vue'
+import UsersList from "./components/UsersList.vue";
+import {RouterLink, RouterView} from "vue-router";
+import {ref} from "vue";
+
+export default {
+  name: "App",
+  components: {
+    GetUsers,
+    UsersList
+  },
+  setup() {
+
+    window.sessionStorage.clear()
+
+
+    let allUsers = ref([])
+    const getUsers = function (data) {
+      allUsers.value = data
+    }
+    return {
+      getUsers,
+      allUsers
+    }
+  }
+
+}
+</script>
