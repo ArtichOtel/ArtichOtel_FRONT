@@ -5,9 +5,11 @@
 
     <label for="password" class="block underline">password</label>
     <input type="password" name="password" v-model="password" class="border">
-
+  <br/>
     <button type="submit">LOGIN</button>
   </form>
+  <br><br>
+  <RouterLink to="/">accueil</RouterLink>
 </template>
 
 <script>
@@ -16,7 +18,7 @@ import {ref} from "vue";
 
 export default {
   name: "LoginView",
-  setup() {
+  setup(props, ctx) {
     let pseudo = ref("")
     let password = ref("")
 
@@ -27,6 +29,7 @@ export default {
           .then((response)=>{
             //console.log(response.data.token)
             window.sessionStorage.setItem('token', response.data.token)
+            ctx.emit("")
           })
     }
 
