@@ -8,11 +8,5 @@
 <script>
 export default {
   name: "ReviewsList",
-  props: {
-    allReviews: {
-      type: Array,
-      required: true
-    }
-  }
 }
 </script>
