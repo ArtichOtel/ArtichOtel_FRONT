@@ -1,40 +1,29 @@
-<template @load="getSections">
+<template>
   <RouterView :sections="sections" />
   sections :
   {{sections}}
 </template>
 
-<script>
+<script setup>
 
-import {ref} from "vue";
+import {ref, watchEffect} from "vue";
 import axios from "axios";
 
-export default {
-  name: "App",
-  setup(props, ctx) {
-    let sections = ref([])
+const sections = ref([])
 
-    const getSections = function () {
-      console.log("get sections")
+watchEffect(async () => {
+  console.log("get sections")
 
-      axios({
-        method: "get",
-        url: 'https://127.0.0.1:8000/api/sections'
+  axios({
+    method: "get",
+    url: 'https://127.0.0.1:8000/api/sections'
+  })
+      .then((response) => {
+        console.log("sections", response.data)
+        sections.value = response.data
+        //ctx.emit("receiveSections", sections.value)
       })
-          .then((response) => {
-            sections.value = response.data
-            ctx.emit("receiveSections", sections.value)
-          })
-    }
+})
 
-    return {
-      getSections,
-      sections
-    }
 
-  },
-  components: {
-  }
-
-}
 </script>
