@@ -16,7 +16,7 @@ watchEffect(async () => {
 
   axios({
     method: "get",
-    url: 'https://127.0.0.1:8000/api/sections'
+    url: 'http://127.0.0.1:8000/api/sections'
   })
       .then((response) => {
         console.log("sections", response.data)
