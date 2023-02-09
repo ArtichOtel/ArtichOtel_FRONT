@@ -1,18 +1,13 @@
 <template>
-  <RouterView :sections="sections" />
-  sections :
-  {{sections}}
+  <RouterView v-if="sections.length" :sections="sections" />
 </template>
 
 <script setup>
 
-import {ref, watchEffect} from "vue";
+import {ref} from "vue";
 import axios from "axios";
 
 const sections = ref([])
-
-watchEffect(async () => {
-  console.log("get sections")
 
   axios({
     method: "get",
@@ -21,9 +16,10 @@ watchEffect(async () => {
       .then((response) => {
         console.log("sections", response.data)
         sections.value = response.data
-        //ctx.emit("receiveSections", sections.value)
       })
-})
+      .catch((err)=> {
+        console.log("BUG :", err)
+      })
 
 
 </script>
