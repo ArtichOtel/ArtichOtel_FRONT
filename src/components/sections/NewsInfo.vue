@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "NewsInfo"
+  name: "NewsInfoSection"
 }
 </script>
 

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: "Advantages"
+  name: "AdvantagesSection"
 }
 </script>
 
