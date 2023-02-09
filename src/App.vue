@@ -1,5 +1,7 @@
 <template @load="getSections">
-  <RouterView />
+  <RouterView :sections="sections" />
+  sections :
+  {{sections}}
 </template>
 
 <script>
