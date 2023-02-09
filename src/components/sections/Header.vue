@@ -1,13 +1,10 @@
-<template>
-
-</template>
+<template></template>
 
 <script>
 export default {
-  name: "Header"
-}
+  name: "Header",
+  setup(props, ctx) {},
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
