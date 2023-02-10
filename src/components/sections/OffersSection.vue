@@ -3,15 +3,16 @@
 
     <div class="flex flex-row justify-between gap-[calc(9.6vw)]">
 
-      <div class="grid grid-cols-1 gap-1">
+      <div class="flex flex-col gap-1">
 
         <h2 class="font-title">{{ title }}</h2>
         <span class="font-content">{{ offer.description }}</span>
 
       </div>
-      <div>
+      <div class="flex flex-col items-center gap-1">
 
         <img :src="offer.url_image" alt="">
+        <button class="w-1/3">Réservez maintenant</button>
 
       </div>
 
