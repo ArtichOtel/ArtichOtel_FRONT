@@ -35,7 +35,6 @@ axios({
   url: `${import.meta.env.VITE_API_BASE_URL}/sections`
 })
     .then((response) => {
-      console.log("sections", response.data)
       sections.value = response.data
     })
     .catch((err)=> {
