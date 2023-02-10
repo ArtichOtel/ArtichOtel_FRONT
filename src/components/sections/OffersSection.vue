@@ -1,9 +1,9 @@
 <template>
-  <section class="px-[calc(8.6vw)] py-[calc(9vw)]">
+  <section class="px-[8.6vw] py-[9vw]">
 
-    <div class="flex flex-row justify-between gap-[calc(9.6vw)]">
+    <div class="flex flex-col md:flex-row justify-between gap-[9.6vw]">
 
-      <div class="flex flex-col gap-1">
+      <div class="flex flex-col gap-1 text-tertiary">
 
         <h2 class="font-title">{{ title }}</h2>
         <span class="font-content">{{ offer.description }}</span>
@@ -12,7 +12,7 @@
       <div class="flex flex-col items-center gap-1">
 
         <img :src="offer.url_image" alt="">
-        <button class="w-1/3">Réservez maintenant</button>
+        <button class="w-1/5">Réservez maintenant</button>
 
       </div>
 

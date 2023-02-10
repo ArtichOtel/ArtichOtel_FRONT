@@ -1,12 +1,37 @@
 <template>
 
-  <section class="bg-black text-white">
-    <div class="px-[calc(8.6vw)] py-[calc(9vw)] flex flex-col gap-[calc(1.09vw)]">
+  <section class="bg-tertiary text-secondary">
+    <div class="px-[8.6vw] py-[9vw] flex flex-col gap-[8vw]">
       <h2 class="font-title">{{ title }}</h2>
-      <div class="flex flex-row gap-4 justify-between">
-        <div v-for="item in advantages" class="border-2 border-white
-                                              w-full">
-          <span>{{ item.icon }}</span>
+      <div class="">
+        <div class="flex flex-col gap-[2.4vw]">
+          <div class="flex flex-col md:flex-row gap-[2.4vw]">
+
+            <div class="flex flex-col gap-1">
+              <img src="https://via.placeholder.com/640x480.png/009988?text=1" alt="">
+              <span class="font-content">{{ advantages.description }}</span>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <img src="https://via.placeholder.com/640x480.png/009988?text=2" alt="">
+              <span class="font-content">{{ advantages.description }}</span>
+            </div>
+
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-[2.4vw]">
+
+            <div class="flex flex-col gap-1">
+              <img src="https://via.placeholder.com/640x480.png/009988?text=3" alt="">
+              <span class="font-content">{{ advantages.description }}</span>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <img src="https://via.placeholder.com/640x480.png/009988?text=4" alt="">
+              <span class="font-content">{{ advantages.description }}</span>
+            </div>
+            
+          </div>
         </div>
       </div>
     </div>
