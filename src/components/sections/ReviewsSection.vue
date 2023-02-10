@@ -26,7 +26,7 @@ const reviews = ref([])
 
 axios({
   method: "get",
-  url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`
+  url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`,
 })
     .then((response) => {
       reviews.value = response.data
