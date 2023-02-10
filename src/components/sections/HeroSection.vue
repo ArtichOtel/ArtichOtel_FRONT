@@ -1,14 +1,12 @@
 <template>
   <section
-    v-for="hero in heroData"
-    :key="hero.id"
     class="relative bg-gradient-to-r from-cyan-500 to-blue-500 h-[calc(100vh-48px)] mt-12 bg-hero bg-cover bg-no-repeat"
   >
     <nav></nav>
     <div class="flex flex-col w-full h-full">
       <div class="m-auto text-center">
-        <h1 class="text-7xl text-secondary">{{ hero.title }}</h1>
-        <h2 class="text-5xl text-secondary">{{ hero.subtitle }}</h2>
+        <h1 class="text-7xl text-secondary">{{ heroData.title }}</h1>
+        <h2 class="text-5xl text-secondary">{{ heroData.subtitle }}</h2>
       </div>
       <div
         class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex w-full md:w-6/12 h-auto w-9/12"
@@ -37,8 +35,13 @@ import { ref } from "vue";
 
 let heroData = ref([]);
 
-axios.get("http://localhost/api/hero").then((resp) => {
-  heroData.value = resp.data;
+const props = defineProps({
+  title: String,
+  uri: String,
+});
+
+axios.get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`).then((resp) => {
+  heroData.value = resp.data[0];
 });
 </script>
 
