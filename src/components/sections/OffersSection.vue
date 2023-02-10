@@ -1,5 +1,5 @@
 <template>
-  <section class="px-[calc(8.6vw)]">
+  <section class="px-[calc(8.6vw)] py-[calc(9vw)]">
 
     <div class="flex flex-row justify-between gap-[calc(9.6vw)]">
 
