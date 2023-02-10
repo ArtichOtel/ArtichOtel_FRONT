@@ -26,10 +26,9 @@ const reviews = ref([])
 
 axios({
   method: "get",
-  url: `http://127.0.0.1:8000/api${props.uri}`
+  url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`
 })
     .then((response) => {
-      console.log("sections", response.data)
       reviews.value = response.data
     })
     .catch((err)=> {
