@@ -1,7 +1,6 @@
 <script setup>
-
-import Header from "../components/sections/Header.vue";
-import Hero from "../components/sections/Hero.vue";
+import HeaderSection from "../components/sections/HeaderSection.vue";
+import HeroSection from "../components/sections/HeroSection.vue";
 import Footer from "../components/sections/Footer.vue";
 import Reviews from "../components/sections/Reviews.vue";
 import Video from "../components/sections/Video.vue";
@@ -13,14 +12,14 @@ import NewsInfo from "../components/sections/NewsInfo.vue";
 
 <template>
   <main>
-    <Header/>
-    <Hero/>
-    <Offers/>
+    <HeaderSection />
+    <HeroSection />
+    <!-- <Offers/>
     <Advantages/>
     <NewsInfo/>
     <RoomsTypes/>
     <Video/>
     <Reviews/>
-    <Footer/>
+    <Footer/> -->
   </main>
 </template>
