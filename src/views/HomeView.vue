@@ -11,7 +11,7 @@ import NewsInfo from "../components/sections/NewsInfo.vue";
 </script>
 
 <template>
-  <main>
+  <main class="absolute h-full w-full overflow-hidden">
     <HeaderSection />
     <HeroSection />
     <!-- <Offers/>
