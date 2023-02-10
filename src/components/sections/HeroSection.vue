@@ -16,7 +16,7 @@
         >
           Offre du moment
         </button>
-        <button class="bg-last rounded-lg py-2 px-12 text-2xl text-texts">
+        <button class="bg-accent rounded-lg py-2 px-12 text-2xl text-texts">
           Je réserve une chambre de luxe
         </button>
       </div>

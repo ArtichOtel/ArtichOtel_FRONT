@@ -18,10 +18,10 @@ module.exports = {
         secondary: {
           DEFAULT: "#FFFFF0",
         },
-        last: {
+        accent: {
           DEFAULT: "#E1AA32",
         },
-        texts: {
+        tertiary: {
           DEFAULT: "#121712",
         },
       },
