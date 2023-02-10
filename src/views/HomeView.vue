@@ -1,7 +1,7 @@
 <script setup>
 import HeaderSection from "../components/sections/HeaderSection.vue";
 import HeroSection from "../components/sections/HeroSection.vue";
-import Footer from "../components/sections/Footer.vue";
+import Footer from "../components/sections/FooterSection.vue";
 import Reviews from "../components/sections/Reviews.vue";
 import Video from "../components/sections/Video.vue";
 import Offers from "../components/sections/Offers.vue";
@@ -11,7 +11,7 @@ import NewsInfo from "../components/sections/NewsInfo.vue";
 </script>
 
 <template>
-  <main class="absolute h-full w-full overflow-hidden">
+  <main class="h-full w-full overflow-hidden">
     <HeaderSection />
     <HeroSection />
     <!-- <Offers/>
@@ -19,7 +19,7 @@ import NewsInfo from "../components/sections/NewsInfo.vue";
     <NewsInfo/>
     <RoomsTypes/>
     <Video/>
-    <Reviews/>
-    <Footer/> -->
+    <Reviews/> -->
+    <Footer />
   </main>
 </template>
