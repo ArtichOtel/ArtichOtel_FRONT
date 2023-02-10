@@ -3,6 +3,10 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontSize:{
+        titleBase: "36px",
+        titleMed: "56px"
+        },
       fontFamily: {
         title: ["Bitter", "serif"],
         content: ["Nunito Sans", "sans-serif"],
@@ -27,5 +31,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tw-elements/dist/plugin")],
+  plugins: [
+      require("tw-elements/dist/plugin")
+  ],
 };
