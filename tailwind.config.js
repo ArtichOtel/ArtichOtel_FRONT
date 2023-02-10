@@ -5,10 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      'fontFamily': {
-        'title': ['Bitter', 'serif'],
-        'content': ['Nunito Sans', 'sans-serif'],
-      } 
+      fontFamily: {
+        title: ['Bitter', 'serif'],
+        content: ['Nunito Sans', 'sans-serif'],
+      },
     },
   },
   plugins: [],
