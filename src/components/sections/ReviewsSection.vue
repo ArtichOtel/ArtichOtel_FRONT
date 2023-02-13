@@ -6,20 +6,23 @@
     <div v-if="reviews.length" class="flex flex-col md:flex-row justify-between">
 
 <!--this div 3 times-->
-      <div v-for="review in reviews" v-bind:key="review.id" class="w-10/12 md:w-3/12 md:px-4">
+      <div v-for="review in reviews" v-bind:key="review.id" class="w-10/12 md:w-3/12 md:px-4 mb-16 md:mb-0">
 
-        <div class="flex">
-          <div class="rounded-full overflow-hidden border">
+        <div class="flex mb-3">
+          <div class="rounded-full overflow-hidden">
             <img src="https://picsum.photos/50/50" alt="user name">
           </div>
           <div class="flex justify-start items-center">
             <p class="flex-none pl-4">USER NAME</p></div>
         </div>
 
-        <div class="flex">
+        <div class="flex mb-3">
           <div class="font-title">{{review.title}}</div>
-          <div>{{review.note}}</div>
+          <div class="flex-none pl-4">
+            <StarNotation v-bind:nOfStar="review.note" />
+          </div>
         </div>
+
         <div>{{review.description}}</div>
       </div>
 
@@ -29,9 +32,10 @@
 
 <script setup>
 
+import StarNotation from "../StarNotation/StarNotation.vue";
+
 import {ref} from "vue";
 import axios from "axios";
-
 const props = defineProps({
   title: String,
   uri: String
