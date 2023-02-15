@@ -14,6 +14,11 @@ module.exports = {
       backgroundImage: {
         hero: 'url("https://picsum.photos/id/220/100/100")',
       },
+      aspectRatio: {
+        '4/3': '4 / 3',
+        card: '1.625',
+        'card-vertical': '0.6154'
+      },
       colors: {
         primary: {
           DEFAULT: "#204438",

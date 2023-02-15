@@ -1,16 +1,21 @@
 <template>
-  <div class="bg-black text-white md:py-8 md:px-16">
-    <div class="text-red-600">{{title}}</div>
+  <div class="bg-white text-tertiary pt-8 px-8 pb-4 md:pb-[3vw] md:pt-[9vw] md:px-[8.6vw]">
+    <div class="font-title text-titleBase md:text-titleMed">{{title}}</div>
+  </div>
+<!--  pexels-max-vakhtbovych-6238613.jpg-->
+
+  <div class="bg-primary/70 text-tertiary pt-4 md:pt-[3vw] pb-8 px-8 md:pb-[9vw] md:px-[8.6vw]">
     <div v-if="data" class="flex flex-col md:flex-row">
 
-      <iframe width="560" height="315"
+      <iframe class="flex-1 w-1/2 aspect-4/3"
               src="https://www.youtube.com/embed/p7YXXieghto"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
 
-      <div>
-        {{data.description}}
+      <div class="flex-1 w-1/2 flex justify-center items-center px-[2vw]">
+        <p class="text-2xl">
+          {{data.description}}</p>
       </div>
     </div>
   </div>
