@@ -1,5 +1,5 @@
 <template>
-<span class="mx-1">0</span>
+  <img src="assets/icons/emptyStar/svg" alt="étoile vide">
 </template>
 
 <script>

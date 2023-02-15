@@ -1,5 +1,5 @@
 <template>
-<span class="mx-1">@</span>
+  <img src="assets/icons/filledStar/svg" alt="étoile pleine">
 </template>
 
 <script>
