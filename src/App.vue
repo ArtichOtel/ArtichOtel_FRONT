@@ -2,4 +2,14 @@
   <RouterView />
 </template>
 
-<script setup></script>
+<script setup>
+import {ref} from "vue";
+
+const connectionStatus = ref({
+  connected: false,
+  role: null
+})
+
+
+
+</script>
