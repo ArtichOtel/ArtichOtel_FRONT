@@ -5,7 +5,7 @@
 
       <div class="flex flex-col gap-1 text-tertiary">
 
-        <h2 class="font-title">{{ title }}</h2>
+        <h2 class="font-title text-titleBase">{{ title }}</h2>
         <span class="font-content">{{ offer.description }}</span>
 
       </div>

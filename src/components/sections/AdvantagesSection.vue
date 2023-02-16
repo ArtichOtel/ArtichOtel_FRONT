@@ -2,10 +2,10 @@
 
   <section class="bg-tertiary text-secondary">
     <div class="px-[8.6vw] py-[9vw] flex flex-col gap-[8vw]">
-      <h2 class="font-title">{{ title }}</h2>
+      <h2 class="font-title text-titleBase">{{ title }}</h2>
       <div class="">
         <div class="flex flex-col gap-[2.4vw]">
-          <div class="flex flex-col md:flex-row gap-[2.4vw]">
+          <div class="flex flex-col md:flex-row justify-between gap-[2.4vw]">
 
             <div class="flex flex-col gap-1">
               <img src="https://via.placeholder.com/640x480.png/009988?text=1" alt="">
@@ -19,7 +19,7 @@
 
           </div>
 
-          <div class="flex flex-col md:flex-row gap-[2.4vw]">
+          <div class="flex flex-col md:flex-row justify-between gap-[2.4vw]">
 
             <div class="flex flex-col gap-1">
               <img src="https://via.placeholder.com/640x480.png/009988?text=3" alt="">
