@@ -20,12 +20,12 @@
           class="bg-primary rounded-lg py-2 px-12 text-2xl text-secondary font-content"
           role="link"
         >
-          {{ heroUrl[0].url }} | Offre du moment
+          {{ heroUrl[0].text }} | Offre du moment
         </button>
         <button
           class="bg-accent rounded-lg py-2 px-12 text-2xl text-texts font-content"
         >
-          {{ heroUrl[1].url }} | Je réserve une chambre de luxe
+          {{ heroUrl[1].text }} | Je réserve une chambre de luxe
         </button>
       </div>
     </div>
