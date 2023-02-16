@@ -12,7 +12,7 @@
             <img src="https://picsum.photos/50/50" alt="user name">
           </div>
           <div class="flex justify-start items-center">
-            <p class="flex-none pl-4">USER NAME</p></div>
+            <p class="flex-none pl-4 font-content">USER NAME</p></div>
         </div>
 
         <div class="flex mb-3">
@@ -22,7 +22,7 @@
           </div>
         </div>
 
-        <div>{{review.description}}</div>
+        <div class="font-content">{{review.description}}</div>
       </div>
 
     </div>

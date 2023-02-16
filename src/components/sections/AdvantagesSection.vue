@@ -5,28 +5,12 @@
       <h2 class="font-title text-titleBase">{{ title }}</h2>
       <div class="">
         <div class="flex flex-col gap-[2.4vw]">
-          <div class="flex flex-col md:flex-row justify-between gap-[2.4vw]">
+          <div v-for="n in 2" v-if="advantages.length" class="flex flex-col md:flex-row justify-between gap-[2.4vw]">
 
-            <div class="flex flex-col gap-1">
-              <img src="https://via.placeholder.com/640x480.png/009988?text=1" alt="">
+            <div v-for="m in 2" class="flex flex-col gap-1">
+              <img src="https://via.placeholder.com/640x480.png/009988?text=test" :alt="advantages[n-1+(m-1)*2].icon">
             </div>
 
-            <div class="flex flex-col gap-1">
-              <img src="https://via.placeholder.com/640x480.png/009988?text=2" alt="">
-            </div>
-
-          </div>
-
-          <div class="flex flex-col md:flex-row justify-between gap-[2.4vw]">
-
-            <div class="flex flex-col gap-1">
-              <img src="https://via.placeholder.com/640x480.png/009988?text=3" alt="">
-            </div>
-
-            <div class="flex flex-col gap-1">
-              <img src="https://via.placeholder.com/640x480.png/009988?text=4" alt="">
-            </div>
-            
           </div>
         </div>
       </div>
