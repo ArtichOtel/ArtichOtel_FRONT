@@ -9,8 +9,6 @@
     <ReviewsSection     :title="sections[4].title" :uri="sections[4].uri"/>
     <VideoSection       :title="sections[6].title" :uri="sections[6].uri" />
     <FooterSection      :title="sections[7].title" :uri="sections[7].uri" />
-
-
   </main>
 </template>
 
