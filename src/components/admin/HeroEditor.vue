@@ -87,6 +87,35 @@ function getPlaceholders() {
 getPlaceholders()
 
 function save() {
+  let payload = {
+    hero:{
+      title: title.value,
+      subtitle: subtitle.value,
+      url_image: url_image.value
+    },
+    cta1:{
+      text: cta1_text.value,
+      url: cta1_url.value
+    },
+    cta2:{
+      text: cta2_text.value,
+      url: cta2_url.value
+    }
+  }
+
+  axios.put(`${import.meta.env.VITE_API_BASE_URL}/hero/1`, payload.hero, {
+    headers: {
+      'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+    }
+  })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+  })
+
+  // axios.put links
 
 }
 
