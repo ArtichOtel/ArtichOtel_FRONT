@@ -19,11 +19,11 @@
         <div class="flex items-center relative gap-10">
           <div class="flex gap-5">
             <img src="#" alt="logo-email-artichotel" />
-            <button>info@hotelartichaut.fr</button>
+            <button class="font-content">info@hotelartichaut.fr</button>
           </div>
           <div class="flex gap-5">
             <img src="#" alt="logo-telephone-artichotel" />
-            <button>(+33) 4 75 00 00 00</button>
+            <button class="font-content">(+33) 4 75 00 00 00</button>
           </div>
         </div>
         <!-- Right elements -->
