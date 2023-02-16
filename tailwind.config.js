@@ -19,6 +19,13 @@ module.exports = {
         card: '1.625',
         'card-vertical': '0.6154'
       },
+      zIndex: {
+        '60':'60',
+        '70':'70',
+        '80':'80',
+        '90':'90',
+        '100':'100',
+      },
       colors: {
         primary: {
           DEFAULT: "#204438",
