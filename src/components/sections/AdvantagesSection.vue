@@ -9,12 +9,10 @@
 
             <div class="flex flex-col gap-1">
               <img src="https://via.placeholder.com/640x480.png/009988?text=1" alt="">
-              <span class="font-content">{{ advantages.description }}</span>
             </div>
 
             <div class="flex flex-col gap-1">
               <img src="https://via.placeholder.com/640x480.png/009988?text=2" alt="">
-              <span class="font-content">{{ advantages.description }}</span>
             </div>
 
           </div>
@@ -23,12 +21,10 @@
 
             <div class="flex flex-col gap-1">
               <img src="https://via.placeholder.com/640x480.png/009988?text=3" alt="">
-              <span class="font-content">{{ advantages.description }}</span>
             </div>
 
             <div class="flex flex-col gap-1">
               <img src="https://via.placeholder.com/640x480.png/009988?text=4" alt="">
-              <span class="font-content">{{ advantages.description }}</span>
             </div>
             
           </div>
