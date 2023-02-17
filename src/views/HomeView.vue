@@ -9,8 +9,6 @@
     <ReviewsSection     :title="sections[4].title" :uri="sections[4].uri"/>
     <VideoSection       :title="sections[6].title" :uri="sections[6].uri" />
     <FooterSection      :title="sections[7].title" :uri="sections[7].uri" />
-
-
   </main>
 </template>
 
@@ -26,24 +24,10 @@ import AdvantagesSection from "../components/sections/AdvantagesSection.vue";
 import RoomsTypesSection from "../components/sections/RoomsTypesSection.vue";
 import NewsInfoSection from "../components/sections/NewsInfoSection.vue";
 
-import axios from "axios";
-import {ref} from "vue";
 
-const sections = ref([])
-
-axios({
-  method: "get",
-  url: `${import.meta.env.VITE_API_BASE_URL}/sections`
+const props = defineProps({
+  sections: Array
 })
-    .then((response) => {
-      sections.value = response.data
-    })
-    .catch((err)=> {
-      console.log("BUG :", err)
-    })
-
-
-
 
 
 </script>
