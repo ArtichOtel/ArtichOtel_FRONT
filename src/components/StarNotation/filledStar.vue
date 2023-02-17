@@ -1,5 +1,5 @@
 <template>
-  <img src="src/assets/icons/filledStar.svg" alt="étoile pleine">
+  <img src="/src/assets/icons/filledStar.svg" alt="étoile pleine">
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <img src="src/assets/icons/emptyStar.svg" alt="étoile vide">
+  <img src="/src/assets/icons/emptyStar.svg" alt="étoile vide">
 </template>
 
 <script>
