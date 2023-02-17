@@ -1,4 +1,4 @@
-<template class="font-content">
+<template class="font-content scroll-smooth">
   <LoginButton />
   <RouterView v-bind:sections="data" />
 </template>

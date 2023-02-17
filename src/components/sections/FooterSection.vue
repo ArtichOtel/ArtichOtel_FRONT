@@ -6,7 +6,7 @@
           <h3
             class="uppercase font-semibold mb-4 flex justify-center md:justify-start"
           >
-            {{ footerDataOne }}
+            <!-- {{ footerDataOne }} -->
             Hôtel L'Artichaut
           </h3>
           <p class="mb-4">
