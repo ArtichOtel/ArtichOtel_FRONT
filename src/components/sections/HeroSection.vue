@@ -1,6 +1,7 @@
 <template>
-  <section id="hero"
-    class="relative bg-gradient-to-r from-cyan-500 to-blue-500 h-[calc(100vh-48px)] mt-12 bg-hero bg-cover bg-no-repeat"
+  <section id="hero" v-if="heroData"
+    class="relative h-[calc(100vh-48px)] mt-12 bg-cover bg-no-repeat"
+    :style="{background: 'url(' + heroData.url_image + ')'}"
   >
     <nav></nav>
     <div class="flex flex-col w-full h-full">
@@ -14,7 +15,7 @@
       </div>
       <div
         v-if="heroCTA"
-        class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex w-full md:w-6/12 h-auto w-9/12"
+        class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex md:w-6/12 h-auto w-9/12"
       >
         <button
           class="bg-primary rounded-lg py-2 px-12 text-2xl text-secondary font-content"
