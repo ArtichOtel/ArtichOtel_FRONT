@@ -1,5 +1,5 @@
 <template>
-  <section class="px-[8.6vw] py-[9vw]">
+  <section id="offers" class="px-[8.6vw] py-[9vw]">
 
     <div class="flex flex-col md:flex-row justify-between gap-[9.6vw]">
 

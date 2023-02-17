@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white text-tertiary pt-8 px-8 pb-4 md:pb-[3vw] md:pt-[9vw] md:px-[8.6vw]">
+  <div id="video" class="bg-white text-tertiary pt-8 px-8 pb-4 md:pb-[3vw] md:pt-[9vw] md:px-[8.6vw]">
     <div class="font-title text-titleBase md:text-titleMed">{{title}}</div>
   </div>
 <!--  pexels-max-vakhtbovych-6238613.jpg-->

@@ -1,6 +1,6 @@
 <template>
 
-<section class="px-[8.6vw] py-[9vw]  text-tertiary">
+<section id="news" class="px-[8.6vw] py-[9vw]  text-tertiary">
 
   <div class="flex flex-col gap-[8vw]">
 
