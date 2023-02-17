@@ -1,5 +1,6 @@
 <template class="font-content scroll-smooth">
   <LoginButton @logoutRequest="logout" v-bind:isLogged="isLogged" />
+  <SwitchModeButton v-bind:role="connectionStatus.role"/>
   <RouterView v-bind:sections="data" v-on:login="setLogged" />
 </template>
 
@@ -8,6 +9,7 @@ import {ref} from "vue";
 import LoginButton from "./components/LoginButton.vue";
 import axios from "axios";
 import router from "./router";
+import SwitchModeButton from "./components/admin/SwitchModeButton.vue";
 
 const connectionStatus = ref({
   connected: false,
