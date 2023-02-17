@@ -60,7 +60,8 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`).then((resp) => {
 
 
 function goTo(url) {
-  router.replace(url)
+  //router.push(url)
+  window.location.replace(url)
 }
 
 
