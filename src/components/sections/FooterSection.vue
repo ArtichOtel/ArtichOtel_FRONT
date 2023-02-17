@@ -36,7 +36,10 @@
             class="flex items-center justify-center md:justify-start mb-4"
             v-for="footerThree in footerDataThree"
           >
-            <img :src="footerThree.icon" :alt="footerThree.text" />
+            <img
+              src="/src/assets/icons/instagram.svg"
+              :alt="footerThree.text"
+            />
             {{ footerThree.title }}
           </p>
         </div>
