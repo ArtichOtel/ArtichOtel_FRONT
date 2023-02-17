@@ -23,19 +23,7 @@ import AdvantagesSection from "../components/sections/AdvantagesSection.vue";
 import RoomsTypesSection from "../components/sections/RoomsTypesSection.vue";
 import NewsInfoSection from "../components/sections/NewsInfoSection.vue";
 
-import axios from "axios";
-import { ref } from "vue";
-
-const sections = ref([]);
-
-axios({
-  method: "get",
-  url: `${import.meta.env.VITE_API_BASE_URL}/sections`,
-})
-  .then((response) => {
-    sections.value = response.data;
-  })
-  .catch((err) => {
-    console.log("BUG :", err);
-  });
+const props = defineProps({
+  sections: Array,
+});
 </script>

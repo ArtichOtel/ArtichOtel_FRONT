@@ -23,9 +23,10 @@ export default {
 <script setup>
 import {ref} from "vue";
 import axios from "axios";
+import router from "../../router";
 
-let pseudo = ref("")
-let password = ref("")
+const pseudo = ref("")
+const password = ref("")
 
 const emit = defineEmits(
     {'connectionStatus': {}}
@@ -33,6 +34,7 @@ const emit = defineEmits(
 
 
 const connect = function () {
+  //console.log("try connection")
   if (pseudo.value && password.value) {
     axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/login`,
         {pseudo: pseudo.value, password: password.value})
@@ -47,6 +49,7 @@ const connect = function () {
         })
         .then(()=> {
           // go to admin panel !! (push history)
+          router.push("/admin")
         })
         .catch((err)=> {
           console.log("connection error :", err)

@@ -1,7 +1,9 @@
 <template >
-  <HeaderSection />
-  <LoginForm @connectionStatus="(data) => sayHello(data)"/>
-  <FooterSection />
+  <main v-if="sections.length" class="h-full w-full overflow-hidden">
+    <HeaderSection :title="sections[0].title" :uri="sections[0].uri" />
+    <LoginForm @connectionStatus="(data) => sayHello(data)"/>
+    <FooterSection :title="sections[7].title" :uri="sections[7].uri" />
+  </main>
 </template>
 
 <script>
@@ -15,10 +17,20 @@ export default {
 import HeaderSection from "../components/sections/HeaderSection.vue";
 import FooterSection from "../components/sections/FooterSection.vue";
 import LoginForm from "../components/forms/LoginForm.vue";
+import router from "../router";
 
+
+const props = defineProps({
+  sections: Array
+})
 function sayHello(data) {
   console.log("vous êtes connecté")
   console.group(data)
+
+  if (data.role === "admin") {
+    console.log("redirect to admin panel")
+    router.push("/admin")
+  }
 }
 
 </script>
