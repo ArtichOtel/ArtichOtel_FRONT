@@ -35,12 +35,12 @@ function sayHello(data) {
     emit('login')
   }
 
-/*  if (data.role === "admin") {
+  if (data.role.toString() === "admin") {
     console.log("redirect to admin panel")
     router.push("/admin")
-  }*/
-
-  router.push("/")
+  } else {
+    router.push("/")
+  }
 }
 
 

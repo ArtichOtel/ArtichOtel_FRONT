@@ -27,6 +27,7 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
 
 
 function logout() {
+  console.log("logout")
   axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/logout`, {
     headers: {
       'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
@@ -41,24 +42,22 @@ function logout() {
     console.log(err)
   })
 
+  isLogged.value = false
   window.sessionStorage.clear()
   router.push("/")
+  //window.document.location.reload()
 }
+
 function setLogged() {
   console.log("app knows that you are logged")
   isLogged.value = true
 }
 
-
-function checkIfLogged(data) {
-  if ( window.sessionStorage.getItem('token')) {
-    isLogged.value = true
-  } else {
-    isLogged.value = false
+function checkIfLogged() {
+  if (window.sessionStorage.getItem('token')) {
+    setLogged()
   }
 }
-
-
-
+checkIfLogged()
 
 </script>
