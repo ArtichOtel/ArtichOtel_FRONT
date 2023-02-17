@@ -23,30 +23,33 @@ export default {
 <script setup>
 import {ref} from "vue";
 import axios from "axios";
+import router from "../../router";
 
-let pseudo = ref("")
-let password = ref("")
+const pseudo = ref("")
+const password = ref("")
 
 const emit = defineEmits(
-    {'connectionStatus': {}}
+    {'connectionStatus':{}}
 )
 
 
 const connect = function () {
+  //console.log("try connection")
   if (pseudo.value && password.value) {
     axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/login`,
         {pseudo: pseudo.value, password: password.value})
         .then((response)=>{
           //console.log(response.data)
           window.sessionStorage.setItem('token', response.data.token)
-          emit('connectionStatus', {token: response.data.token, role:response.data.role})
+          emit('connectionStatus', {
+            token: response.data.token,
+            role: response.data.role
+          })
+          return response.data.role
         })
         .then(() => {
           pseudo.value=""
           password.value=""
-        })
-        .then(()=> {
-          // go to admin panel !! (push history)
         })
         .catch((err)=> {
           console.log("connection error :", err)

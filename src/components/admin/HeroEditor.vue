@@ -52,8 +52,10 @@ import axios from "axios";
 const title = ref("")
 const subtitle = ref("")
 const url_image = ref("")
+const cta1_id = ref("")
 const cta1_text = ref("")
 const cta1_url = ref("")
+const cta2_id = ref("")
 const cta2_text = ref("")
 const cta2_url = ref("")
 const loaded = ref(false)
@@ -69,9 +71,11 @@ function getPlaceholders() {
         subtitle.value = response.data[0][0].subtitle
         url_image.value = response.data[0][0].url_image
 
+        cta1_id.value = response.data[1][0].id
         cta1_text.value = response.data[1][0].text
         cta1_url.value = response.data[1][0].url
 
+        cta2_id.value = response.data[1][1].id
         cta2_text.value = response.data[1][1].text
         cta2_url.value = response.data[1][1].url
 
@@ -88,12 +92,23 @@ getPlaceholders()
 
 function save() {
   let payload = {
-    title: title.value,
-    subtitle: subtitle.value,
-    url_image: url_image.value
+    hero:{
+      title: title.value,
+      subtitle: subtitle.value,
+      url_image: url_image.value
+    },
+    cta1:{
+      text: cta1_text.value,
+      url: cta1_url.value
+    },
+    cta2:{
+      text: cta2_text.value,
+      url: cta2_url.value
+    }
   }
 
-  axios.put(`${import.meta.env.VITE_API_BASE_URL}/hero/1`, payload, {
+  // update hero
+  axios.put(`${import.meta.env.VITE_API_BASE_URL}/hero/1`, payload.hero, {
     headers: {
       'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
     }
@@ -104,6 +119,36 @@ function save() {
       .catch(err => {
         console.log(err)
   })
+
+  /**
+   * TODO: refactor, need to keep axios get response on Array format
+   */
+  // update links
+  axios.put(`${import.meta.env.VITE_API_BASE_URL}/link/${cta1_id.value}`, payload.cta1, {
+    headers: {
+      'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+    }
+  })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+  axios.put(`${import.meta.env.VITE_API_BASE_URL}/link/${cta2_id.value}`, payload.cta2, {
+    headers: {
+      'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+    }
+  })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
+
 
 }
 

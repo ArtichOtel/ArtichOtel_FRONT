@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-tertiary text-secondary py-8 px-8 md:py-[9vw] md:px-[8.6vw]">
+  <div id="reviews" class="bg-tertiary text-secondary py-8 px-8 md:py-[9vw] md:px-[8.6vw]">
 
     <div class="font-title text-titleBase md:text-titleMed mb-4">{{title}}</div>
     <div v-if="reviews.length" class="flex flex-col md:flex-row justify-between">
