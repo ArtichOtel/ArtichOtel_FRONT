@@ -9,7 +9,6 @@
     <ReviewsSection :title="sections[4].title" :uri="sections[4].uri" />
     <VideoSection :title="sections[6].title" :uri="sections[6].uri" />
     <FooterSection :title="sections[7].title" :uri="sections[7].uri" />
-    <PageNotFound />
   </main>
 </template>
 
@@ -23,7 +22,6 @@ import OffersSection from "../components/sections/OffersSection.vue";
 import AdvantagesSection from "../components/sections/AdvantagesSection.vue";
 import RoomsTypesSection from "../components/sections/RoomsTypesSection.vue";
 import NewsInfoSection from "../components/sections/NewsInfoSection.vue";
-import PageNotFound from "../components/PageNotFound.vue";
 
 const props = defineProps({
   sections: Array,
