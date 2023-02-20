@@ -12,7 +12,9 @@
       <div class="flex flex-col items-center gap-1">
 
         <img :src="offer.url_image" alt="">
-        <button class="w-1/5">Réservez maintenant</button>
+        <button class="bg-accent rounded-lg py-2 px-12 text-2xl text-tertiary font-content">
+          Réservez maintenant
+        </button>
 
       </div>
 
