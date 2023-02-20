@@ -24,7 +24,6 @@ export default {
 // different behaviour if logged or not
 // default is NOT logged
 
-import {ref} from "vue";
 
 const props = defineProps({
   isLogged: Boolean
