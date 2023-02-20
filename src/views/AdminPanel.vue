@@ -5,7 +5,7 @@
         @clickOnBtn="(index) => setCurrentSection(index)" :list-of-sections="listOfSections"
     />
     <div v-if="currentSection" >
-      {{currentSection}}
+      {{currentSection.name}}
     </div>
     <component v-if="currentIndex" :is="listOfSections[currentIndex].comp" />
   </main>
