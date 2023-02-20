@@ -29,7 +29,7 @@ const pseudo = ref("")
 const password = ref("")
 
 const emit = defineEmits(
-    {'connectionStatus': {}}
+    {'connectionStatus':{}}
 )
 
 
@@ -41,15 +41,15 @@ const connect = function () {
         .then((response)=>{
           //console.log(response.data)
           window.sessionStorage.setItem('token', response.data.token)
-          emit('connectionStatus', {token: response.data.token, role:response.data.role})
+          emit('connectionStatus', {
+            token: response.data.token,
+            role: response.data.role
+          })
+          return response.data.role
         })
         .then(() => {
           pseudo.value=""
           password.value=""
-        })
-        .then(()=> {
-          // go to admin panel !! (push history)
-          router.push("/admin")
         })
         .catch((err)=> {
           console.log("connection error :", err)
