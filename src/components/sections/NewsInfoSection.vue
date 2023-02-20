@@ -8,7 +8,7 @@
 
     <div class="flex flex-col lg:flex-row justify-between gap-[1vw]">
 
-      <div v-for="n in 3" v-if="newsInfos.length" class="relative">
+      <div v-for="n in 3" v-if="newsInfos.length" class="relative h-fit">
 
         <div class="font-content absolute inset-x-0 bottom-0">
 
