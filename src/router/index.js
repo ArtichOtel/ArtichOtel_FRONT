@@ -10,6 +10,7 @@ const router = createRouter({
       path: "",
       name: "home",
       component: HomeView,
+      meta: { transition: 'slide-right' },
     },
     {
       path: "/login",
@@ -20,6 +21,7 @@ const router = createRouter({
       path: "/admin",
       name: "admin",
       component: AdminPanel,
+      meta: { transition: 'slide-left' },
     },
   ],
 });

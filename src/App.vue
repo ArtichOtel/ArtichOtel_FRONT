@@ -1,7 +1,9 @@
 <template class="font-content scroll-smooth">
-  <LoginButton @logoutRequest="logout" v-bind:isLogged="isLogged" />
-  <SwitchModeButton v-bind:role="connectionStatus.role"/>
-  <RouterView v-bind:sections="data" v-on:login="setLogged" />
+  <LoginButton @logoutRequest="logout" v-bind:isLogged="isLogged"/>
+
+  <SwitchModeButton v-if="role === 'admin'" v-bind:isEditing="isEditing"/>
+
+  <RouterView v-bind:sections="data" v-on:login="setLogged" v-on:isAdmin="setIsAdmin" />
 </template>
 
 <script setup>
@@ -12,12 +14,14 @@ import router from "./router";
 import SwitchModeButton from "./components/admin/SwitchModeButton.vue";
 
 const connectionStatus = ref({
-  connected: false,
-  role: null
+  connected: false
 })
 
 const data = ref([])
 const isLogged = ref(false)
+const role = ref("")
+const isEditing = ref(true)
+
 
 axios.get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
     .then((response) => {
@@ -30,6 +34,8 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
 
 function logout() {
   console.log("logout")
+  role.value = ""
+
   axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/logout`, {
     headers: {
       'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
@@ -62,4 +68,25 @@ function checkIfLogged() {
 }
 checkIfLogged()
 
+
+function setIsAdmin() {
+  window.sessionStorage.setItem('role', 'admin')
+  checkIfAdmin()
+}
+function checkIfAdmin() {
+
+  if (window.sessionStorage.getItem('role')==='admin') {
+    console.log("setting admin powers")
+    role.value = "admin"
+  }
+}
+
+
+
 </script>
+
+
+<!--
+
+
+  -->

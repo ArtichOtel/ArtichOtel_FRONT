@@ -24,7 +24,9 @@ const props = defineProps({
 })
 
 const emit = defineEmits(
-    {'login': {}}
+    {'login': {},
+      'isAdmin':{}
+    }
 )
 
 function sayHello(data) {
@@ -36,6 +38,7 @@ function sayHello(data) {
   }
 
   if (data.role.toString() === "admin") {
+    emit('isAdmin')
     console.log("redirect to admin panel")
     router.push("/admin")
   } else {

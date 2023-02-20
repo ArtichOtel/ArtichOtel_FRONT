@@ -1,5 +1,5 @@
 <template>
-  <main v-if="sections.length" class="h-full w-full overflow-hidden">
+  <main v-if="sections.length" class="h-full w-full overflow-hidden scroll-smooth">
     <HeaderSection />
     <HeroSection        :title="sections[0].title" :uri="sections[0].uri" />
     <OffersSection      :title="sections[1].title" :uri="sections[1].uri" />
