@@ -13,15 +13,15 @@
         <div class="font-content absolute inset-x-0 bottom-0">
 
           <h3 class="bg-tertiary text-secondary text-xl w-fit">
-            <span style="margin: 1vw;">{{ newsInfos[n].title }}</span>
+            <span style="margin: 1vw;">{{ newsInfos[n-1].title }}</span>
           </h3>
 
           <p class="bg-secondary/60">
-            <span style="margin: 1vw;">{{ newsInfos[n].description }}</span>
+            <span style="margin: 1vw;">{{ newsInfos[n-1].description }}</span>
           </p>
         </div>
 
-        <img :src="newsInfos[n].url_image" alt="">
+        <img :src="newsInfos[n-1].url_image" alt="">
       </div>
 
     </div>
