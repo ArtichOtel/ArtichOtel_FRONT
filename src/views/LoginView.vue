@@ -1,42 +1,48 @@
-<template>
-  <form @submit.prevent="connect">
-    <label for="pseudo" class="block underline">pseudo</label>
-    <input type="text" name="pseudo" v-model="pseudo" class="border">
-
-    <label for="password" class="block underline">password</label>
-    <input type="password" name="password" v-model="password" class="border">
-  <br/>
-    <button type="submit">LOGIN</button>
-  </form>
-  <br><br>
-  <RouterLink to="/">accueil</RouterLink>
+<template >
+  <main v-if="sections.length" class="h-full w-full overflow-hidden">
+    <HeaderSection :title="sections[0].title" :uri="sections[0].uri" />
+    <LoginForm @connectionStatus="(data) => {sayHello(data)}"/>
+    <FooterSection :title="sections[7].title" :uri="sections[7].uri" />
+  </main>
 </template>
 
 <script>
-import axios from "axios";
-import {ref} from "vue";
-
 export default {
-  name: "LoginView",
-  setup(props, ctx) {
-    let pseudo = ref("")
-    let password = ref("")
+  name: "LoginView"
+}
+</script>
 
-    const connect = function () {
+<script setup>
 
-      axios.post('http://127.0.0.1:8000/api/user/login',
-          {pseudo: pseudo.value, password: password.value})
-          .then((response)=>{
-            //console.log(response.data.token)
-            window.sessionStorage.setItem('token', response.data.token)
-            ctx.emit("")
-          })
-    }
+import HeaderSection from "../components/sections/HeaderSection.vue";
+import FooterSection from "../components/sections/FooterSection.vue";
+import LoginForm from "../components/forms/LoginForm.vue";
+import router from "../router";
 
-   return {
-     pseudo,password, connect
-   }
+const props = defineProps({
+  sections: Array
+})
 
+const emit = defineEmits(
+    {'login': {}}
+)
+
+function sayHello(data) {
+  console.log("vous êtes connecté")
+  //console.group(data)
+
+  if (data.token) {
+    emit('login')
+  }
+
+  if (data.role.toString() === "admin") {
+    console.log("redirect to admin panel")
+    router.push("/admin")
+  } else {
+    router.push("/")
   }
 }
+
+
+
 </script>

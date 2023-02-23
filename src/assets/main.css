@@ -5,3 +5,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.svg-secondary {
+    filter: invert(92%) sepia(15%) saturate(348%) hue-rotate(21deg) brightness(109%) contrast(115%);
+}
