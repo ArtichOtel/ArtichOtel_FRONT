@@ -1,8 +1,8 @@
 <template>
   <section id="hero"
            v-if="heroData"
-           class="relative h-[calc(100vh-48px)] mt-12 bg-white"
-           :style="{background: 'url(' + heroData.url_image + ')'}"
+           class="relative h-[calc(100vh-48px)] mt-12 bg-tertiary/40"
+           :style="{backgroundImage: 'url(' + heroData.url_image + ')', backgroundBlendMode: 'overlay', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }"
   >
     <nav></nav>
 
@@ -44,8 +44,8 @@ export default {
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
-import router from "../../router";
+import {reactive, ref} from "vue";
+import {log} from "../../utils/console";
 
 const props = defineProps({
   title: String,
@@ -58,6 +58,12 @@ const props = defineProps({
 const heroData = ref();
 const heroCTA = ref();
 
+/*
+const styleObject = reactive({
+  backgroundImage: 'url(' + heroData.value.url_image + ')',
+})
+*/
+
 if (props.uri !== '') {
   axios.get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`)
       .then((resp) => {
@@ -66,7 +72,7 @@ if (props.uri !== '') {
   });
 } else {
   // if data are provided in wysiwyg mode
-  console.log("HERO WYSIWYG")
+  log("HERO WYSIWYG")
   heroData.value = {title: props.wysiwygHero.title, subtitle: props.wysiwygHero.subtitle, url_image: props.wysiwygHero.url_image}
   heroCTA.value[0] = {text: props.wysiwygCTA1.text }
   heroCTA.value[1] = {text: props.wysiwygCTA2.text }
