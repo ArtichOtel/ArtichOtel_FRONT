@@ -5,15 +5,15 @@
 <!--  pexels-max-vakhtbovych-6238613.jpg-->
 
   <div class="bg-primary/70 text-tertiary pt-4 md:pt-[3vw] pb-8 px-8 md:pb-[9vw] md:px-[8.6vw]">
-    <div v-if="data" class="flex flex-col md:flex-row">
+    <div v-if="data" class="flex flex-col md:flex-row items-center">
 
-      <iframe class="flex-1 w-1/2 aspect-4/3"
+      <iframe class="flex-1 w-1/2 aspect-4/3 my-[4vw]"
               src="https://www.youtube.com/embed/p7YXXieghto"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen></iframe>
 
-      <div class="flex-1 w-1/2 flex justify-center items-center px-[2vw]">
+      <div class="flex-1 w-1/2 flex justify-center items-center px-[2vw] ">
         <p class="text-2xl">
           {{data.description}}</p>
       </div>

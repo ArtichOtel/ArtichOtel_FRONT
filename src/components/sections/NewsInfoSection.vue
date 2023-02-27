@@ -6,9 +6,9 @@
 
     <h2 class="font-title text-titleBase">{{ title }}</h2>
 
-    <div class="flex flex-col lg:flex-row justify-between gap-[1vw]">
+    <div v-if="newsInfos.length" class="flex flex-col lg:flex-row justify-between items-center gap-[1vw]">
 
-      <div v-for="n in 3" v-if="newsInfos.length" class="relative h-fit">
+      <div v-for="n in 3" :key="n" class="relative h-fit">
 
         <div class="font-content absolute inset-x-0 bottom-0">
 
