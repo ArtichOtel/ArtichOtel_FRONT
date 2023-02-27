@@ -12,10 +12,13 @@ import LoginButton from "./components/LoginButton.vue";
 import axios from "axios";
 import router from "./router";
 import SwitchModeButton from "./components/admin/SwitchModeButton.vue";
+import {log} from "./utils/console";
 
+/*
 const connectionStatus = ref({
   connected: false
 })
+*/
 
 const data = ref([])
 const isLogged = ref(false)
@@ -28,12 +31,12 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
       data.value = response.data
     })
     .catch((err)=> {
-      console.log("BUG :", err)
+      log("BUG :", err)
     })
 
 
 function logout() {
-  console.log("logout")
+  log("logout")
   role.value = ""
 
   axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/logout`, {
@@ -47,7 +50,7 @@ function logout() {
         }
   }).catch(err => {
     alert("Il y a eu une erreur lors de la déconnexion")
-    console.log(err)
+    log(err)
   })
 
   isLogged.value = false
@@ -57,7 +60,7 @@ function logout() {
 }
 
 function setLogged() {
-  console.log("app knows that you are logged")
+  log("app knows that you are logged")
   isLogged.value = true
 }
 
@@ -76,7 +79,7 @@ function setIsAdmin() {
 function checkIfAdmin() {
 
   if (window.sessionStorage.getItem('role')==='admin') {
-    console.log("setting admin powers")
+    log("setting admin powers")
     role.value = "admin"
   }
 }
