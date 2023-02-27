@@ -15,3 +15,9 @@ export function warn(data, ...rest) {
         console.warn(data, ...rest)
     }
 }
+
+export function error(data, ...rest) {
+    if (import.meta.env.VITE_ENV === "development") {
+        console.error(data, ...rest)
+    }
+}

@@ -73,7 +73,7 @@ axios({
   url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`
 })
   .then((response) => {
-    trace('advantages', response.data)
+    //log('advantages', response.data)
     advantages.value = response.data
   })
   .catch((error) => {

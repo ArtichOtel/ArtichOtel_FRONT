@@ -27,6 +27,7 @@
 
 import axios from 'axios';
 import { ref } from 'vue';
+import {log} from "../../utils/console";
 
 const offer = ref({})
 const props = defineProps({
@@ -39,15 +40,11 @@ axios({
   url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`
 })
   .then((response) => {
-    console.log("offers", response.data)
+    //log("offers", response.data)
     offer.value = response.data[0]
   })
   .catch((error) => {
-    console.log('Error: ', error)
+    log('Error: ', error)
   })
 
 </script>
-
-<style scoped>
-
-</style>

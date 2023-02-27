@@ -33,6 +33,7 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import {error, log} from "../../utils/console";
 
 
 const newsInfos = ref([])
@@ -47,15 +48,11 @@ axios({
   url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`
 })
   .then((response) => {
-    console.log('newInfos', response.data)
+    //log('newInfos', response.data)
     newsInfos.value = response.data
   })
-  .catch((error) => {
-    console.error('Error: ', error);
+  .catch((err) => {
+    error('Error: ', err);
   })
 
 </script>
-
-<style scoped>
-
-</style>

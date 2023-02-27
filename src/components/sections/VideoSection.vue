@@ -27,6 +27,7 @@
 
 import {ref} from "vue";
 import axios from "axios";
+import {log} from "../../utils/console";
 
 
 const props = defineProps({
@@ -42,37 +43,11 @@ axios({
   url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`
 })
     .then((response) => {
-      //console.log(response.data[0])
+      //log(response.data[0])
       data.value = response.data[0]
     })
     .catch((err)=> {
       console.log("BUG :", err)
     })
 
-/*const function ready(event) {
-  this.player = event.target;
-},
-playing(event) {
-  console.log("playing");
-},
-change() {
-  //this.videoId = "use another video id";
-},
-stop() {
-  this.player.stopVideo();
-},
-pause() {
-  this.player.pauseVideo();
-  console.log("paused");
-},
-play() {
-  this.player.playVideo();
-  console.log("paused");
-},*/
-
 </script>
-
-<!--
-         @ready="ready"
-          @playing="playing"
--->
