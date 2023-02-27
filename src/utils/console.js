@@ -1,17 +1,17 @@
-export function log(data) {
+export function log(data, ...rest) {
     if (import.meta.env.VITE_ENV === "development") {
-        console.log(data)
+        console.log(data, ...rest)
     }
 }
 
-export function trace(data) {
+export function trace(data, ...rest) {
     if (import.meta.env.VITE_ENV === "development") {
-        console.trace(data)
+        console.trace(data, ...rest)
     }
 }
 
-export function warn(data) {
+export function warn(data, ...rest) {
     if (import.meta.env.VITE_ENV === "development") {
-        console.warn(data)
+        console.warn(data, ...rest)
     }
 }
