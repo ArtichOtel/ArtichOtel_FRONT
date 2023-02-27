@@ -1,11 +1,13 @@
 <template>
-  <section id="hero" v-if="heroData"
-    class="relative h-[calc(100vh-48px)] mt-12 bg-cover bg-no-repeat"
-    :style="{background: 'url(' + heroData.url_image + ')'}"
+  <section id="hero"
+           v-if="heroData"
+           class="relative h-[calc(100vh-48px)] mt-12 bg-white"
+           :style="{background: 'url(' + heroData.url_image + ')'}"
   >
     <nav></nav>
+
     <div class="flex flex-col w-full h-full">
-      <div v-if="heroData" class="m-auto text-center">
+      <div class="m-auto text-center">
         <h1 class="text-7xl font-title text-secondary">
           {{ heroData.title }}
         </h1>
@@ -14,14 +16,14 @@
         </h2>
       </div>
       <div
-        v-if="heroCTA"
+        v-if="heroCTA.length"
         class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex md:w-6/12 h-auto w-9/12"
       >
         <button
           class="bg-primary rounded-lg py-2 px-12 text-2xl text-secondary font-content"
           role="link" v-on:click="goTo(heroCTA[0].url)"
         >
-          {{ heroCTA[0].text }}
+          {{ heroCTA[0].text}}
         </button>
         <button
           class="bg-accent rounded-lg py-2 px-12 text-2xl text-texts font-content"
@@ -48,16 +50,27 @@ import router from "../../router";
 const props = defineProps({
   title: String,
   uri: String,
+  wysiwygHero: {},
+  wysiwygCTA1: {},
+  wysiwygCTA2: {}
 });
 
 const heroData = ref();
 const heroCTA = ref();
 
-axios.get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`).then((resp) => {
-  heroData.value = resp.data[0][0];
-  heroCTA.value = resp.data[1];
-  console.log("text : ", resp.data[1]);
-});
+if (props.uri !== '') {
+  axios.get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`)
+      .then((resp) => {
+        heroData.value = resp.data[0][0];
+        heroCTA.value = resp.data[1];
+  });
+} else {
+  // if data are provided in wysiwyg mode
+  console.log("HERO WYSIWYG")
+  heroData.value = {title: props.wysiwygHero.title, subtitle: props.wysiwygHero.subtitle, url_image: props.wysiwygHero.url_image}
+  heroCTA.value[0] = {text: props.wysiwygCTA1.text }
+  heroCTA.value[1] = {text: props.wysiwygCTA2.text }
+}
 
 
 function goTo(url) {
@@ -65,5 +78,20 @@ function goTo(url) {
   window.location.replace(url)
 }
 
+function updateValues() {
+
+}
+
 
 </script>
+
+
+<!--
+
+
+         :style="!!wysiwyg ? `background: url(${wysiwyg.url_image})` : `background: url(${heroData.url_image})` "
+
+    :style="{background: 'url(' + heroData.url_image + ')'}"
+
+
+-->

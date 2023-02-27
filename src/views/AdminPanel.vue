@@ -5,7 +5,7 @@
         @clickOnBtn="(index) => setCurrentSection(index)" :list-of-sections="listOfSections"
     />
     <div v-if="currentSection" >
-      {{currentSection}}
+      {{currentSection.name}}
     </div>
     <component v-if="currentIndex" :is="listOfSections[currentIndex].comp" />
   </main>
@@ -41,7 +41,7 @@ const currentSection = ref({})
 const isAdmin = ref(false)
 
 function setCurrentSection(index) {
-  console.log(index)
+  //console.log(index)
   currentIndex.value = index
   currentSection.value = listOfSections.value[index]
 }
@@ -53,7 +53,7 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/user`, {
   }
 })
     .then((response) => {
-      console.log(response.data)
+      //console.log(response.data)
 
       if (response.status === 200) {
         isAdmin.value = true

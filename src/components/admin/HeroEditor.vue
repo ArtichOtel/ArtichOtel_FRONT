@@ -1,11 +1,14 @@
 <template>
   <div class="h-screen flex justify-center items-center">
+<!-- here is the form -->
     <form v-if="loaded" class="m-8 mb-24">
       <label for="title" class="block">Titre</label>
-      <input type="text" id="title" name="title" v-model="title" class="border mb-4">
+      <input type="text" id="title" name="title" v-model="title" class="border mb-4"
+             @input="setWysiwyg('title', title)">
 
       <label for="subtitle" class="block">Sous titre</label>
-      <input type="text" id="subtitle" name="subtitle" v-model="subtitle" class="border mb-4">
+      <input type="text" id="subtitle" name="subtitle" v-model="subtitle" class="border mb-4"
+             @input="setWysiwyg('subtitle', subtitle)">
 
       <label for="url_image" class="block">URL Image</label>
       <input type="text" id="url_image" name="url_image" v-model="url_image" class="border mb-4">
@@ -31,9 +34,18 @@
       <button type="button" v-on:click="save" class="border bg-green-600/50 px-4 py-2 mr-6">Enregistrer</button>
       <button type="reset" class="border bg-red-600/50 px-4 py-2" >EFFACER</button>
     </form>
-    <div class="flex-1">
-      <img :src="url_image" alt="alt" class="p-1 border">
+
+<!-- here is WYSIWYG -->
+    <div v-if="loaded" class="border p-1 bg-black">
+      <heroSection v-bind:wysiwygHero="wysiwygHero"
+                   v-bind:wysiwygCTA1="wysiwygCTA1"
+                   v-bind:wysiwygCTA2="wysiwygCTA2"
+                   v-bind:title="''"
+                   v-bind:uri="''"
+
+      />
     </div>
+
   </div>
 </template>
 
@@ -48,7 +60,9 @@ export default {
 
 import {ref} from "vue";
 import axios from "axios";
+import HeroSection from "../sections/HeroSection.vue";
 
+// from database
 const title = ref("")
 const subtitle = ref("")
 const url_image = ref("")
@@ -58,29 +72,44 @@ const cta1_url = ref("")
 const cta2_id = ref("")
 const cta2_text = ref("")
 const cta2_url = ref("")
+
+const wysiwygHero = ref({title:"", subtitle:"", url_image:""})
+const wysiwygCTA1 = ref({text:""})
+const wysiwygCTA2 = ref({text:""})
+
 const loaded = ref(false)
 
 
 function getPlaceholders() {
-  console.log("axios")
+  console.log("axios : get initial data")
   axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
       .then((response) => {
-        console.log(response.data)
+        //console.log(response.data)
 
         title.value = response.data[0][0].title
+        wysiwygHero.value.title = response.data[0][0].title
         subtitle.value = response.data[0][0].subtitle
+        wysiwygHero.value.subtitle = response.data[0][0].subtitle
         url_image.value = response.data[0][0].url_image
+        wysiwygHero.value.url_image = response.data[0][0].url_image
 
         cta1_id.value = response.data[1][0].id
+        //wysiwygCTA1.value.cta1_id = response.data[1][0].id
         cta1_text.value = response.data[1][0].text
+        wysiwygCTA1.value.text = response.data[1][0].text
         cta1_url.value = response.data[1][0].url
+        //wysiwygCTA1.value.cta1_url = response.data[1][0].url
 
         cta2_id.value = response.data[1][1].id
+        //wysiwygCTA2.value.cta2_id = response.data[1][1].id
         cta2_text.value = response.data[1][1].text
+        wysiwygCTA2.value.text = response.data[1][1].text
         cta2_url.value = response.data[1][1].url
+        //wysiwygCTA2.value.cta2_url = response.data[1][1].url
 
       })
       .then(()=> {
+        console.log("ready to show")
         loaded.value = true
       })
       .catch((err) => {
@@ -152,5 +181,19 @@ function save() {
 
 }
 
+function setWysiwyg(element, value) {
+  wysiwyg.value[element] = value
+}
+
+
 
 </script>
+
+
+<!--
+
+    <div class="flex-1">
+      <img :src="url_image" alt="alt" class="p-1 border">
+    </div>
+
+-->

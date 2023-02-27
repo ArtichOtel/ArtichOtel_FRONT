@@ -7,8 +7,13 @@
         <div  v-if="advantages.length" class="flex flex-col gap-[2.4vw]">
           <div v-for="n in 2" v-bind:key="n" class="flex flex-col md:flex-row justify-between gap-[2.4vw]">
 
-            <div v-for="m in 2" v-bind:key="m" class="flex flex-col gap-1">
-              <img src="https://via.placeholder.com/640x480.png/009988?text=test" :alt="advantages[n-1+(m-1)*2].icon">
+            <div v-for="m in 2" v-bind:key="m" class="flex flex-col justify-center gap-1
+                                                      border-2 border-secondary
+                                                      border-b-8 border-b-accent rounded-b-md
+                                                      w-[31.250vw]">
+              <img :src="apiIconURL + advantages[n-1+(m-1)*2].icon + '.svg'"
+                  :alt="advantages[n-1+(m-1)*2].icon"
+                  class="m-20">
             </div>
 
           </div>
@@ -29,6 +34,8 @@ const props = defineProps({
   title: String,
   uri: String
 })
+const apiIconURL = `${import.meta.env.VITE_ICON_URL}`
+console.log(apiIconURL)
 
 axios({
   method: 'get',
