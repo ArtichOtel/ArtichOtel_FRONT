@@ -4,7 +4,7 @@
            class="relative h-[calc(100vh-48px)] mt-12 bg-tertiary/40"
            :style="{backgroundImage: 'url(' + heroData.url_image + ')', backgroundBlendMode: 'overlay', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }"
   >
-    <nav></nav>
+    <NavBar />
 
     <div class="flex flex-col w-full h-full">
       <div class="m-auto text-center">
@@ -46,6 +46,7 @@ export default {
 import axios from "axios";
 import {reactive, ref} from "vue";
 import {log} from "../../utils/console";
+import NavBar from "../NavBar.vue";
 
 const props = defineProps({
   title: String,
