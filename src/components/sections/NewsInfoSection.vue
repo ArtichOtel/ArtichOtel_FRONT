@@ -1,27 +1,25 @@
 <template>
 
-<section id="news" class="px-[8.6vw] py-[9vw]  text-tertiary">
+<section id="news" class="relative px-[8.6vw] py-[9vw] text-tertiary overflow-hidden">
 
-  <div class="flex flex-col gap-[8vw]">
+  <div class="flex flex-col">
+    <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">{{title}}</h2>
 
-    <h2 class="font-title text-titleBase">{{ title }}</h2>
+    <div v-if="newsInfos.length" class="flex flex-col md:flex-row justify-between items-end gap-[1vw]">
 
-    <div v-if="newsInfos.length" class="flex flex-col lg:flex-row justify-between items-center gap-[1vw]">
+      <div v-for="n in 3" :key="n" class="relative bg-red-200 h-fit">
 
-      <div v-for="n in 3" :key="n" class="relative h-fit">
+        <div class="font-content absolute inset-x-0 bottom-0 h-fit">
 
-        <div class="font-content absolute inset-x-0 bottom-0">
+          <h3 class="bg-tertiary text-secondary text-xl w-fit p-[1vw]">{{ newsInfos[n-1].title }}</h3>
 
-          <h3 class="bg-tertiary text-secondary text-xl w-fit">
-            <span style="margin: 1vw;">{{ newsInfos[n-1].title }}</span>
-          </h3>
-
-          <p class="bg-secondary/60">
-            <span style="margin: 1vw;">{{ newsInfos[n-1].description }}</span>
-          </p>
+          <p class="bg-secondary/60 p-[1vw]">{{ newsInfos[n-1].description }}</p>
         </div>
 
-        <img :src="newsInfos[n-1].url_image" alt="">
+        <div class="">
+          <img :src="newsInfos[n-1].url_image" alt="">
+        </div>
+
       </div>
 
     </div>
@@ -34,7 +32,6 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import {error, log} from "../../utils/console";
-
 
 const newsInfos = ref([])
 

@@ -3,9 +3,8 @@
 
     <div class="flex flex-col md:flex-row justify-between gap-[9.6vw]">
 
-      <div class="flex flex-col gap-1 text-tertiary">
-
-        <h2 class="font-title text-titleBase">{{ title }}</h2>
+      <div class="flex flex-col text-tertiary">
+        <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">{{title}}</h2>
         <span class="font-content">{{ offer.description }}</span>
 
       </div>
