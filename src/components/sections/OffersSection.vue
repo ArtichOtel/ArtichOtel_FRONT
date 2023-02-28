@@ -5,13 +5,13 @@
 
       <div class="flex flex-col text-tertiary">
         <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">{{title}}</h2>
-        <span class="font-content">{{ offer.description }}</span>
+        <p class="font-content tracking-wider">{{ offer.description }}</p>
 
       </div>
       <div class="flex flex-col items-center gap-1">
 
         <img :src="offer.url_image" alt="">
-        <button class="bg-accent rounded-lg py-2 px-12 text-2xl text-tertiary font-content">
+        <button class="bg-accent rounded-lg py-2 px-12 text-2xl text-tertiary font-content tracking-wider">
           Réservez maintenant
         </button>
 

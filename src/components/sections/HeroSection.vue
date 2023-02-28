@@ -17,16 +17,16 @@
       </div>
       <div
         v-if="heroCTA.length"
-        class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex md:w-6/12 h-auto w-9/12"
+        class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex md:w-6/12 h-auto w-9/12 tracking-wider"
       >
         <button
-          class="bg-primary rounded-lg py-2 px-12 text-2xl text-secondary font-content"
+          class="bg-primary rounded-lg py-2 px-12 text-2xl tracking-wider text-secondary font-content"
           role="link" v-on:click="goTo(heroCTA[0].url)"
         >
           {{ heroCTA[0].text}}
         </button>
         <button
-          class="bg-accent rounded-lg py-2 px-12 text-2xl text-texts font-content"
+          class="bg-accent rounded-lg py-2 px-12 text-2xl tracking-wider text-texts font-content"
           role="link" v-on:click="goTo(heroCTA[1].url)"
         >
           {{ heroCTA[1].text }}

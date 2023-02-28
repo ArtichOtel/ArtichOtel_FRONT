@@ -4,7 +4,7 @@
     <div class="px-[8.6vw] py-[9vw] flex flex-col gap-[8vw]">
       <h2 class="font-title text-titleBase md:text-titleMed">{{title}}</h2>
 
-      <div  v-if="advantages.length" class="flex flex-col lg:flex-row justify-betrween">
+      <div  v-if="advantages.length" class="flex flex-col lg:flex-row justify-betrween tracking-wider">
           <div v-for="n in 2" v-bind:key="n" class="flex flex-col sm:flex-row items-center justify-betwjeen flex-1">
 
             <div v-for="m in 2" v-bind:key="m" class="overflow-hidden relative

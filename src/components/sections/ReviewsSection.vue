@@ -1,5 +1,5 @@
 <template>
-  <div id="reviews" class="bg-tertiary text-secondary py-8 px-8 md:py-[9vw] md:px-[8.6vw]">
+  <section id="reviews" class="bg-tertiary text-secondary py-8 px-8 md:py-[9vw] md:px-[8.6vw]">
 
     <h2 class="font-title text-titleBase md:text-titleMed mb-[8vw]">{{title}}</h2>
     <div v-if="reviews.length" class="flex flex-col md:flex-row justify-between">
@@ -12,7 +12,7 @@
             <img src="https://picsum.photos/50/50" alt="user name">
           </div>
           <div class="flex justify-start items-center">
-            <p class="flex-none pl-4 font-content">USER NAME</p></div>
+            <p class="flex-none pl-4 font-content tracking-wider">USER NAME</p></div>
         </div>
 
         <div class="flex mb-3">
@@ -22,11 +22,11 @@
           </div>
         </div>
 
-        <div class="font-content">{{review.description}}</div>
+        <div class="font-content tracking-wider">{{review.description}}</div>
       </div>
 
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>

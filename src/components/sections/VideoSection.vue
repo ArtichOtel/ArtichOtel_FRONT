@@ -14,7 +14,7 @@
               allowfullscreen></iframe>
 
       <div class="flex-1 w-1/2 flex justify-center items-center px-[2vw] ">
-        <p class="text-2xl">
+        <p class="text-2xl tracking-wider">
           {{data.description}}</p>
       </div>
     </div>

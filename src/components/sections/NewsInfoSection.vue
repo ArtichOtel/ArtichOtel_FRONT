@@ -5,7 +5,7 @@
   <div class="flex flex-col">
     <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">{{title}}</h2>
 
-    <div v-if="newsInfos.length" class="flex flex-col md:flex-row justify-between items-end gap-[1vw]">
+    <div v-if="newsInfos.length" class="flex flex-col md:flex-row justify-between items-end gap-[1vw] tracking-wider">
 
       <div v-for="n in 3" :key="n" class="relative bg-red-200 h-fit">
 
