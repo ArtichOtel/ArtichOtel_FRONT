@@ -12,7 +12,7 @@
           {{ heroData.title[langStore.lang] }}
         </h1>
         <h2 class="text-5xl font-title text-secondary">
-          {{ heroData.subtitle }}
+          {{ heroData.subtitle[langStore.lang] }}
         </h2>
       </div>
       <div
