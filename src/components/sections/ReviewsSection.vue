@@ -1,7 +1,7 @@
 <template>
   <section id="reviews" class="bg-tertiary text-secondary py-8 px-8 md:py-[9vw] md:px-[8.6vw]">
 
-    <h2 class="font-title text-titleBase md:text-titleMed mb-[8vw]">{{title}}</h2>
+    <h2 class="font-title text-titleBase md:text-titleMed mb-[8vw]">{{title[langStore.lang]}}</h2>
     <div v-if="reviews.length" class="flex flex-col md:flex-row justify-between">
 
 <!--this div 3 times-->
@@ -35,12 +35,14 @@ import StarNotation from "../StarNotation/StarNotation.vue";
 
 import {ref} from "vue";
 import axios from "axios";
+import {useLangStore} from "../../stores/lang";
 const props = defineProps({
   title: String,
   uri: String
 })
 
 const reviews = ref([])
+const langStore = useLangStore()
 
 axios({
   method: "get",

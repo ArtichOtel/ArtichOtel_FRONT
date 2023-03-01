@@ -2,7 +2,7 @@
 
   <section id="advantages" class="bg-tertiary text-secondary">
     <div class="px-[8.6vw] py-[9vw] flex flex-col gap-[8vw]">
-      <h2 class="font-title text-titleBase md:text-titleMed">{{title}}</h2>
+      <h2 class="font-title text-titleBase md:text-titleMed">{{title[langStore.lang]}}</h2>
 
       <div  v-if="advantages.length" class="flex flex-col lg:flex-row justify-betrween tracking-wider">
           <div v-for="n in 2" v-bind:key="n" class="flex flex-col sm:flex-row items-center justify-betwjeen flex-1">
@@ -35,9 +35,9 @@
                          class="w-[28vw] h-[28vw] sm:w-[14vw] sm:h-[14vw] lg:w-[7vw] lg:h-[7vw]"
                     >
                   <p class="mx-2 sm:mx-4 text-center text-2xl sm:text-xl lg:text-base">
-                    <span class="font-bold">{{advantages[n-1+(m-1)*2].title}}</span>
+                    <span class="font-bold">{{advantages[n-1+(m-1)*2].title[langStore.lang]}}</span>
                      <br>
-                    {{advantages[n-1+(m-1)*2].description}}
+                    {{advantages[n-1+(m-1)*2].description[langStore.lang]}}
                   </p>
 
                 </div>
@@ -58,10 +58,12 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import {log, trace} from "../../utils/console";
+import {useLangStore} from "../../stores/lang";
 
 const iconURL = ref(import.meta.env.VITE_ICON_URL)
 const advantages = ref([])
 
+const langStore = useLangStore()
 
 const props = defineProps({
   title: String,

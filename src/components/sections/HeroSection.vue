@@ -44,7 +44,7 @@ export default {
 
 <script setup>
 import axios from "axios";
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 import { useLangStore } from "../../stores/lang";
 import {log} from "../../utils/console";
 import NavBar from "../NavBar.vue";
@@ -73,7 +73,7 @@ if (props.uri !== '') {
       .then((resp) => {
         heroData.value = resp.data[0][0];
         heroCTA.value = resp.data[1];
-        console.log(resp);
+        log(resp);
   });
 } else {
   // if data are provided in wysiwyg mode
