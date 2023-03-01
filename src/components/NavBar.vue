@@ -2,18 +2,18 @@
 
     <nav class="px-[8.6vw] pt-[1.04vw] flex flex-row">
         <img :src="imgURL + 'green-rectangle-logo.jpg'">
-        <div class="pl-[8.13vw] font-title text-secondary text-2xl flex flex-row w-full justify-between">
+        <div class="pl-[8.9vw] font-title text-secondary text-2xl flex flex-row w-full justify-between">
             <ul class="flex flex-row w-full h-full items-center justify-between">
-            <li>Offres</li>
-            <li>Chambres</li>
-            <li>Actualités</li>
-            <li>Mon compte</li>
-        </ul>
-        <select v-model="langStore.lang" @change="setLang($event.target.value)"
-                class="ml-8 text-tertiary h-1/2 my-auto">
-            <option value="fr_FR">FR</option>
-            <option value="en_EN">EN</option>
-        </select>
+                <li><a href="#offers">Offres</a></li>
+                <li><a href="#">Chambres</a></li>
+                <li><a href="#">Actualités</a></li>
+                <li><a href="#">Mon compte</a></li>
+            </ul>
+            <select v-model="langStore.lang" @change="setLang($event.target.value)"
+                    class="ml-8 text-tertiary h-1/2 my-auto">
+                <option value="fr_FR" style="background-image: url('/src/assets/artichaut.svg');"></option>
+                <option value="en_EN">EN</option>
+            </select>
         </div>
     </nav>
 
