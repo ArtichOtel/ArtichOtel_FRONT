@@ -1,35 +1,35 @@
 <template>
   <section id="hero"
            v-if="heroData"
-           class="relative h-[calc(100vh-48px)] mt-12 bg-white"
-           :style="{background: 'url(' + heroData.url_image + ')'}"
+           class="relative h-[calc(100vh-48px)] mt-12 bg-tertiary/40"
+           :style="{backgroundImage: 'url(' + heroData.url_image + ')', backgroundBlendMode: 'overlay', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }"
   >
-    <nav></nav>
+    <NavBar />
 
     <div class="flex flex-col w-full h-full">
       <div class="m-auto text-center">
         <h1 class="text-7xl font-title text-secondary">
-          {{ heroData.title }}
+          {{ heroData.title[langStore.lang] }}
         </h1>
         <h2 class="text-5xl font-title text-secondary">
-          {{ heroData.subtitle }}
+          {{ heroData.subtitle[langStore.lang] }}
         </h2>
       </div>
       <div
         v-if="heroCTA.length"
-        class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex md:w-6/12 h-auto w-9/12"
+        class="m-auto flex-col md:flex-row text-center lg:justify-between gap-5 flex md:w-6/12 h-auto w-9/12 tracking-wider"
       >
         <button
-          class="bg-primary rounded-lg py-2 px-12 text-2xl text-secondary font-content"
+          class="bg-primary rounded-lg py-2 px-12 text-2xl tracking-wider text-secondary font-content"
           role="link" v-on:click="goTo(heroCTA[0].url)"
         >
-          {{ heroCTA[0].text}}
+          {{ heroCTA[0].text[langStore.lang] }}
         </button>
         <button
-          class="bg-accent rounded-lg py-2 px-12 text-2xl text-texts font-content"
+          class="bg-accent rounded-lg py-2 px-12 text-2xl tracking-wider text-texts font-content"
           role="link" v-on:click="goTo(heroCTA[1].url)"
         >
-          {{ heroCTA[1].text }}
+          {{ heroCTA[1].text[langStore.lang] }}
         </button>
       </div>
     </div>
@@ -44,8 +44,10 @@ export default {
 
 <script setup>
 import axios from "axios";
-import { ref } from "vue";
-import router from "../../router";
+import {ref} from "vue";
+import { useLangStore } from "../../stores/lang";
+import {log} from "../../utils/console";
+import NavBar from "../NavBar.vue";
 
 const props = defineProps({
   title: String,
@@ -55,18 +57,27 @@ const props = defineProps({
   wysiwygCTA2: {}
 });
 
+const langStore = useLangStore();
+
 const heroData = ref();
 const heroCTA = ref();
+
+/*
+const styleObject = reactive({
+  backgroundImage: 'url(' + heroData.value.url_image + ')',
+})
+*/
 
 if (props.uri !== '') {
   axios.get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`)
       .then((resp) => {
         heroData.value = resp.data[0][0];
         heroCTA.value = resp.data[1];
+        log(resp);
   });
 } else {
   // if data are provided in wysiwyg mode
-  console.log("HERO WYSIWYG")
+  log("HERO WYSIWYG")
   heroData.value = {title: props.wysiwygHero.title, subtitle: props.wysiwygHero.subtitle, url_image: props.wysiwygHero.url_image}
   heroCTA.value[0] = {text: props.wysiwygCTA1.text }
   heroCTA.value[1] = {text: props.wysiwygCTA2.text }
