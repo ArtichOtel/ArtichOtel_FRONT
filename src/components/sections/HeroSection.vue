@@ -1,6 +1,6 @@
 <template>
   <section id="hero"
-           v-if="heroData"
+           v-if="loaded"
            class="relative mt-12 bg-tertiary/50"
            :style="{backgroundImage: 'url(' + heroData.url_image + ')', backgroundBlendMode: 'overlay', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }"
   >
@@ -19,65 +19,17 @@
       </div>
 
 <!--   ctas   -->
-      <div v-if="heroCTA.length"
-        class="mx-auto flex flex-col text-center lg:justify-between gap-5 tracking-wider"
-      >
+      <div class="mx-auto flex flex-col text-center lg:justify-between gap-5 tracking-wider mb-12">
 
 <!--   2 date pickers     -->
         <div class="flex flex-col justify-center items-center bg-tertiary/60 p-4">
           <div class="flex flex-col md:flex-row justify-center items-center text-secondary-light mb-4">
 
             <!--    left picker        -->
-            <div class="flex flex-row items-end p-3">
-              <div class="">
-                <p class="text-sm -mb-2">Arrivée</p>
-                <img src="src/assets/icons/calendar-edit.svg" alt="calendar" class="text-black h-20 w-20 svg-secondary-light" aria-hidden="true">
-              </div>
-              <div class="0 flex flex-row">
-                <div class="flex flex-col justify-center items-center">
-                  <p class="text-5xl px-1 -mb-2">24</p>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                  <p class="text-lg -mb-1">janv.</p>
-                  <p class="text-lg -mb-1">2023</p>
-                </div>
-
-                <div class="flex justify-center items-center relative">
-                  <input type="date" name="start" id="start" class="block z-10 w-6 bg-transparent text-transparent text-2xl">
-                  <label for="start" class="absolute z-0" >
-                    <img src="src/assets/icons/arrow-down-1.svg" alt="selectDate" class="svg-accent">
-                  </label>
-                </div>
-              </div>
-
-            </div>
+            <DatePicker v-bind:dateStore="dateStartStore" v-bind:title="'Arrivée'"/>
 
             <!--    right picker        -->
-            <div class="flex flex-row items-end p-3">
-              <div class="">
-                <p class="text-sm -mb-2">Départ</p>
-                <img src="src/assets/icons/calendar-edit.svg" alt="calendar" class="text-black h-20 w-20 svg-secondary-light" aria-hidden="true">
-              </div>
-              <div class="0 flex flex-row">
-                <div class="flex flex-col justify-center items-center">
-                  <p class="text-5xl px-1 -mb-2">25</p>
-                </div>
-                <div class="flex flex-col justify-center items-center">
-                  <p class="text-lg -mb-1">janv.</p>
-                  <p class="text-lg -mb-1">2023</p>
-                </div>
-
-                <div class="flex justify-center items-center relative">
-                  <input type="date" name="start" id="end" class="block w-6 z-10 text-transparent bg-transparent">
-                  <label for="end" class="absolute z-0">
-                    <img src="src/assets/icons/arrow-down-1.svg" alt="selectDate" class="svg-accent">
-                  </label>
-                </div>
-
-
-              </div>
-
-            </div>
+            <DatePicker v-bind:dateStore="dateEndStore" v-bind:title="'Départ'"/>
 
           </div>
           <button
@@ -110,8 +62,11 @@ export default {
 import axios from "axios";
 import {ref} from "vue";
 import { useLangStore } from "../../stores/lang";
-import {log} from "../../utils/console";
-import NavBar from "../NavBar.vue";
+import {error, log} from "../../utils/console";
+import NavBar from "../blocks/NavBar.vue";
+import DatePicker from "../blocks/DatePicker.vue";
+import {useQDStartStore} from '../../stores/queryDateStart';
+import {useQDEndStore} from '../../stores/queryDateEnd';
 
 const props = defineProps({
   title: Object,
@@ -125,6 +80,10 @@ const langStore = useLangStore();
 
 const heroData = ref();
 const heroCTA = ref();
+const loaded = ref(false)
+
+const dateStartStore = useQDStartStore()
+const dateEndStore = useQDEndStore()
 
 /*
 const styleObject = reactive({
@@ -137,7 +96,12 @@ if (props.uri !== '') {
       .then((resp) => {
         heroData.value = resp.data[0][0];
         heroCTA.value = resp.data[1];
-  });
+      })
+      .then(()=> {
+        loaded.value = true
+      }).catch((err) => {
+        error(err)
+  })
 } else {
   // if data are provided in wysiwyg mode
   log("HERO WYSIWYG")
