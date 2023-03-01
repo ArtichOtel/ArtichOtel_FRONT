@@ -31,7 +31,7 @@ import {log} from "../../utils/console";
 
 
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String
 })
 

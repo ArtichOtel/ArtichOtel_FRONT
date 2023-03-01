@@ -66,7 +66,7 @@ const footerDataThree = ref([]);
 const loaded = ref(false);
 
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String,
 });
 

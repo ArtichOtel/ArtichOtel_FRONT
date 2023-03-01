@@ -50,7 +50,7 @@ import {log} from "../../utils/console";
 import NavBar from "../NavBar.vue";
 
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String,
   wysiwygHero: {},
   wysiwygCTA1: {},
@@ -73,7 +73,6 @@ if (props.uri !== '') {
       .then((resp) => {
         heroData.value = resp.data[0][0];
         heroCTA.value = resp.data[1];
-        log(resp);
   });
 } else {
   // if data are provided in wysiwyg mode

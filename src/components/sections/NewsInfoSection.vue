@@ -36,7 +36,7 @@ import {error, log} from "../../utils/console";
 const newsInfos = ref([])
 
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String
 })
 
