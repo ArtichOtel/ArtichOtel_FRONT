@@ -22,7 +22,7 @@
       ></iframe>
 
       <div class="flex-1 w-1/2 flex justify-center items-center px-[2vw]">
-        <p class="text-2xl tracking-wider">
+        <p v-if="loaded" class="text-2xl tracking-wider">
           {{ data.description[langStore.lang] }}
         </p>
       </div>
@@ -44,6 +44,7 @@ const props = defineProps({
 });
 
 const data = ref([]);
+const loaded = ref(false);
 //const videoId = ref(getIdFromURL("https://www.youtube.com/watch?v=24C8r8JupYY"))
 
 axios({
@@ -53,6 +54,9 @@ axios({
   .then((response) => {
     //log(response.data[0])
     data.value = response.data[0];
+  })
+  .then(() => {
+    loaded.value = true;
   })
   .catch((err) => {
     console.log("BUG :", err);
