@@ -22,8 +22,8 @@
 <script setup>
 
 import { ref } from 'vue';
-import { useLangStore } from '../stores/lang';
-import { log } from '../utils/console';
+import { useLangStore } from '../../stores/lang';
+import { log } from '../../utils/console';
 
 const imgURL = ref(import.meta.env.VITE_IMG_URL)
 const langStore = useLangStore()
