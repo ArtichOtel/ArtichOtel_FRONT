@@ -9,11 +9,14 @@
                 <li><a href="#">Actualités</a></li>
                 <li><a href="#">Mon compte</a></li>
             </ul>
-            <select v-model="langStore.lang" @change="setLang($event.target.value)"
-                    class="ml-8 text-tertiary h-1/2 my-auto">
-                <option value="fr_FR" style="background-image: url('/src/assets/artichaut.svg');"></option>
-                <option value="en_EN">EN</option>
-            </select>
+            <div class="ml-8 my-auto flex flex-row">
+                <label for="locale"><img :src="'src/assets/icon-' + langStore.lang + '.jpg'" alt=""></label>
+                <select v-model="langStore.lang" @change="setLang($event.target.value)"
+                        class="text-tertiary w-4" id="locale">
+                    <option value="fr_FR">FR<img src="src/assets/icon-fr_FR.jpg" alt=""></option>
+                    <option value="en_EN">EN</option>
+                </select>
+            </div>
         </div>
     </nav>
 
