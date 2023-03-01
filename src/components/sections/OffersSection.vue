@@ -4,8 +4,8 @@
     <div class="flex flex-col md:flex-row justify-between gap-[9.6vw]">
 
       <div class="flex flex-col text-tertiary">
-        <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">{{title}}</h2>
-        <p class="font-content tracking-wider">{{ offer.description }}</p>
+        <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">{{title[langStore.lang]}}</h2>
+        <p class="font-content tracking-wider">{{ offer.description[langStore.lang] }}</p>
 
       </div>
       <div class="flex flex-col items-center gap-1">
@@ -26,6 +26,7 @@
 
 import axios from 'axios';
 import { ref } from 'vue';
+import { useLangStore } from '../../stores/lang';
 import {log} from "../../utils/console";
 
 const offer = ref({})
@@ -33,6 +34,7 @@ const props = defineProps({
   title: String,
   uri: String
 })
+const langStore = useLangStore()
 
 axios({
   method: 'get',
