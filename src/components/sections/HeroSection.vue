@@ -23,13 +23,13 @@
           class="bg-primary rounded-lg py-2 px-12 text-2xl tracking-wider text-secondary font-content"
           role="link" v-on:click="goTo(heroCTA[0].url)"
         >
-          {{ heroCTA[0].text}}
+          {{ heroCTA[0].text[langStore.lang] }}
         </button>
         <button
           class="bg-accent rounded-lg py-2 px-12 text-2xl tracking-wider text-texts font-content"
           role="link" v-on:click="goTo(heroCTA[1].url)"
         >
-          {{ heroCTA[1].text }}
+          {{ heroCTA[1].text[langStore.lang] }}
         </button>
       </div>
     </div>
@@ -73,6 +73,7 @@ if (props.uri !== '') {
       .then((resp) => {
         heroData.value = resp.data[0][0];
         heroCTA.value = resp.data[1];
+        console.log(resp);
   });
 } else {
   // if data are provided in wysiwyg mode
