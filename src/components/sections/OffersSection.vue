@@ -1,7 +1,7 @@
 <template>
   <section id="offers" class="px-[8.6vw] py-[9vw]">
 
-    <div class="flex flex-col md:flex-row justify-between gap-[9.6vw]">
+    <div v-if="loaded" class="flex flex-col md:flex-row justify-between gap-[9.6vw]">
 
       <div class="flex flex-col text-tertiary">
         <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">{{title[langStore.lang]}}</h2>
@@ -30,6 +30,7 @@ import { useLangStore } from '../../stores/lang';
 import {log} from "../../utils/console";
 
 const offer = ref({})
+const loaded = ref(false)
 const props = defineProps({
   title: String,
   uri: String
@@ -44,6 +45,9 @@ axios({
     //log("offers", response.data)
     offer.value = response.data[0]
   })
+    .then(() => {
+      loaded.value = true
+    })
   .catch((error) => {
     log('Error: ', error)
   })
