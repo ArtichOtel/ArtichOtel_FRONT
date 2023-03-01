@@ -9,7 +9,7 @@
     <div class="flex flex-col w-full h-full">
       <div class="m-auto text-center">
         <h1 class="text-7xl font-title text-secondary">
-          {{ heroData.title }}
+          {{ heroData.title[langStore.lang] }}
         </h1>
         <h2 class="text-5xl font-title text-secondary">
           {{ heroData.subtitle }}
@@ -45,6 +45,7 @@ export default {
 <script setup>
 import axios from "axios";
 import {reactive, ref} from "vue";
+import { useLangStore } from "../../stores/lang";
 import {log} from "../../utils/console";
 import NavBar from "../NavBar.vue";
 
@@ -55,6 +56,8 @@ const props = defineProps({
   wysiwygCTA1: {},
   wysiwygCTA2: {}
 });
+
+const langStore = useLangStore();
 
 const heroData = ref();
 const heroCTA = ref();

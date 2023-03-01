@@ -8,8 +8,8 @@
             <button>Actualités</button>
             <button>Mon compte</button>
             <button>
-                Lang: {{ lang }}
-                <select v-model="lang" style="color: black;">
+                Lang: {{ langStore.lang }}
+                <select v-model="langStore.lang" @change="setLang($event.target.value.toString())" style="color: black;">
                     <option value="fr_FR">FR</option>
                     <option value="en_EN">EN</option>
                 </select>
@@ -22,8 +22,29 @@
 <script setup>
 
 import { ref } from 'vue';
+import { useLangStore } from '../stores/lang';
+import { log } from '../utils/console';
 
 const imgURL = ref(import.meta.env.VITE_IMG_URL)
-let lang = ref('fr_FR')
+const langStore = useLangStore()
+const currentLang = ref(langStore.lang)
+
+function setLang(selectedLang) {
+
+    switch (selectedLang) {
+
+        case 'fr_FR':
+            langStore.setToFrench()
+            break;
+
+        case 'en_EN':
+            langStore.setToEnglish()
+            break;
+
+        default:
+            langStore.setToFrench()
+            break;
+    }
+}
 
 </script>
