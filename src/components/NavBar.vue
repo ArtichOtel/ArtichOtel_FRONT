@@ -9,7 +9,7 @@
             <li>Actualités</li>
             <li>Mon compte</li>
         </ul>
-        <select v-model="langStore.lang" @change="setLang($event.target.value.toString())"
+        <select v-model="langStore.lang" @change="setLang($event.target.value)"
                 class="ml-8 text-tertiary h-1/2 my-auto">
             <option value="fr_FR">FR</option>
             <option value="en_EN">EN</option>
@@ -27,7 +27,6 @@ import { log } from '../utils/console';
 
 const imgURL = ref(import.meta.env.VITE_IMG_URL)
 const langStore = useLangStore()
-const currentLang = ref(langStore.lang)
 
 function setLang(selectedLang) {
 

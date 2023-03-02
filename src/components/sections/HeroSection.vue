@@ -23,13 +23,13 @@
           class="bg-primary rounded-lg py-2 px-12 text-2xl tracking-wider text-secondary font-content"
           role="link" v-on:click="goTo(heroCTA[0].url)"
         >
-          {{ heroCTA[0].text}}
+          {{ heroCTA[0].text[langStore.lang] }}
         </button>
         <button
           class="bg-accent rounded-lg py-2 px-12 text-2xl tracking-wider text-texts font-content"
           role="link" v-on:click="goTo(heroCTA[1].url)"
         >
-          {{ heroCTA[1].text }}
+          {{ heroCTA[1].text[langStore.lang] }}
         </button>
       </div>
     </div>
@@ -44,13 +44,13 @@ export default {
 
 <script setup>
 import axios from "axios";
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 import { useLangStore } from "../../stores/lang";
 import {log} from "../../utils/console";
 import NavBar from "../NavBar.vue";
 
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String,
   wysiwygHero: {},
   wysiwygCTA1: {},

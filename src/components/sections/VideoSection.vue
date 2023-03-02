@@ -39,7 +39,7 @@ import { useLangStore } from "../../stores/lang";
 const langStore = useLangStore();
 
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String,
 });
 
