@@ -17,8 +17,6 @@ import axios from "axios";
 import router from "./router";
 import SwitchModeButton from "./components/admin/SwitchModeButton.vue";
 import { log } from "./utils/console";
-// import { i18n } from "./utils/i18n";
-import { useLangStore } from "./stores/lang";
 
 /*
 const connectionStatus = ref({
