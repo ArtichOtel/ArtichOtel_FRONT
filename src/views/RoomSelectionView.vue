@@ -59,7 +59,7 @@ export default {
 import HeaderSection from "../components/sections/HeaderSection.vue";
 import FooterSection from "../components/sections/FooterSection.vue";
 import router from "../router";
-import NavBar from "../components/blocks/NavBar.vue";
+import NavBar from "../components/navigation/NavBar.vue";
 import DatePicker from "../components/blocks/DatePicker.vue";
 import NOfNights from "../components/blocks/NOfNights.vue";
 import {useQueryDatesStore} from "../stores/queryDates";

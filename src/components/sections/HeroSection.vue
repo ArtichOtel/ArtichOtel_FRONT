@@ -69,9 +69,8 @@ import axios from "axios";
 import {ref} from "vue";
 import { useLangStore } from "../../stores/lang";
 import {error, log} from "../../utils/console";
-import NavBar from "../blocks/NavBar.vue";
+import NavBar from "../navigation/NavBar.vue";
 import DatePicker from "../blocks/DatePicker.vue";
-import {useQueryDatesStore} from "../../stores/queryDates";
 import router from "../../router";
 
 const props = defineProps({
@@ -88,7 +87,6 @@ const heroData = ref();
 const heroCTA = ref();
 const loaded = ref(false)
 
-const queryDateStore = useQueryDatesStore()
 
 
 if (props.uri !== '') {
