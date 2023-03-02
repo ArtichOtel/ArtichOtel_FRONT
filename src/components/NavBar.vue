@@ -1,20 +1,20 @@
 <template>
 
-    <nav class="px-[8.6vw] pt-[1.04vw] flex flex-row">
+    <nav class="px-[8.6vw] pt-[1.04vw] flex-row justify-between hidden lg:flex">
         <img :src="imgURL + 'green-rectangle-logo.jpg'">
-        <div class="pl-[8.9vw] font-title text-secondary text-2xl flex flex-row w-full justify-between">
+        <div class="pl-[8.9vw] font-title text-secondary text-xl flex flex-row w-8/12 justify-between">
             <ul class="flex flex-row w-full h-full items-center justify-between">
                 <li><a href="#offers">Offres</a></li>
                 <li><a href="#">Chambres</a></li>
                 <li><a href="#">Actualités</a></li>
                 <li><a href="#">Mon compte</a></li>
             </ul>
-            <div class="ml-8 my-auto flex flex-row">
+            <div class="ml-[4vw] my-auto flex flex-row relative">
                 <label for="locale"><img :src="'src/assets/icon-' + langStore.lang + '.jpg'" alt=""></label>
                 <select v-model="langStore.lang" @change="setLang($event.target.value)"
-                        class="text-tertiary w-4" id="locale">
-                    <option value="fr_FR">FR<img src="src/assets/icon-fr_FR.jpg" alt=""></option>
-                    <option value="en_EN">EN</option>
+                        class="text-transparent h-full bg-transparent w-full absolute" id="locale">
+                    <option value="fr_FR" class="text-tertiary">FR<img src="src/assets/icon-fr_FR.jpg" alt=""></option>
+                    <option value="en_EN" class="text-tertiary">EN</option>
                 </select>
             </div>
         </div>
