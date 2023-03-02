@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import {monthsShort} from "../utils/dateConst";
-import {log} from "../utils/console";
+import {log, warn} from "../utils/console";
+import {getDate} from "tw-elements/dist/src/js/mdb/datepicker/date-utils";
+import {differenceInDays, toDate} from "date-fns";
 
 export const useQueryDatesStore = defineStore('QueryDates', {
     state: () => {
@@ -16,17 +18,21 @@ export const useQueryDatesStore = defineStore('QueryDates', {
         
         return {
             start: {
+                date: today,
                 day: today.getDay(),
                 dayNum: today.getDate().toString().padStart(2, "0"),
                 month: monthsShort[today.getMonth()],
                 year: today.getFullYear()
             },
             end: {
+                date: tomorrow,
                 day: tomorrow.getDay(),
                 dayNum: tomorrow.getDate().toString().padStart(2, "0"),
                 month: monthsShort[tomorrow.getMonth()],
                 year: tomorrow.getFullYear()
-            }
+            },
+            //nOfNight: differenceInDays(this.end.date, this.start.date)
+            nOfNights: 1
         }
     },
 
@@ -38,23 +44,27 @@ export const useQueryDatesStore = defineStore('QueryDates', {
          * @param boundary
          * @param date
          */
-        set(boundary="", date="") {
-            log("setting",boundary,"date",date)
+        set(boundary="", newDate="") {
+            log("setting ",boundary,"to date ",newDate)
 
             switch (boundary) {
                 case 'start':
-                    this.start.year = date.substring(0,4)
-                    this.start.month = monthsShort[parseInt(date.substring(5,7),10)-1]
-                    this.start.dayNum = date.substring(8)
+                    this.start.date = new Date(newDate)
+                    this.start.year = newDate.substring(0,4)
+                    this.start.month = monthsShort[parseInt(newDate.substring(5,7),10)-1]
+                    this.start.dayNum = newDate.substring(8)
                     break;
                 case 'end':
-                    this.end.year = date.substring(0,4)
-                    this.end.month = monthsShort[parseInt(date.substring(5,7),10)-1]
-                    this.end.dayNum = date.substring(8)
+                    this.end.date =  new Date(newDate)
+                    this.end.year = newDate.substring(0,4)
+                    this.end.month = monthsShort[parseInt(newDate.substring(5,7),10)-1]
+                    this.end.dayNum = newDate.substring(8)
                     break;
                 default:
                     break;
             }
+
+            this.nOfNights = differenceInDays(toDate(this.end.date), toDate(this.start.date))+1
         }
     }
 })

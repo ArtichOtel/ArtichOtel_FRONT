@@ -1,6 +1,6 @@
 <template>
+  <HeaderSection />
   <main v-if="sections.length" class="h-full w-full overflow-hidden">
-    <HeaderSection :title="sections[0].title" :uri="sections[0].uri" />
     <PageNotFound />
   </main>
 </template>

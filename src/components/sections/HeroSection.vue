@@ -27,14 +27,14 @@
 
             <!--    left picker        -->
             <DatePicker v-bind:title="'Arrivée'"
-                        v-bind:dateStore="queryDateStore"
                         v-bind:boundary="'start'"
+                        v-bind:svgColor="'svg-secondary-light'"
             />
 
             <!--    right picker        -->
             <DatePicker v-bind:title="'Départ'"
-                        v-bind:dateStore="queryDateStore"
                         v-bind:boundary="'end'"
+                        v-bind:svgColor="'svg-secondary-light'"
             />
 
           </div>
@@ -72,6 +72,7 @@ import {error, log} from "../../utils/console";
 import NavBar from "../blocks/NavBar.vue";
 import DatePicker from "../blocks/DatePicker.vue";
 import {useQueryDatesStore} from "../../stores/queryDates";
+import router from "../../router";
 
 const props = defineProps({
   title: Object,
@@ -88,6 +89,7 @@ const heroCTA = ref();
 const loaded = ref(false)
 
 const queryDateStore = useQueryDatesStore()
+//const queryDateStore = this.queryDateStore;
 
 /*
 const styleObject = reactive({
@@ -116,8 +118,7 @@ if (props.uri !== '') {
 
 
 function goTo(url) {
-  //router.push(url)
-  window.location.replace(url)
+  router.push(url)
 }
 
 function updateValues() {
