@@ -32,7 +32,7 @@ import {log} from "../../utils/console";
 const offer = ref({})
 const loaded = ref(false)
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String
 })
 const langStore = useLangStore()

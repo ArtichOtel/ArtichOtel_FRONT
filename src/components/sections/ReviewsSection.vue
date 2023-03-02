@@ -37,7 +37,7 @@ import {ref} from "vue";
 import axios from "axios";
 import {useLangStore} from "../../stores/lang";
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String
 })
 

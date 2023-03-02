@@ -13,6 +13,7 @@ import axios from "axios";
 import router from "./router";
 import SwitchModeButton from "./components/admin/SwitchModeButton.vue";
 import {log} from "./utils/console";
+import { useContactStore } from "./stores/contact";
 
 /*
 const connectionStatus = ref({
@@ -24,16 +25,27 @@ const data = ref([])
 const isLogged = ref(false)
 const role = ref("")
 const isEditing = ref(true)
+const contactStore = useContactStore()
 
 
 axios.get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
     .then((response) => {
       data.value = response.data
+
+      return response.data
     })
+    .then((data) => {
+      const linksURI = data[7].uri
+
+      return axios.get(`${import.meta.env.VITE_API_BASE_URL}${linksURI}`)
+    })
+      .then((response) => {
+        const contacts = response.data[1].slice(4,7)
+        contactStore.setContact(contacts)
+      })
     .catch((err)=> {
       log("BUG :", err)
     })
-
 
 function logout() {
   log("logout")
