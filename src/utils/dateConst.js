@@ -1,21 +1,21 @@
 export const days = [
                 "dimanche",
-                "Lundi",
+                "lundi",
                 "mardi",
                 "mercredi",
                 "jeudi",
-                "Vendredi",
-                "Samedi"
+                "vendredi",
+                "samedi"
             ]
 
 export const daysShort = [
                 "dim.",
-                "Lun.",
+                "lun.",
                 "mar.",
                 "mer.",
                 "jeu.",
-                "Ven.",
-                "Sam."
+                "ven.",
+                "sam."
             ]
 
 export const months = [

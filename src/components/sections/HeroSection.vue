@@ -26,10 +26,16 @@
           <div class="flex flex-col md:flex-row justify-center items-center text-secondary-light mb-4">
 
             <!--    left picker        -->
-            <DatePicker v-bind:dateStore="dateStartStore" v-bind:title="'Arrivée'"/>
+            <DatePicker v-bind:title="'Arrivée'"
+                        v-bind:dateStore="queryDateStore"
+                        v-bind:boundary="'start'"
+            />
 
             <!--    right picker        -->
-            <DatePicker v-bind:dateStore="dateEndStore" v-bind:title="'Départ'"/>
+            <DatePicker v-bind:title="'Départ'"
+                        v-bind:dateStore="queryDateStore"
+                        v-bind:boundary="'end'"
+            />
 
           </div>
           <button
@@ -65,8 +71,7 @@ import { useLangStore } from "../../stores/lang";
 import {error, log} from "../../utils/console";
 import NavBar from "../blocks/NavBar.vue";
 import DatePicker from "../blocks/DatePicker.vue";
-import {useQDStartStore} from '../../stores/queryDateStart';
-import {useQDEndStore} from '../../stores/queryDateEnd';
+import {useQueryDatesStore} from "../../stores/queryDates";
 
 const props = defineProps({
   title: Object,
@@ -82,8 +87,7 @@ const heroData = ref();
 const heroCTA = ref();
 const loaded = ref(false)
 
-const dateStartStore = useQDStartStore()
-const dateEndStore = useQDEndStore()
+const queryDateStore = useQueryDatesStore()
 
 /*
 const styleObject = reactive({
