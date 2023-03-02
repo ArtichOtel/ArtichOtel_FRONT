@@ -66,7 +66,7 @@ const advantages = ref([])
 const langStore = useLangStore()
 
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String
 })
 
