@@ -47,7 +47,7 @@ import axios from "axios";
 import {ref} from "vue";
 import { useLangStore } from "../../stores/lang";
 import {log} from "../../utils/console";
-import NavBar from "../NavBar.vue";
+import NavBar from "../navigation/NavBar.vue";
 
 const props = defineProps({
   title: Object,
