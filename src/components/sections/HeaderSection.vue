@@ -13,7 +13,7 @@
           </button>
         </div>
 
-        <div class="hidden lg:flex flex-row pl-[6vw] items-center gap-5">
+        <div class="hidden md:flex flex-row pl-[6vw] items-center gap-5">
           <img :src="iconURL + 'location-pin.svg'" alt="">
           <span class="font-content">{{ contactStore.get()[1].text[langStore.lang] }}</span>
         </div>
