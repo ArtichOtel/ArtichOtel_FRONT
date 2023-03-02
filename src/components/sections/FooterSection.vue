@@ -8,11 +8,11 @@
         class="flex flex-col"
         v-for="(footer, index) in footers"
       >
-        <h3
-          class="uppercase font-semibold font-title mb-8 flex justify-center md:justify-start"
+        <h2
+          class="uppercase font-semibold font-title text-titleSmall lg:text-titleBase mb-8 flex justify-center md:justify-start"
         >
           {{ footer.title[langStore.lang] }}
-        </h3>
+        </h2>
         <div v-for="link in links">
           <div
             class="flex items-center justify-center md:justify-start mb-8 cursor-pointer tracking-wider hover:invert"
