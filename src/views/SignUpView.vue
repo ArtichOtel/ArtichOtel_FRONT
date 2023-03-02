@@ -1,9 +1,9 @@
 <template >
-  <main v-if="sections.length" class="h-full w-full overflow-hidden">
-    <HeaderSection :title="sections[0].title" :uri="sections[0].uri" />
+  <HeaderSection />
+  <main class="h-full w-full overflow-hidden">
     <SignUpForm @connectionStatus="(data) => {sayHello(data)}"/>
-    <FooterSection :title="sections[7].title" :uri="sections[7].uri" />
   </main>
+  <FooterSection v-if="sections.length"  :title="sections[7].title" :uri="sections[7].uri" />
 </template>
 
 <script>

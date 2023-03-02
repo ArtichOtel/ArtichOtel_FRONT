@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref } from "vue";
-import LoginButton from "./components/LoginButton.vue";
+import LoginButton from "./components/blocks/LoginButton.vue";
 import axios from "axios";
 import router from "./router";
 import SwitchModeButton from "./components/admin/SwitchModeButton.vue";

@@ -4,6 +4,7 @@ import LoginView from "../views/LoginView.vue";
 import SignUpView from "../views/SignUpView.vue";
 import AdminPanel from "../views/AdminPanel.vue";
 import PageNotFoundView from "../views/PageNotFoundView.vue";
+import RoomSelectionView from "../views/RoomSelectionView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -29,6 +30,11 @@ const router = createRouter({
       name: "admin",
       component: AdminPanel,
       meta: { transition: 'slide-left' },
+    },
+    {
+      path: "/booking",
+      name: "booking",
+      component: RoomSelectionView,
     },
     {
       path: "/:pathMatch(.*)*",

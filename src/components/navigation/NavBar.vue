@@ -15,7 +15,6 @@
 <script setup>
 
 import { ref } from 'vue';
-import { useLangStore } from '../../stores/lang';
 import LangSelect from './LangSelect.vue';
 import NavLinks from './NavLinks.vue';
 
