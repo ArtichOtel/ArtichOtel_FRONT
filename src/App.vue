@@ -1,93 +1,96 @@
 <template class="font-content scroll-smooth">
-  <LoginButton @logoutRequest="logout" v-bind:isLogged="isLogged"/>
+  <LoginButton @logoutRequest="logout" v-bind:isLogged="isLogged" />
 
-  <SwitchModeButton v-if="role === 'admin'" v-bind:isEditing="isEditing"/>
+  <SwitchModeButton v-if="role === 'admin'" v-bind:isEditing="isEditing" />
 
-  <RouterView v-bind:sections="data" v-on:login="setLogged" v-on:isAdmin="setIsAdmin" />
+  <RouterView
+    v-bind:sections="data"
+    v-on:login="setLogged"
+    v-on:isAdmin="setIsAdmin"
+  />
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 import LoginButton from "./components/LoginButton.vue";
 import axios from "axios";
 import router from "./router";
 import SwitchModeButton from "./components/admin/SwitchModeButton.vue";
-import {log} from "./utils/console";
+import { log } from "./utils/console";
+// import { i18n } from "./utils/i18n";
+import { useLangStore } from "./stores/lang";
 
 /*
 const connectionStatus = ref({
   connected: false
 })
 */
+// const useLang = useLangStore();
+//i18n.locale = useLang.lang;
 
-const data = ref([])
-const isLogged = ref(false)
-const role = ref("")
-const isEditing = ref(true)
+const data = ref([]);
+const isLogged = ref(false);
+const role = ref("");
+const isEditing = ref(true);
 
-
-axios.get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
-    .then((response) => {
-      data.value = response.data
-    })
-    .catch((err)=> {
-      log("BUG :", err)
-    })
-
+axios
+  .get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
+  .then((response) => {
+    data.value = response.data;
+  })
+  .catch((err) => {
+    log("BUG :", err);
+  });
 
 function logout() {
-  log("logout")
-  role.value = ""
+  log("logout");
+  role.value = "";
 
-  axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/logout`, {
-    headers: {
-      'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
-    }
-  })
-      .then(response => {
-        if (response.status === 200) {
-          alert("Vous êtes correctement déconnecté")
-        }
-  }).catch(err => {
-    alert("Il y a eu une erreur lors de la déconnexion")
-    log(err)
-  })
+  axios
+    .get(`${import.meta.env.VITE_API_BASE_URL}/user/logout`, {
+      headers: {
+        Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        alert("Vous êtes correctement déconnecté");
+      }
+    })
+    .catch((err) => {
+      alert("Il y a eu une erreur lors de la déconnexion");
+      log(err);
+    });
 
-  isLogged.value = false
-  window.sessionStorage.clear()
-  router.push("/")
+  isLogged.value = false;
+  window.sessionStorage.clear();
+  router.push("/");
   //window.document.location.reload()
 }
 
 function setLogged() {
-  log("app knows that you are logged")
-  isLogged.value = true
+  log("app knows that you are logged");
+  isLogged.value = true;
 }
 
 function checkIfLogged() {
-  if (window.sessionStorage.getItem('token')) {
-    setLogged()
+  if (window.sessionStorage.getItem("token")) {
+    setLogged();
   }
 }
-checkIfLogged()
-
+checkIfLogged();
 
 function setIsAdmin() {
-  window.sessionStorage.setItem('role', 'admin')
-  checkIfAdmin()
+  window.sessionStorage.setItem("role", "admin");
+  checkIfAdmin();
 }
 function checkIfAdmin() {
-
-  if (window.sessionStorage.getItem('role')==='admin') {
-    log("setting admin powers")
-    role.value = "admin"
+  if (window.sessionStorage.getItem("role") === "admin") {
+    log("setting admin powers");
+    role.value = "admin";
   }
 }
-
-
-
 </script>
-
 
 <!--
 
