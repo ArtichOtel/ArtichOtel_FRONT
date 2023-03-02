@@ -89,13 +89,7 @@ const heroCTA = ref();
 const loaded = ref(false)
 
 const queryDateStore = useQueryDatesStore()
-//const queryDateStore = this.queryDateStore;
 
-/*
-const styleObject = reactive({
-  backgroundImage: 'url(' + heroData.value.url_image + ')',
-})
-*/
 
 if (props.uri !== '') {
   axios.get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`)
