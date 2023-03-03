@@ -40,7 +40,7 @@
           <div class="flex flex-col items-center gap-4">
             <button
               type="button"
-              v-on:click="signup"
+              v-on:click="search()"
               class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
             >
               {{ dico[langStore.lang].roomSelectionCTA }}
@@ -48,7 +48,10 @@
           </div>
         </form>
       </div>
-      <BookingFetch />
+      <BookingFetch
+        v-if="availability.length"
+        v-bind:availability="availability"
+      />
     </div>
   </main>
   <FooterSection
@@ -78,7 +81,7 @@ import { addDays, formatISO } from "date-fns";
 import { i18n } from "../utils/i18n";
 import { useLangStore } from "../stores/lang";
 import BookingFetch from "../components/bookingFetch/bookingFetch.vue";
-
+import axios from "axios";
 const props = defineProps({
   sections: Array,
 });
@@ -86,6 +89,7 @@ const props = defineProps({
 const queryDateStore = useQueryDatesStore();
 const langStore = useLangStore();
 const dico = i18n;
+const availability = ref([]);
 
 const minDateStart = ref(
   formatISO(addDays(new Date(), 0.5), { representation: "date" })
@@ -95,4 +99,19 @@ const minDateEnd = computed(() => {
     representation: "date",
   });
 });
+
+function search() {
+  console.log("search");
+
+  axios
+    .get(`${import.meta.env.VITE_API_BASE_URL}/search?type=1`)
+    .then((resp) => {
+      console.log("Recup data : ", resp.data);
+      availability.value = resp.data;
+      console.log("Datasss : ", booking.value);
+    })
+    .then(() => {
+      loaded.value = true;
+    });
+}
 </script>
