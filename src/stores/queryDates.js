@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import {monthsShort} from "../utils/dateConst";
 import {log, warn} from "../utils/console";
-import {getDate} from "tw-elements/dist/src/js/mdb/datepicker/date-utils";
 import {differenceInDays, toDate} from "date-fns";
 
 export const useQueryDatesStore = defineStore('QueryDates', {

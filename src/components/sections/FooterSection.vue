@@ -1,32 +1,32 @@
 <template>
   <footer class="text-center md:text-left bg-primary text-secondary">
-    <div
+    <div v-if="loaded"
       class="py-8 px-8 md:py-[9vw] md:px-[8.6vw] flex flex-col md:justify-between md:flex-row gap-20"
     >
       <div
-        v-if="loaded"
         class="flex flex-col"
-        v-for="(footer, index) in footers"
+        v-for="(footer, i) in footers"
+        :key="i"
       >
-        <h2
-          class="uppercase font-semibold font-title text-titleSmall lg:text-titleBase mb-8 flex justify-center md:justify-start"
+        <h2 class="uppercase font-semibold font-title text-titleSmall lg:text-titleBase mb-8 flex justify-center md:justify-start"
         >
           {{ footer.title[langStore.lang] }}
         </h2>
-        <div v-for="link in links">
+        <div v-for="(link, j) in links" :key="j">
           <div
             class="flex items-center justify-center md:justify-start mb-8 cursor-pointer tracking-wider hover:invert"
-            :class="[link.footer_id === index + 1 ? 'block' : 'hidden']"
+            :class="[link.footer_id === i + 1 ? 'block' : 'hidden']"
             :key="link.title"
           >
             <a>
               <img
-                class="inline invert"
+                class="inline invert mr-3"
                 v-if="link.icon"
                 :src="apiIconURL + link.icon + '.svg'"
-                :alt="link.text"
               />
+
               <span>{{ link.text[langStore.lang] }} </span>
+
             </a>
           </div>
         </div>
@@ -46,11 +46,11 @@ import { ref } from "vue";
 import { error, log } from "../../utils/console";
 import { useLangStore } from "../../stores/lang";
 
-const apiIconURL = ref(import.meta.env.VITE_ICON_URL);
+const apiIconURL = ref(import.meta.env.VITE_API_ICON_URL);
 const langStore = useLangStore();
+
 const footers = ref([]);
 const links = ref([]);
-
 const loaded = ref(false);
 
 const props = defineProps({

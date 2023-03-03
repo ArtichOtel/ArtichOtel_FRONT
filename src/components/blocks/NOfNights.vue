@@ -2,7 +2,7 @@
   <div class="flex flex-row items-end font-content p-3">
     <div class="">
       <p class="text-sm -mb-1">Nbr. nuits</p>
-      <img src="src/assets/icons/moon.svg" alt="calendar"
+      <img :src="apiIconURL + 'moon.svg'" alt="calendar"
            class="text-black h-20 w-20" :class="svgColor" aria-hidden="true">
     </div>
     <div class="0 flex flex-row">
@@ -28,7 +28,7 @@ import { log } from '../../utils/console';
 import {useQueryDatesStore} from "../../stores/queryDates";
 
 
-const imgURL = ref(import.meta.env.VITE_IMG_URL)
+const apiIconURL = ref(import.meta.env.VITE_API_ICON_URL);
 const dateStore = useQueryDatesStore()
 
 const props = defineProps({
