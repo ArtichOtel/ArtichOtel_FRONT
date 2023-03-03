@@ -22,6 +22,6 @@ import { ref } from 'vue';
 const props = defineProps({
   isLogged: Boolean
 });
-const iconURL = ref(import.meta.env.VITE_ICON_URL);
+const iconURL = ref(import.meta.env.VITE_API_ICON_URL);
 
 </script>

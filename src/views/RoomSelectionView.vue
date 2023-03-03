@@ -46,7 +46,6 @@
           </div>
         </form>
       </div>
-      <BookingFetch />
     </div>
   </main>
   <FooterSection

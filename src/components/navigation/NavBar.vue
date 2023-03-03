@@ -16,6 +16,6 @@
 import { ref } from 'vue';
 import NavLinks from './NavLinks.vue';
 
-const imgURL = ref(import.meta.env.VITE_IMG_URL)
+const imgURL = ref(import.meta.env.VITE_API_IMG_URL)
 
 </script>
