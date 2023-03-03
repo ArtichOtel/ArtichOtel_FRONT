@@ -15,12 +15,16 @@
             <DatePicker v-bind:title="'Arrivée'"
                         v-bind:boundary="'start'"
                         v-bind:svgColor="'svg-tertiary'"
+                        v-bind:maxDate="''"
+                        v-bind:minDate="minDateStart"
             />
 
             <!--    right picker        -->
             <DatePicker v-bind:title="'Départ'"
                         v-bind:boundary="'end'"
                         v-bind:svgColor="'svg-tertiary'"
+                        v-bind:maxDate="''"
+                        v-bind:minDate="minDateEnd"
             />
 
 
@@ -63,6 +67,8 @@ import NavBar from "../components/navigation/NavBar.vue";
 import DatePicker from "../components/blocks/DatePicker.vue";
 import NOfNights from "../components/blocks/NOfNights.vue";
 import {useQueryDatesStore} from "../stores/queryDates";
+import {computed, ref} from "vue";
+import {addDays, formatISO} from "date-fns";
 
 const props = defineProps({
   sections: Array
@@ -70,7 +76,10 @@ const props = defineProps({
 
 const queryDateStore = useQueryDatesStore()
 
-
+const minDateStart = ref(formatISO(addDays(new Date(), 0.5),{ representation: 'date' }))
+const minDateEnd = computed(()=> {
+  return formatISO(addDays(queryDateStore['start'].date, 1.5),{ representation: 'date' })
+})
 
 
 </script>

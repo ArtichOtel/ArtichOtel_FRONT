@@ -18,6 +18,7 @@
         <input type="date" name="{{boundary}}" id="{{boundary}}"
                class="block z-10 w-6 bg-transparent text-transparent text-2xl"
                @change="dateStore.set(boundary, $event.target.value)"
+               :min="minDate" :max="maxDate"
         >
         <label for="{{boundary}}" class="absolute z-0" >
           <img :src="apiIconURL + 'arrow-down.svg'" alt="selectDate" class="svg-accent">
@@ -42,7 +43,9 @@ const dateStore = useQueryDatesStore()
 const props = defineProps({
   title: String,
   boundary: String,
-  svgColor: String
+  svgColor: String,
+  minDate: String,
+  maxDate: String
 })
 
 
