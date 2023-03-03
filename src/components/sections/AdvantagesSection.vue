@@ -18,7 +18,7 @@
               <div class="relative top-0 flex justify-center items-center w-[80vw] h-[80vw] sm:w-[40vw] sm:h-[40vw] lg:w-[20vw] lg:h-[20vw]">
                 <img :src="iconURL + advantages[n-1+(m-1)*2].icon + '.svg'"
                      :alt="advantages[n-1+(m-1)*2].icon"
-                     class="w-[70vw] h-[70vw] sm:w-[35vw] sm:h-[35vw] lg:w-[17vw] lg:h-[17vw]"
+                     class="w-[70vw] h-[70vw] sm:w-[35vw] sm:h-[35vw] lg:w-[17vw] lg:h-[17vw] svg-secondary"
                 >
               </div>
 
@@ -32,7 +32,7 @@
                  w-[80vw] h-[80vw] sm:w-[40vw] sm:h-[40vw] lg:w-[20vw] lg:h-[20vw] bg-tertiary/80 flex flex-col justify-center items-center">
                     <img :src="iconURL + advantages[n-1+(m-1)*2].icon + '.svg'"
                          :alt="advantages[n-1+(m-1)*2].icon"
-                         class="w-[28vw] h-[28vw] sm:w-[14vw] sm:h-[14vw] lg:w-[7vw] lg:h-[7vw]"
+                         class="w-[28vw] h-[28vw] sm:w-[14vw] sm:h-[14vw] lg:w-[7vw] lg:h-[7vw] svg-secondary"
                     >
                   <p class="mx-2 sm:mx-4 text-center text-2xl sm:text-xl lg:text-base">
                     <span class="font-bold">{{advantages[n-1+(m-1)*2].title[langStore.lang]}}</span>
@@ -60,7 +60,7 @@ import { ref } from 'vue';
 import {log, trace} from "../../utils/console";
 import {useLangStore} from "../../stores/lang";
 
-const iconURL = ref(import.meta.env.VITE_ICON_URL)
+const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
 const advantages = ref([])
 
 const langStore = useLangStore()

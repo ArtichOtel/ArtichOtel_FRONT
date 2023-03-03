@@ -31,13 +31,13 @@
         <div class="flex items-center relative gap-2 lg:gap-10">
           <div class="hidden lg:flex gap-5">
             <a class="font-content" href="contact:info@hotelartichaut.fr">
-              <img :src="iconURL + contactStore.get()[2].icon" alt="logo-email-artichotel" class="float-left mr-3 svg-secondary"/>
+              <img :src="iconURL + contactStore.get()[2].icon + '.svg'" alt="logo-email-artichotel" class="float-left mr-3 svg-secondary"/>
               <span> {{ contactStore.get()[2].text[langStore.lang] }}</span>
             </a>
           </div>
           <div class="flex gap-5">
             <a class="font-content" href="tel:+33475000000">
-              <img :src="iconURL + contactStore.get()[0].icon" alt="logo-telephone-artichotel" class="float-left mr-3 svg-secondary"/>
+              <img :src="iconURL + contactStore.get()[0].icon + '.svg'" alt="logo-telephone-artichotel" class="float-left mr-3 svg-secondary"/>
               <span>{{ contactStore.get()[0].text[langStore.lang] }}</span>
             </a>
           </div>
@@ -69,7 +69,7 @@ import NavLinks from '../navigation/NavLinks.vue';
 
 const langStore = useLangStore()
 const contactStore = useContactStore()
-const iconURL = ref(import.meta.env.VITE_ICON_URL)
+const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
 const hiddenMenu = ref(true)
 const currentPage = ref(router.currentRoute)
 
