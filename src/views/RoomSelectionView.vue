@@ -14,12 +14,16 @@
             <DatePicker v-bind:title="dico[langStore.lang].datePickerArrivalTitle"
                         v-bind:boundary="'start'"
                         v-bind:svgColor="'svg-tertiary'"
+                        v-bind:maxDate="''"
+                        v-bind:minDate="minDateStart"
             />
 
             <!--    right picker        -->
             <DatePicker v-bind:title="dico[langStore.lang].datePickerDepartureTitle"
                         v-bind:boundary="'end'"
                         v-bind:svgColor="'svg-tertiary'"
+                        v-bind:maxDate="''"
+                        v-bind:minDate="minDateEnd"
             />
 
 
@@ -62,6 +66,8 @@ import NavBar from "../components/navigation/NavBar.vue";
 import DatePicker from "../components/blocks/DatePicker.vue";
 import NOfNights from "../components/blocks/NOfNights.vue";
 import {useQueryDatesStore} from "../stores/queryDates";
+import {computed, ref} from "vue";
+import {addDays, formatISO} from "date-fns";
 import { i18n } from "../utils/i18n";
 import { useLangStore } from "../stores/lang";
 
@@ -73,6 +79,10 @@ const queryDateStore = useQueryDatesStore()
 const langStore = useLangStore()
 const dico = i18n
 
+const minDateStart = ref(formatISO(addDays(new Date(), 0.5),{ representation: 'date' }))
+const minDateEnd = computed(()=> {
+  return formatISO(addDays(queryDateStore['start'].date, 1.5),{ representation: 'date' })
+})
 
 
 </script>

@@ -29,12 +29,17 @@
             <DatePicker v-bind:title="dico[langStore.lang].datePickerArrivalTitle"
                         v-bind:boundary="'start'"
                         v-bind:svgColor="'svg-secondary-light'"
+                        v-bind:maxDate="''"
+                        v-bind:minDate="minDateStart"
+
             />
 
             <!--    right picker        -->
             <DatePicker v-bind:title="dico[langStore.lang].datePickerDepartureTitle"
                         v-bind:boundary="'end'"
                         v-bind:svgColor="'svg-secondary-light'"
+                        v-bind:maxDate="''"
+                        v-bind:minDate="minDateEnd"
             />
 
           </div>
@@ -60,12 +65,14 @@
 
 <script setup>
 import axios from "axios";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import { useLangStore } from "../../stores/lang";
 import {error, log} from "../../utils/console";
 import NavBar from "../navigation/NavBar.vue";
 import DatePicker from "../blocks/DatePicker.vue";
 import router from "../../router";
+import {useQueryDatesStore} from "../../stores/queryDates";
+import {addDays, formatISO} from "date-fns";
 import { i18n } from "../../utils/i18n";
 
 const props = defineProps({
@@ -77,13 +84,18 @@ const props = defineProps({
 });
 
 const langStore = useLangStore();
+const queryDateStore = useQueryDatesStore()
 
 const heroData = ref();
 const heroCTA = ref();
 const loaded = ref(false)
 
-const dico = i18n
+const minDateStart = ref(formatISO(addDays(new Date(), 0.5),{ representation: 'date' }))
+const minDateEnd = computed(()=> {
+  return formatISO(addDays(queryDateStore['start'].date, 1.5),{ representation: 'date' })
+})
 
+const dico = i18n
 
 
 if (props.uri !== '') {
