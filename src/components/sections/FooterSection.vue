@@ -46,7 +46,7 @@ import { ref } from "vue";
 import { error, log } from "../../utils/console";
 import { useLangStore } from "../../stores/lang";
 
-const apiIconURL = ref(import.meta.env.VITE_ICON_URL);
+const apiIconURL = ref(import.meta.env.VITE_API_ICON_URL);
 const langStore = useLangStore();
 
 const footers = ref([]);
