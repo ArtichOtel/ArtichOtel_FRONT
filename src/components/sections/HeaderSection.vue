@@ -41,6 +41,7 @@
               <span>{{ contactStore.get()[0].text[langStore.lang] }}</span>
             </a>
           </div>
+          <LangSelect class="w-10 hidden lg:flex"/>
           <button class="flex lg:hidden" @click="toggleBurgerMenu">
             <img :src="iconURL + 'burger-menu.svg'" alt="">
           </button>
