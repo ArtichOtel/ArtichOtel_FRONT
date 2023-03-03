@@ -11,8 +11,9 @@
       <div class="flex flex-col items-center gap-1">
 
         <img :src="offer.url_image" alt="">
-        <button class="bg-accent rounded-lg py-2 px-12 text-2xl text-tertiary font-content tracking-wider">
-          Réservez maintenant
+        <button @click="$router.push('booking')"
+        class="bg-accent rounded-lg py-2 px-12 text-2xl text-tertiary font-content tracking-wider">
+          {{ dico[langStore.lang].offersCTA }}
         </button>
 
       </div>
@@ -28,6 +29,7 @@ import axios from 'axios';
 import { ref } from 'vue';
 import { useLangStore } from '../../stores/lang';
 import {log} from "../../utils/console";
+import { i18n } from '../../utils/i18n';
 
 const offer = ref({})
 const loaded = ref(false)
@@ -36,6 +38,7 @@ const props = defineProps({
   uri: String
 })
 const langStore = useLangStore()
+const dico = i18n
 
 axios({
   method: 'get',

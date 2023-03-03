@@ -2,6 +2,7 @@ export const i18n = {
   en_EN: {
     // Listes de messages en anglais
     offers: "Offers",
+    offersCTA: "Book now",
     rooms: "Rooms",
     news: "News",
     account: "My account",
@@ -24,6 +25,7 @@ export const i18n = {
   fr_FR: {
     // Listes de messages en français
     offers: "Offres",
+    offersCTA: "Réservez maintenant",
     rooms: "Chambres",
     news: "Actualités",
     account: "Mon compte",
