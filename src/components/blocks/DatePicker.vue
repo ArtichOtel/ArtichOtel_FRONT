@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-row items-end font-content p-3">
     <div class="">
-      <p class="text-sm -mb-1">{{title}}</p>
-      <img src="src/assets/icons/calendar-edit.svg" alt="calendar"
+      <p class="text-sm -mb-1 text-center">{{title}}</p>
+      <img :src="apiIconURL + 'calendaredit.svg'" alt="calendar"
            class="text-black h-20 w-20" :class="svgColor" aria-hidden="true">
     </div>
     <div class="0 flex flex-row">
@@ -20,7 +20,7 @@
                @change="dateStore.set(boundary, $event.target.value)"
         >
         <label for="{{boundary}}" class="absolute z-0" >
-          <img src="src/assets/icons/arrow-down-1.svg" alt="selectDate" class="svg-accent">
+          <img :src="apiIconURL + 'arrow-down.svg'" alt="selectDate" class="svg-accent">
         </label>
       </div>
     </div>
@@ -35,7 +35,7 @@ import { useLangStore } from '../../stores/lang';
 import { log } from '../../utils/console';
 import {useQueryDatesStore} from "../../stores/queryDates";
 
-const imgURL = ref(import.meta.env.VITE_IMG_URL)
+const apiIconURL = ref(import.meta.env.VITE_API_ICON_URL);
 
 const dateStore = useQueryDatesStore()
 
