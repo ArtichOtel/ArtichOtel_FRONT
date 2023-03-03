@@ -7,15 +7,14 @@
         class="w-full flex flex-wrap items-center justify-between px-6"
       >
         <!-- Logo -->
-        <div style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);">
+        <div class="svg-secondary">
           <button @click="goToHome">
             <img :src="iconURL + 'artichaut-mobile-logo.svg'" alt="">
           </button>
         </div>
 
         <div class="hidden md:flex flex-row pl-[6vw] items-center gap-5">
-          <img :src="iconURL + 'location-pin.svg'" alt=""
-          style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);">
+          <img :src="iconURL + 'location-pin.svg'" alt="" class="svg-secondary">
           <span class="font-content">{{ contactStore.get()[1].text[langStore.lang] }}</span>
         </div>
 
@@ -32,15 +31,13 @@
         <div class="flex items-center relative gap-2 lg:gap-10">
           <div class="hidden lg:flex gap-5">
             <a class="font-content" href="contact:info@hotelartichaut.fr">
-              <img :src="iconURL + 'sms.svg'" alt="logo-email-artichotel" class="float-left mr-3 svg-secondary"
-              style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);"/>
+              <img :src="iconURL + contactStore.get()[2].icon" alt="logo-email-artichotel" class="float-left mr-3 svg-secondary"/>
               <span> {{ contactStore.get()[2].text[langStore.lang] }}</span>
             </a>
           </div>
           <div class="flex gap-5">
             <a class="font-content" href="tel:+33475000000">
-              <img :src="iconURL + 'call.svg'" alt="logo-telephone-artichotel" class="float-left mr-3 svg-secondary"
-              style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);"/>
+              <img :src="iconURL + contactStore.get()[0].icon" alt="logo-telephone-artichotel" class="float-left mr-3 svg-secondary"/>
               <span>{{ contactStore.get()[0].text[langStore.lang] }}</span>
             </a>
           </div>
