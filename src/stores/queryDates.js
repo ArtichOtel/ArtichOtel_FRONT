@@ -20,14 +20,14 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                 date: today,
                 day: today.getDay(),
                 dayNum: today.getDate().toString().padStart(2, "0"),
-                month: monthsShort[today.getMonth()],
+                month: today.getMonth(),
                 year: today.getFullYear()
             },
             end: {
                 date: tomorrow,
                 day: tomorrow.getDay(),
                 dayNum: tomorrow.getDate().toString().padStart(2, "0"),
-                month: monthsShort[tomorrow.getMonth()],
+                month: tomorrow.getMonth(),
                 year: tomorrow.getFullYear()
             },
             //nOfNight: differenceInDays(this.end.date, this.start.date)
@@ -50,13 +50,13 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                 case 'start':
                     this.start.date = new Date(newDate)
                     this.start.year = newDate.substring(0,4)
-                    this.start.month = monthsShort[parseInt(newDate.substring(5,7),10)-1]
+                    this.start.month = parseInt(newDate.substring(5,7),10)-1
                     this.start.dayNum = newDate.substring(8)
                     break;
                 case 'end':
                     this.end.date =  new Date(newDate)
                     this.end.year = newDate.substring(0,4)
-                    this.end.month = monthsShort[parseInt(newDate.substring(5,7),10)-1]
+                    this.end.month = parseInt(newDate.substring(5,7),10)-1
                     this.end.dayNum = newDate.substring(8)
                     break;
                 default:

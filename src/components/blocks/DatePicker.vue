@@ -10,7 +10,7 @@
         <p class="text-5xl px-1 -mb-2">{{dateStore[boundary].dayNum}}</p>
       </div>
       <div class="flex flex-col justify-center items-center">
-        <p class="text-lg -mb-1">{{dateStore[boundary].month}}</p>
+        <p class="text-lg -mb-1">{{dico[langStore.lang].monthsShort[dateStore[boundary].month]}}</p>
         <p class="text-lg -mb-1">{{dateStore[boundary].year}}</p>
       </div>
 
@@ -34,10 +34,13 @@ import { ref } from 'vue';
 import { useLangStore } from '../../stores/lang';
 import { log } from '../../utils/console';
 import {useQueryDatesStore} from "../../stores/queryDates";
+import { i18n } from '../../utils/i18n';
 
 const apiIconURL = ref(import.meta.env.VITE_API_ICON_URL);
 
 const dateStore = useQueryDatesStore()
+const langStore = useLangStore()
+const dico = i18n
 
 const props = defineProps({
   title: String,

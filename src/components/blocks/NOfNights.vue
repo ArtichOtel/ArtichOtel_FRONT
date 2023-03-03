@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-row items-end font-content p-3">
     <div class="">
-      <p class="text-sm -mb-1">Nbr. nuits</p>
+      <p class="text-sm -mb-1">{{ dico[langStore.lang].nightNbr }}</p>
       <img :src="apiIconURL + 'moon.svg'" alt="calendar"
            class="text-black h-20 w-20" :class="svgColor" aria-hidden="true">
     </div>
@@ -26,6 +26,7 @@ import { ref } from 'vue';
 import { useLangStore } from '../../stores/lang';
 import { log } from '../../utils/console';
 import {useQueryDatesStore} from "../../stores/queryDates";
+import { i18n } from '../../utils/i18n';
 
 
 const apiIconURL = ref(import.meta.env.VITE_API_ICON_URL);
@@ -35,6 +36,8 @@ const props = defineProps({
   title: String,
   svgColor: String
 })
+const langStore = useLangStore()
+const dico = i18n
 
 </script>
 
