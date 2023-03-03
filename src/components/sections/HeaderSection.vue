@@ -46,7 +46,8 @@
           </div>
           <LangSelect class="w-10 hidden lg:flex"/>
           <button class="flex lg:hidden" @click="toggleBurgerMenu">
-            <img :src="iconURL + 'burger-menu.svg'" alt="">
+            <img :src="iconURL + 'burger-menu.svg'" alt="" class="h-10"
+            style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);">
           </button>
         </div>
         <!-- Right elements -->
