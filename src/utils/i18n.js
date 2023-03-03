@@ -1,3 +1,5 @@
+import { monthsShort } from "./dateConst";
+
 export const i18n = {
   en_EN: {
     // Listes de messages en anglais
@@ -21,6 +23,25 @@ export const i18n = {
     pseudo: "Pseudo",
     generalterms: "I accept the terms and conditions",
     confirm: "Confirm",
+    datePickerArrivalTitle: "Arrival",
+    datePickerDepartureTitle: "Departure",
+    nightNbr: "Nights nbr.",
+    roomSelectionTitle: "Room selection",
+    roomSelectionCTA: "Research",
+    monthsShort: [
+      "jan.",
+      "feb.",
+      "mar.",
+      "apr.",
+      "may",
+      "jun.",
+      "jul.",
+      "aug.",
+      "sep.",
+      "oct.",
+      "nov.",
+      "dec."
+    ]
   },
   fr_FR: {
     // Listes de messages en français
@@ -44,5 +65,24 @@ export const i18n = {
     pseudo: "Pseudo",
     generalterms: "J'accepte les conditions générales d'utilisations",
     confirm: "Confirmer",
+    datePickerArrivalTitle: "Arrivée",
+    datePickerDepartureTitle: "Départ",
+    nightNbr: "Nbr. nuits",
+    roomSelectionTitle: "Sélection de chambre",
+    roomSelectionCTA: "Rechercher",
+    monthsShort: [
+      "jan.",
+      "fév.",
+      "mars",
+      "avr.",
+      "mai",
+      "juin",
+      "juil.",
+      "août",
+      "sept.",
+      "oct.",
+      "nov.",
+      "déc."
+    ]
   },
 };
