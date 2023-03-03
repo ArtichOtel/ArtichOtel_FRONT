@@ -43,6 +43,7 @@
               v-model="password"
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="***"
+              @keypress.enter="connect"
             />
           </div>
         </div>
