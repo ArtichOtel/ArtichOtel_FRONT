@@ -26,7 +26,7 @@
           <div class="flex flex-col md:flex-row justify-center items-center text-secondary-light mb-4">
 
             <!--    left picker        -->
-            <DatePicker v-bind:title="'Arrivée'"
+            <DatePicker v-bind:title="dico[langStore.lang].datePickerArrivalTitle"
                         v-bind:boundary="'start'"
                         v-bind:svgColor="'svg-secondary-light'"
                         v-bind:maxDate="''"
@@ -35,7 +35,7 @@
             />
 
             <!--    right picker        -->
-            <DatePicker v-bind:title="'Départ'"
+            <DatePicker v-bind:title="dico[langStore.lang].datePickerDepartureTitle"
                         v-bind:boundary="'end'"
                         v-bind:svgColor="'svg-secondary-light'"
                         v-bind:maxDate="''"
@@ -63,12 +63,6 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "HeroSection",
-};
-</script>
-
 <script setup>
 import axios from "axios";
 import {computed, ref} from "vue";
@@ -79,6 +73,7 @@ import DatePicker from "../blocks/DatePicker.vue";
 import router from "../../router";
 import {useQueryDatesStore} from "../../stores/queryDates";
 import {addDays, formatISO} from "date-fns";
+import { i18n } from "../../utils/i18n";
 
 const props = defineProps({
   title: Object,
@@ -99,6 +94,8 @@ const minDateStart = ref(formatISO(addDays(new Date(), 0.5),{ representation: 'd
 const minDateEnd = computed(()=> {
   return formatISO(addDays(queryDateStore['start'].date, 1.5),{ representation: 'date' })
 })
+
+const dico = i18n
 
 
 if (props.uri !== '') {
@@ -128,9 +125,6 @@ function goTo(url) {
 function updateValues() {
 
 }
-
-
-
 
 
 </script>

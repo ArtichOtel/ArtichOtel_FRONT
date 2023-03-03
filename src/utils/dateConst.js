@@ -33,17 +33,34 @@ export const months = [
                 "décembre"
             ]
 
-export const monthsShort = [
-                "janv.",
-                "fév.",
-                "mars",
-                "avr.",
-                "mai",
-                "juin",
-                "juil.",
-                "août",
-                "sep.",
-                "oct.",
-                "nov.",
-                "déc."
-            ]
+export const monthsShort = {
+    fr_FR: [
+        "janv.",
+        "fév.",
+        "mars",
+        "avr.",
+        "mai",
+        "juin",
+        "juil.",
+        "août",
+        "sep.",
+        "oct.",
+        "nov.",
+        "déc."
+    ],
+    en_EN: [
+        "jan.",
+        "feb.",
+        "mar.",
+        "apr.",
+        "mai",
+        "june",
+        "jul.",
+        "aug.",
+        "sep.",
+        "oct.",
+        "nov.",
+        "dec."
+    ],
+}
+       

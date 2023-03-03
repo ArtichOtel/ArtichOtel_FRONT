@@ -20,7 +20,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                 date: today,
                 day: today.getDay(),
                 dayNum: today.getDate().toString().padStart(2, "0"),
-                month: monthsShort[today.getMonth()],
+                month: today.getMonth(),
                 year: today.getFullYear(),
                 iso: today.getFullYear()+'-'+today.getMonth().toString().padStart(2, "0")+'-'+today.getDate().toString().padStart(2, "0")
             },
@@ -28,7 +28,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                 date: tomorrow,
                 day: tomorrow.getDay(),
                 dayNum: tomorrow.getDate().toString().padStart(2, "0"),
-                month: monthsShort[tomorrow.getMonth()],
+                month: tomorrow.getMonth(),
                 year: tomorrow.getFullYear(),
                 iso: tomorrow.getFullYear()+'-'+tomorrow.getMonth().toString().padStart(2, "0")+'-'+tomorrow.getDate().toString().padStart(2, "0")
             },
@@ -55,7 +55,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
 
                     // deal with strings
                     this.start.year = newDate.substring(0,4)
-                    this.start.month = monthsShort[parseInt(newDate.substring(5,7),10)-1]
+                    this.start.month = parseInt(newDate.substring(5,7),10)-1
                     this.start.dayNum = newDate.substring(8)
 
                     // check date order, correct if end is before start
@@ -65,7 +65,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                         this.end.iso = formatISO(dayAfter,{ representation: 'date' })
 
                         this.end.year = this.end.iso.substring(0,4)
-                        this.end.month = monthsShort[parseInt(this.end.iso.substring(5,7),10)-1]
+                        this.end.month = parseInt(this.end.iso.substring(5,7),10)-1
                         this.end.dayNum = this.end.iso.substring(8, 10)
                     }
 
@@ -77,7 +77,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
 
                     // deal with strings
                     this.end.year = newDate.substring(0,4)
-                    this.end.month = monthsShort[parseInt(newDate.substring(5,7),10)-1]
+                    this.end.month = parseInt(newDate.substring(5,7),10)-1
                     this.end.dayNum = newDate.substring(8)
 
                     // check date order, correct if end is before start
@@ -87,7 +87,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                         this.start.iso = formatISO(dayBefore,{ representation: 'date' })
 
                         this.start.year = this.start.iso.substring(0,4)
-                        this.start.month = monthsShort[parseInt(this.start.iso.substring(5,7),10)-1]
+                        this.start.month = parseInt(this.start.iso.substring(5,7),10)-1
                         this.start.dayNum = this.start.iso.substring(8, 10)
                     }
 
