@@ -10,7 +10,7 @@
 
       <div
         v-if="newsInfos.length"
-        class="flex flex-col md:flex-row justify-between items-end gap-[1vw] tracking-wider"
+        class="flex flex-col md:flex-row justify-between items-center md:items-end gap-[3vw] tracking-wider"
       >
         <div v-for="n in 3" :key="n" class="relative bg-red-200 h-fit">
           <div class="font-content absolute inset-x-0 bottom-0 h-fit">
