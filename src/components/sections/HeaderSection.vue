@@ -7,14 +7,15 @@
         class="w-full flex flex-wrap items-center justify-between px-6"
       >
         <!-- Logo -->
-        <div class="">
+        <div style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);">
           <button @click="goToHome">
             <img :src="iconURL + 'artichaut-mobile-logo.svg'" alt="">
           </button>
         </div>
 
         <div class="hidden md:flex flex-row pl-[6vw] items-center gap-5">
-          <img :src="iconURL + 'location-pin.svg'" alt="">
+          <img :src="iconURL + 'location-pin.svg'" alt=""
+          style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);">
           <span class="font-content">{{ contactStore.get()[1].text[langStore.lang] }}</span>
         </div>
 
@@ -31,19 +32,22 @@
         <div class="flex items-center relative gap-2 lg:gap-10">
           <div class="hidden lg:flex gap-5">
             <a class="font-content" href="contact:info@hotelartichaut.fr">
-              <img src="/src/assets/icons/sms.svg" alt="logo-email-artichotel" class="float-left mr-3 svg-secondary"/>
+              <img :src="iconURL + 'sms.svg'" alt="logo-email-artichotel" class="float-left mr-3 svg-secondary"
+              style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);"/>
               <span> {{ contactStore.get()[2].text[langStore.lang] }}</span>
             </a>
           </div>
           <div class="flex gap-5">
             <a class="font-content" href="tel:+33475000000">
-              <img src="/src/assets/icons/call.svg" alt="logo-telephone-artichotel" class="float-left mr-3 svg-secondary"/>
+              <img :src="iconURL + 'call.svg'" alt="logo-telephone-artichotel" class="float-left mr-3 svg-secondary"
+              style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);"/>
               <span>{{ contactStore.get()[0].text[langStore.lang] }}</span>
             </a>
           </div>
           <LangSelect class="w-10 hidden lg:flex"/>
           <button class="flex lg:hidden" @click="toggleBurgerMenu">
-            <img :src="iconURL + 'burger-menu.svg'" alt="">
+            <img :src="iconURL + 'burger-menu.svg'" alt="" class="h-10"
+            style="filter: invert(90%) sepia(1%) saturate(6429%) hue-rotate(346deg) brightness(113%) contrast(101%);">
           </button>
         </div>
         <!-- Right elements -->

@@ -3,30 +3,25 @@
   hover:invert duration-500 hover:duration-200 cursor-pointer">
 
     <div v-if="!isLogged">
-      <RouterLink to="/login"><img src="/src/assets/icons/profile-circle.svg" alt="login"></RouterLink>
+      <RouterLink to="/login"><img :src="iconURL + 'user.svg'" alt="login"></RouterLink>
     </div>
 
     <div v-if="isLogged" @click="$emit('logoutRequest')">
-      <img src="/src/assets/icons/logout.svg" alt="logout">
+      <img :src="iconURL + 'logout.svg'" alt="logout">
     </div>
 
 
   </div>
 </template>
 
-<script>
-export default {
-  name: "LoginButton"
-}
-</script>
-
 <script setup>
 // different behaviour if logged or not
 // default is NOT logged
-
+import { ref } from 'vue';
 
 const props = defineProps({
   isLogged: Boolean
-})
+});
+const iconURL = ref(import.meta.env.VITE_ICON_URL);
 
 </script>
