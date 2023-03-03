@@ -1,5 +1,5 @@
 <template>
-    <div class="ml-[4vw] my-auto flex flex-row relative">
+    <div class="my-auto flex flex-row relative font-title">
         <label for="locale"><img :src="'src/assets/icon-' + langStore.lang + '.jpg'" alt=""></label>
         <select v-model="langStore.lang" @change="setLang($event.target.value)"
                 class="text-transparent h-full bg-transparent w-full absolute" id="locale">

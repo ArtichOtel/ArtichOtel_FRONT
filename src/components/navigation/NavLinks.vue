@@ -1,14 +1,14 @@
 <template>
-  <li>
+  <li class="hover:text-tertiary">
     <a href="/#offers">{{ dico[langStore.lang].offers }}</a>
   </li>
-  <li>
+  <li class="hover:text-tertiary">
     <a href="/#rooms">{{ dico[langStore.lang].rooms }}</a>
   </li>
-  <li>
+  <li class="hover:text-tertiary">
     <a href="/#news">{{ dico[langStore.lang].news }}</a>
   </li>
-  <li>
+  <li class="hover:text-tertiary">
     <a href="/#login">{{ dico[langStore.lang].account }}</a>
   </li>
 </template>
