@@ -5,6 +5,7 @@ import SignUpView from "../views/SignUpView.vue";
 import AdminPanel from "../views/AdminPanel.vue";
 import PageNotFoundView from "../views/PageNotFoundView.vue";
 import RoomSelectionView from "../views/RoomSelectionView.vue";
+import RoomPresentation from "../components/RoomPresentation.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +32,14 @@ const router = createRouter({
       component: AdminPanel,
       meta: { transition: 'slide-left' },
     },
+    // Test for room presentation
+    // TODO : Delete v
+    {
+      path: "/room",
+      name: 'room',
+      component: RoomPresentation,
+    },
+    // ==========================
     {
       path: "/booking",
       name: "booking",
