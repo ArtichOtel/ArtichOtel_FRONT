@@ -1,14 +1,12 @@
 <template>
   <footer class="text-center md:text-left bg-primary text-secondary">
-    <div v-if="loaded"
+    <div
+      v-if="loaded"
       class="py-8 px-8 md:py-[9vw] md:px-[8.6vw] flex flex-col md:justify-between md:flex-row gap-20"
     >
-      <div
-        class="flex flex-col"
-        v-for="(footer, i) in footers"
-        :key="i"
-      >
-        <h2 class="uppercase font-semibold font-title text-titleSmall lg:text-titleBase mb-8 flex justify-center md:justify-start"
+      <div class="flex flex-col" v-for="(footer, i) in footers" :key="i">
+        <h2
+          class="uppercase font-semibold font-title text-titleSmall lg:text-titleBase mb-8 flex justify-center md:justify-start"
         >
           {{ footer.title[langStore.lang] }}
         </h2>
@@ -26,7 +24,6 @@
               />
 
               <span>{{ link.text[langStore.lang] }} </span>
-
             </a>
           </div>
         </div>
@@ -61,7 +58,6 @@ const props = defineProps({
 axios
   .get(`${import.meta.env.VITE_API_BASE_URL}${props.uri}`)
   .then((resp) => {
-    console.log("footer : ---------> ", resp.data);
     footers.value = resp.data[0];
     links.value = resp.data[1];
   })

@@ -50,7 +50,7 @@
       </div>
       <BookingFetch
         v-if="availability.length"
-        v-bind:availability="availability"
+        v-bind:availability="availability[0]"
       />
     </div>
   </main>
@@ -80,7 +80,7 @@ import { computed, ref } from "vue";
 import { addDays, formatISO } from "date-fns";
 import { i18n } from "../utils/i18n";
 import { useLangStore } from "../stores/lang";
-import BookingFetch from "../components/bookingFetch/bookingFetch.vue";
+import BookingFetch from "../components/bookingFetch/bookingSearch.vue";
 import axios from "axios";
 const props = defineProps({
   sections: Array,
@@ -90,6 +90,7 @@ const queryDateStore = useQueryDatesStore();
 const langStore = useLangStore();
 const dico = i18n;
 const availability = ref([]);
+const loaded = ref(false);
 
 const minDateStart = ref(
   formatISO(addDays(new Date(), 0.5), { representation: "date" })
@@ -104,11 +105,14 @@ function search() {
   console.log("search");
 
   axios
-    .get(`${import.meta.env.VITE_API_BASE_URL}/search?type=1`)
+    .get(
+      `${import.meta.env.VITE_API_BASE_URL}/search?type=1&startDate=${
+        queryDateStore.start.date
+      }&endDate=${queryDateStore.end.date}`
+    )
     .then((resp) => {
-      console.log("Recup data : ", resp.data);
       availability.value = resp.data;
-      console.log("Datasss : ", booking.value);
+      console.log("Recup data : ", resp.data);
     })
     .then(() => {
       loaded.value = true;
