@@ -31,6 +31,12 @@ const router = createRouter({
       component: AdminPanel,
       meta: { transition: 'slide-left' },
     },
+    // Test for room presentation
+    // {
+    //   path: "/room",
+    //   name: 'room',
+    //   component: RoomPresentation,
+    // },
     {
       path: "/booking",
       name: "booking",

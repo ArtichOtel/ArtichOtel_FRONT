@@ -40,8 +40,8 @@ export const i18n = {
       "sep.",
       "oct.",
       "nov.",
-      "dec."
-    ]
+      "dec.",
+    ],
   },
   fr_FR: {
     // Listes de messages en français
@@ -68,7 +68,7 @@ export const i18n = {
     datePickerArrivalTitle: "Arrivée",
     datePickerDepartureTitle: "Départ",
     nightNbr: "Nbr. nuits",
-    roomSelectionTitle: "Sélection de chambre",
+    roomSelectionTitle: "Séléction de chambre",
     roomSelectionCTA: "Rechercher",
     monthsShort: [
       "jan.",
@@ -82,7 +82,7 @@ export const i18n = {
       "sept.",
       "oct.",
       "nov.",
-      "déc."
-    ]
+      "déc.",
+    ],
   },
 };
