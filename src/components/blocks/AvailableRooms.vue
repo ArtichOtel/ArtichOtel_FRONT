@@ -38,6 +38,7 @@
               type="range"
               min="1"
               max="3"
+              value="1"
               @change="setTotalPrice($event.target.value)"
               class="w-2/5 h-2 bg-secondary mx-auto rounded-lg appearance-none cursor-pointer dark:bg-primary"
             />
@@ -72,18 +73,20 @@ export default {
 <script setup>
 import { ref } from "vue";
 import { useLangStore } from "../../stores/lang";
+import { useQueryDatesStore } from "../../stores/queryDates";
 
 const props = defineProps({
   availability: null,
 });
 
 const langStore = useLangStore();
-const totalPrice = ref();
+const queryDate = useQueryDatesStore();
+const totalPrice = ref(props.availability.price * queryDate.nOfNights);
 const nbrPers = ref(1);
 
-// Recupere le nombres de personnes
+// Set le prix & calcul
 const setTotalPrice = (range) => {
-  totalPrice.value = range * props.availability.price;
+  totalPrice.value = range * props.availability.price * queryDate.nOfNights;
   nbrPers.value = range;
 };
 </script>

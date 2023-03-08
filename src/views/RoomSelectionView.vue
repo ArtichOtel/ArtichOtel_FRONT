@@ -48,7 +48,7 @@
           </div>
         </form>
       </div>
-      <BookingFetch
+      <AvailableRooms
         v-if="availability.length"
         v-bind:availability="availability[0]"
       />
@@ -60,13 +60,6 @@
     :uri="sections[7].uri"
   />
 </template>
-
-<script>
-export default {
-  name: "SignUpView",
-  components: { BookingFetch },
-};
-</script>
 
 <script setup>
 import HeaderSection from "../components/sections/HeaderSection.vue";
@@ -80,7 +73,7 @@ import { computed, ref } from "vue";
 import { addDays, formatISO } from "date-fns";
 import { i18n } from "../utils/i18n";
 import { useLangStore } from "../stores/lang";
-import BookingFetch from "../components/bookingFetch/bookingSearch.vue";
+import AvailableRooms from "../components/blocks/AvailableRooms.vue";
 import axios from "axios";
 const props = defineProps({
   sections: Array,
