@@ -5,7 +5,7 @@
         class="flex flex-col bg-secondary shadow-lg bg-secondary md:flex-row w-full"
       >
         <img
-          class="h-1/4 w-full object-cover md:h-auto md:w-48"
+          class="h-2/4 w-full object-cover md:h-auto md:w-1/2"
           src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
           alt=""
         />
