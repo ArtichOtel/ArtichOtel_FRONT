@@ -53,7 +53,7 @@
             <button
               type="button"
               class="w-full h-15 text-xl tracking-wider text-tertiary font-semibold font-content uppercase text-titleSmall bg-accent px-6 pt-2.5 pb-2 leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              @click="getBooking()"
+              @click="goBooking"
             >
               Réserver
             </button>
@@ -65,15 +65,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "bookingSearch",
-};
-</script>
+
 <script setup>
 import { ref } from "vue";
 import { useLangStore } from "../../stores/lang";
 import { useQueryDatesStore } from "../../stores/queryDates";
+import {useRoomSelectionStore} from "../../stores/roomSelection";
+import router from "../../router";
 
 const props = defineProps({
   availability: null,
@@ -81,6 +79,8 @@ const props = defineProps({
 
 const langStore = useLangStore();
 const queryDate = useQueryDatesStore();
+const roomSelection = useRoomSelectionStore();
+
 const totalPrice = ref(props.availability.price * queryDate.nOfNights);
 const nbrPers = ref(1);
 
@@ -89,4 +89,19 @@ const setTotalPrice = (range) => {
   totalPrice.value = range * props.availability.price * queryDate.nOfNights;
   nbrPers.value = range;
 };
+
+async function goBooking() {
+  await roomSelection.set({
+    nightPrice: props.availability.price,
+    type: props.availability.type,
+    description: props.availability.description,
+    nOfPers: nbrPers,
+    startDate: queryDate.start.date,
+    endDate: queryDate.end.date
+  })
+
+  await router.push('/booking')
+}
+
+
 </script>
