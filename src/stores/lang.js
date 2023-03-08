@@ -2,15 +2,15 @@ import { defineStore } from "pinia";
 
 export const useLangStore = defineStore('lang', {
     state: () => {
+
+        // TODO use browser locale (http accept-language)
         return { lang: 'fr_FR' }
     },
 
     actions: {
-        setToEnglish() {
-            this.lang = 'en_EN'
-        },
-        setToFrench() {
-            this.lang = 'fr_FR'
+        setLanguage(localeLang) {
+            this.lang = localeLang
         }
+
     }
 })

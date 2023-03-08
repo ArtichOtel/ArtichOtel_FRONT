@@ -14,4 +14,8 @@ export const useContactStore = defineStore('contact', {
             return toRaw(this.contact)
         }
     },
+
+    getters: {
+        rawVal() {return toRaw(this.contact)}
+    }
 })

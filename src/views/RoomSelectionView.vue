@@ -36,7 +36,7 @@
           </div>
 
           <div class="flex flex-col items-center gap-4">
-            <button type="button" v-on:click="signup"
+            <button type="button" v-on:click="toto"
                     class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
             >{{ dico[langStore.lang].roomSelectionCTA }}</button>
           </div>
@@ -84,5 +84,9 @@ const minDateEnd = computed(()=> {
   return formatISO(addDays(queryDateStore['start'].date, 1.5),{ representation: 'date' })
 })
 
+
+function toto() {
+  router.push("/booking")
+}
 
 </script>
