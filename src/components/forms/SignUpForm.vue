@@ -9,7 +9,6 @@
       backgroundSize: 'cover',
     }"
   >
-    <nav></nav>
 
     <div class="flex flex-col justify-center items-center bg-secondary">
       <h2 class="font-title text-titleBase md:text-titleMed mt-[4vw] mb-[2vw]">
@@ -32,6 +31,7 @@
               class="border border-primary py-2 px-4 bg-secondary"
               :placeholder="[dico[langStore.lang].lastname]"
             />
+            <span class="font-content text-red-600">{{ data.last.err.display }}</span>
           </div>
 
           <div class="flex flex-col items-center">
@@ -48,6 +48,7 @@
               class="border border-primary py-2 px-4 bg-secondary"
               :placeholder="[dico[langStore.lang].firstname]"
             />
+            <span class="font-content text-red-600">{{ data.first.err.display }}</span>
           </div>
         </div>
 
@@ -66,6 +67,7 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="email@exemple.com"
             />
+            <span class="font-content text-red-600">{{ data.email.err.display }}</span>
           </div>
 
           <div class="flex flex-col items-center">
@@ -80,6 +82,7 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="Pseudo"
             />
+            <span class="font-content text-red-600">{{ data.pseudo.err.display }}</span>
           </div>
         </div>
 
@@ -98,6 +101,7 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="***"
             />
+            <span class="font-content text-red-600">{{ data.password.err.display }}</span>
           </div>
 
           <div class="flex flex-col items-center">
@@ -114,12 +118,14 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="***"
             />
+            <span class="font-content text-red-600">{{ data.confirm.err.display }}</span>
           </div>
         </div>
 
         <div class="mb-[3vw] text-sm">
           <input type="checkbox" id="terms" v-model="data.terms.val" />
           <label for="terms">{{ dico[langStore.lang].generalterms }}</label>
+          <div class="font-content text-red-600">{{ data.terms.err.display }}</div>
         </div>
 
         <div class="flex flex-col items-center gap-4">
@@ -143,14 +149,8 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "LoginForm",
-};
-</script>
-
 <script setup>
-import { ref } from "vue";
+import { ref, toRaw } from "vue";
 import axios from "axios";
 import router from "../../router";
 import { log, warn } from "../../utils/console";
@@ -161,86 +161,152 @@ const dico = i18n;
 
 const data = ref({
   first: {
-    val: "",
+    val: null,
     err: {
       ifEmpty: "Veuillez entrer vote nom",
       ifBad: "Le nom ne peut contenir que des lettres",
+      display: null,
     },
   },
   last: {
-    val: "",
+    val: null,
     err: {
       ifEmpty: "Veuillez entrer vote prénom",
       ifBad: "Le prénom ne peut contenir que des lettres",
+      display: null,
     },
   },
-  pseudo: { val: "", err: { ifEmpty: false, ifBad: false } },
+  pseudo: {
+    val: null,
+    err: {
+      ifEmpty: null,
+      ifBad: null,
+      display: null,
+    },
+  },
   email: {
-    val: "",
+    val: null,
     err: {
       ifEmpty: "Veuillez entrer vote email",
       ifBad: "L'email ne semble pas correct",
+      display: null,
     },
   },
   confirm: {
-    val: "",
+    val: null,
     err: {
       ifEmpty: "Veuillez confirmer votre mot de passe",
       ifBad: "Erreur de confirmation",
+      display: null,
     },
   },
   password: {
-    val: "",
+    val: null,
     err: {
       ifEmpty: "Veuillez entrer un mot de passe",
       ifBad:
         "Le mot de passe doit contenir 8 caractères dont au moins 1 spécial",
+        display: null,
     },
   },
   terms: {
-    val: false,
+    val: null,
     err: {
-      ifEmpty: false,
-      ifBad: "Vous devez accepter les conditions d'utilisations.",
+      ifEmpty: "Vous devez accepter les conditions d'utilisations.",
+      ifBad: null,
+      display: null,
     },
   },
 });
 
-const checkInputs = function () {
-  data.value.forEach((field, index) => {
-    log(field);
-  });
-};
+const lettersREGEX = /^[A-Za-z]+$/
+const emailREGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+const pwdREGEX = /^(?=.{8,})(?=.*[?!@#$%^&*=|£²³`"'ø§€])/
 
-/*
+const checkInputs = function () {
+  let nbValidatedInputs = 0
+
+  for (const [key, element] of Object.entries(data.value)) {
+    element.err.display = null // resetting err display
+    // checking errors
+    if (element.val === null) {
+      if (key === 'pseudo') { nbValidatedInputs++ } // optionnal pseudo handling
+
+      element.err.display = element.err.ifEmpty // display empty error msg
+    } else {
+      switch (key) {
+
+        case 'last':
+        case 'first':
+          if (!element.val.match(lettersREGEX)) {
+            element.err.display = element.err.ifBad
+
+          } else { nbValidatedInputs++ }
+          break;
+
+        case 'pseudo':
+          nbValidatedInputs++
+          break;
+
+        case 'email':
+          if (!element.val.match(emailREGEX)) {
+            element.err.display = element.err.ifBad
+
+          } else { nbValidatedInputs++ }
+          break;
+
+        case 'password':
+          if (!(element.val.match(pwdREGEX))) {
+            element.err.display = element.err.ifBad
+
+          } else { nbValidatedInputs++ }
+          break;
+
+        case 'confirm':
+          if (!element.val === data.value.password.val) {
+            element.err.display = element.err.ifBad
+
+          } else { nbValidatedInputs++ }
+          break;
+      
+        default:
+          break;
+      }
+    }
+  }
+
+  return nbValidatedInputs === Object.keys(data.value).length
+};
 
 
 const signup = function () {
 
-    axios.post(`${import.meta.env.VITE_API_BASE_URL}/user/login`,
-        {pseudo: pseudo.value, password: password.value})
-        .then((response)=>{
-          //log(response.data)
-          window.sessionStorage.setItem('token', response.data.token)
-          emit('connectionStatus', {
-            token: response.data.token,
-            role: response.data.role
-          })
-          return response.data.role
-        })
-        .then(() => {
-          pseudo.value=""
-          password.value=""
-        })
-        .catch((err)=> {
-          log("connection error :", err)
-        })
-  } else {
-    warn("Missing input")
+  if (checkInputs()) { // checking unpits
+    // json body for request POST
+    let bodyJSON = {
+      last_name: data.last.val,
+      first_name: data.first.val,
+      email: data.email.val,
+      password: data.password.val,
+      lang: langStore.lang,
+    }
+    if (pseudo.value) { bodyJSON.pseudo = pseudo.value }
+
+    // Request POST to register
+    axios
+      .post(`${import.meta.env.VITE_API_BASE_URL}/user/register`, bodyJSON)
+      // confirmation and return to login page
+      .then(() => {
+        goLogin()
+        alert("Merci de votre inscription !\nNous vous avons envoyé un e-mail de confirmation.")
+      })
+      // error handling
+      .catch((e) => {
+        console.log("register error:", e)
+      })
+
   }
-
-
-*/
+}
 
 const goLogin = function () {
   router.push("/login");
