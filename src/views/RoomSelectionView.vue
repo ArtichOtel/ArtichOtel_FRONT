@@ -92,7 +92,7 @@ const minDateEnd = computed(()=> {
 })
 
 function search() {
-  console.log("search");
+  //console.log("search");
 
   axios
     .get(

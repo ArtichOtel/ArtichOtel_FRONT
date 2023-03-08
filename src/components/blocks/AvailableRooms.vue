@@ -38,7 +38,7 @@
               type="range"
               min="1"
               max="3"
-              value="1"
+              :value="nbrPers"
               @change="setTotalPrice($event.target.value)"
               class="w-2/5 h-2 bg-secondary mx-auto rounded-lg appearance-none cursor-pointer dark:bg-primary"
             />
@@ -67,11 +67,13 @@
 
 
 <script setup>
+/* eslint-disable no-unused-vars */
 import { ref } from "vue";
 import { useLangStore } from "../../stores/lang";
 import { useQueryDatesStore } from "../../stores/queryDates";
 import {useRoomSelectionStore} from "../../stores/roomSelection";
 import router from "../../router";
+import {error, log} from "../../utils/console";
 
 const props = defineProps({
   availability: null,
@@ -90,17 +92,25 @@ const setTotalPrice = (range) => {
   nbrPers.value = range;
 };
 
-async function goBooking() {
-  await roomSelection.set({
-    nightPrice: props.availability.price,
-    type: props.availability.type,
-    description: props.availability.description,
-    nOfPers: nbrPers,
-    startDate: queryDate.start.date,
-    endDate: queryDate.end.date
+function goBooking() {
+  log("go booking")
+  const updateRoomSelectionStore = new Promise((resolve, reject) => {
+    resolve(
+        roomSelection.set({
+          nightPrice: props.availability.price,
+          type: props.availability.type,
+          description: props.availability.description,
+          nOfPers: nbrPers.value,
+          startDate: queryDate.start.iso,
+          endDate: queryDate.end.iso,
+          nOfNights: queryDate.nOfNights
+        }))
   })
 
-  await router.push('/booking')
+  updateRoomSelectionStore
+      .then(()=>router.push('/booking'))
+      .catch(err => error(err))
+
 }
 
 
