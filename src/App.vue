@@ -18,6 +18,7 @@ import router from "./router";
 import SwitchModeButton from "./components/admin/SwitchModeButton.vue";
 import { log } from "./utils/console";
 import { useContactStore } from "./stores/contact";
+import { useFooterStore } from "./stores/sections";
 
 /*
 const connectionStatus = ref({
@@ -32,6 +33,7 @@ const isLogged = ref(false);
 const role = ref("");
 const isEditing = ref(true);
 const contactStore = useContactStore();
+const footerStore = useFooterStore();
 
 axios
   .get(`${import.meta.env.VITE_API_BASE_URL}/sections`)
@@ -46,8 +48,9 @@ axios
     return axios.get(`${import.meta.env.VITE_API_BASE_URL}${linksURI}`);
   })
   .then((response) => {
-    const contacts = response.data[1].slice(4, 7);
-    contactStore.setContact(contacts);
+    const footers = response.data;
+    footerStore.set(footers);
+    contactStore.setContact(footerStore.getLinks().slice(4,7));
   })
   .catch((err) => {
     log("BUG :", err);

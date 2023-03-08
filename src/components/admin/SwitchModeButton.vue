@@ -3,11 +3,11 @@
   hover:invert duration-500 hover:duration-200 cursor-pointer">
 
     <div v-if="!isEditing" @click="checkIfEditing">
-      <RouterLink to="/admin"><img src="/src/assets/icons/edit.svg" alt="login"></RouterLink>
+      <RouterLink to="/admin"><img :src="iconURL + 'edit.svg'" alt="login"></RouterLink>
     </div>
 
     <div v-if="isEditing" @click="checkIfEditing">
-      <RouterLink to="/"><img src="/src/assets/icons/screenmirroring.svg" alt="login"></RouterLink>
+      <RouterLink to="/"><img :src="iconURL + 'screenmirroring.svg'" alt="login"></RouterLink>
     </div>
 
 
@@ -30,6 +30,7 @@ const props = defineProps({
 })
 
 const isEditing = ref(true)
+const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
 
 console.log(document.location.pathname)
 
