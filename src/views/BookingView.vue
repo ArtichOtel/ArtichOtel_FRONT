@@ -24,7 +24,7 @@
 
 
             <!--  optional services      -->
-            <div class="mb-16" >
+            <div v-if="options" class="mb-16" >
               <h3 class="font-title text-titleBase mb-4">Sélectionnez des options</h3>
               <ul>
                 <li v-for="option in options" v-bind:key="option.id">
