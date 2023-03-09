@@ -91,6 +91,6 @@ export const i18n = {
     numbersPeople: "Nombre(s) de personne(s) :",
     night_people: "/pers/nuit.",
     details: "Détails",
-    book: "book",
+    book: "réserver",
   },
 };

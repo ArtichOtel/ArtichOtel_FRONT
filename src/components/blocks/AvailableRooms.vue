@@ -1,4 +1,7 @@
 <template>
+  <Modal @close="modalClose()" :modalActive="modalActive">
+    <RoomPresentation @close="modalClose()" />
+  </Modal>
   <div class="flex flex-col mt-5 h-full">
     <div class="flex md:h-full h-[50rem]">
       <div
@@ -55,11 +58,12 @@
               class="w-3/5 h-15 text-xl tracking-wider text-tertiary font-semibold font-content uppercase text-titleSmall bg-accent px-6 pt-2.5 pb-2 leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
               @click="getBooking()"
             >
-              Réserver
+              {{ dico[langStore.lang].book }}
             </button>
-            <a href="#" class="mx-auto mt-5 underline">{{
-              dico[langStore.lang].details
-            }}</a>
+
+            <button @click="modalOpen()" class="mx-auto mt-5 underline">
+              {{ dico[langStore.lang].details }}
+            </button>
           </div>
         </div>
       </div>
@@ -77,6 +81,10 @@ import { ref } from "vue";
 import { useLangStore } from "../../stores/lang";
 import { useQueryDatesStore } from "../../stores/queryDates";
 import { i18n } from "../../utils/i18n";
+import Modal from "../Modal.vue";
+import RoomPresentation from "./RoomPresentation.vue";
+
+const modalActive = ref(false);
 
 const dico = i18n;
 const props = defineProps({
@@ -92,5 +100,12 @@ const nbrPers = ref(1);
 const setTotalPrice = (range) => {
   totalPrice.value = range * props.availability.price * queryDate.nOfNights;
   nbrPers.value = range;
+};
+
+const modalClose = () => {
+  modalActive.value = false;
+};
+const modalOpen = () => {
+  modalActive.value = true;
 };
 </script>
