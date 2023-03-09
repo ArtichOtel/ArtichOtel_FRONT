@@ -42,6 +42,7 @@ export const i18n = {
       "nov.",
       "dec.",
     ],
+    numbersPeople: "Numbers of people :",
   },
   fr_FR: {
     // Listes de messages en français
@@ -84,5 +85,6 @@ export const i18n = {
       "nov.",
       "déc.",
     ],
+    numbersPeople: "Nombre(s) de personne(s) :",
   },
 };

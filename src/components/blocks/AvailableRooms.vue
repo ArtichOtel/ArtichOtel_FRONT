@@ -30,7 +30,7 @@
 
           <div class="flex flex-col items-center w-full mt-5 gap-5">
             <h2 class="block mb-2 text-sm font-title text-titleSmall">
-              Nombre(s) de personne(s) :
+              {{ dico[langStore.lang].numbersPeople }}
               <span id="rangeValue" class="font-bold">{{ nbrPers }}</span>
             </h2>
             <input
@@ -74,7 +74,9 @@ export default {
 import { ref } from "vue";
 import { useLangStore } from "../../stores/lang";
 import { useQueryDatesStore } from "../../stores/queryDates";
+import { i18n } from "../../utils/i18n";
 
+const dico = i18n;
 const props = defineProps({
   availability: null,
 });
