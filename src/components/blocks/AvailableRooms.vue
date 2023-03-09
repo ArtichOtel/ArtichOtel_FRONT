@@ -80,6 +80,8 @@ import { useQueryDatesStore } from "../../stores/queryDates";
 import { i18n } from "../../utils/i18n";
 import Modal from "../Modal.vue";
 import RoomPresentation from "./RoomPresentation.vue";
+import {useRoomSelectionStore} from "../../stores/roomSelection";
+import {error, log} from "../../utils/console";
 
 const modalActive = ref(false);
 
