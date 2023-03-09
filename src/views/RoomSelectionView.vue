@@ -17,6 +17,7 @@
               v-bind:svgColor="'svg-tertiary'"
               v-bind:maxDate="''"
               v-bind:minDate="minDateStart"
+              @changeDate="refreshAvailability()"
             />
 
             <!--    right picker        -->
@@ -31,6 +32,7 @@
             <NOfNights
               v-bind:dateStore="queryDateStore"
               v-bind:svgColor="'svg-tertiary'"
+              @changeDate="refreshAvailability()"
             />
 
 
