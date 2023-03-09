@@ -82,6 +82,7 @@ import Modal from "../Modal.vue";
 import RoomPresentation from "./RoomPresentation.vue";
 import {useRoomSelectionStore} from "../../stores/roomSelection";
 import {error, log} from "../../utils/console";
+import router from "../../router";
 
 const modalActive = ref(false);
 
