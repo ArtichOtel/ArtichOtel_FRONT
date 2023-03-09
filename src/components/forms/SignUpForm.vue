@@ -240,6 +240,7 @@ const checkInputs = function () {
           } else { nbValidatedInputs++ }
           break;
 
+        case 'terms':
         case 'pseudo':
           nbValidatedInputs++
           break;
@@ -280,25 +281,27 @@ const checkInputs = function () {
 
 
 const signup = function () {
-
+  console.log("signing up")
   if (checkInputs()) { // checking unpits
+    console.log('checkInputs passed')
     // json body for request POST
     let bodyJSON = {
-      last_name: data.last.val,
-      first_name: data.first.val,
-      email: data.email.val,
-      password: data.password.val,
+      last_name: data.value.last.val,
+      first_name: data.value.first.val,
+      email: data.value.email.val,
+      password: data.value.password.val,
       lang: langStore.lang,
     }
-    if (pseudo.value) { bodyJSON.pseudo = pseudo.value }
+    if (data.value.pseudo.val) { bodyJSON.pseudo = data.value.pseudo.val }
+    console.log(bodyJSON)
 
     // Request POST to register
     axios
       .post(`${import.meta.env.VITE_API_BASE_URL}/user/register`, bodyJSON)
       // confirmation and return to login page
       .then(() => {
-        goLogin()
         alert("Merci de votre inscription !\nNous vous avons envoyé un e-mail de confirmation.")
+        // TODO : Go login
       })
       // error handling
       .catch((e) => {
