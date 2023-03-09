@@ -27,7 +27,7 @@ export const i18n = {
     datePickerDepartureTitle: "Departure",
     nightNbr: "Nights nbr.",
     roomSelectionTitle: "Room selection",
-    roomSelectionCTA: "Research",
+    roomSelectionCTA: "SEARCH",
     monthsShort: [
       "jan.",
       "feb.",
@@ -40,8 +40,12 @@ export const i18n = {
       "sep.",
       "oct.",
       "nov.",
-      "dec."
-    ]
+      "dec.",
+    ],
+    numbersPeople: "Numbers of people :",
+    night_people: "/pers/night.",
+    details: "Details",
+    book: "book",
   },
   fr_FR: {
     // Listes de messages en français
@@ -68,7 +72,7 @@ export const i18n = {
     datePickerArrivalTitle: "Arrivée",
     datePickerDepartureTitle: "Départ",
     nightNbr: "Nbr. nuits",
-    roomSelectionTitle: "Sélection de chambre",
+    roomSelectionTitle: "Séléction de chambre",
     roomSelectionCTA: "Rechercher",
     monthsShort: [
       "jan.",
@@ -82,7 +86,11 @@ export const i18n = {
       "sept.",
       "oct.",
       "nov.",
-      "déc."
-    ]
+      "déc.",
+    ],
+    numbersPeople: "Nombre(s) de personne(s) :",
+    night_people: "/pers/nuit.",
+    details: "Détails",
+    book: "book",
   },
 };

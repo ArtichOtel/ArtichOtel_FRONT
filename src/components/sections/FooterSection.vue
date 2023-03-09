@@ -1,5 +1,8 @@
 <template>
-  <footer v-if="footerStore.getLinks()" class="text-center md:text-left bg-primary text-secondary">
+  <footer
+    v-if="footerStore.getLinks()"
+    class="text-center md:text-left bg-primary text-secondary"
+  >
     <div
       class="py-8 px-8 md:py-[9vw] md:px-[8.6vw] flex flex-col md:justify-between md:flex-row gap-20"
     >
@@ -8,7 +11,8 @@
         v-for="(footer, i) in footerStore.getCategory()"
         :key="i"
       >
-        <h2 class="uppercase font-semibold font-title text-titleSmall lg:text-titleBase mb-8 flex justify-center md:justify-start"
+        <h2
+          class="uppercase font-semibold font-title text-titleSmall lg:text-titleBase mb-8 flex justify-center md:justify-start"
         >
           {{ footer.title[langStore.lang] }}
         </h2>
@@ -26,7 +30,6 @@
               />
 
               <span>{{ link.text[langStore.lang] }} </span>
-
             </a>
           </div>
         </div>
@@ -54,5 +57,4 @@ const props = defineProps({
   title: Object,
   uri: String,
 });
-
 </script>
