@@ -85,14 +85,24 @@ const langStore = useLangStore();
 const dico = i18n;
 const availability = ref([]);
 const loaded = ref(false);
+const showAvailable = ref(true);
 
-const minDateStart = ref(formatISO(addDays(new Date(), 0.5),{ representation: 'date' }))
-const minDateEnd = computed(()=> {
-  return formatISO(addDays(queryDateStore['start'].date, 1.5),{ representation: 'date' })
-})
+const minDateStart = ref(
+  formatISO(addDays(new Date(), 0.5), { representation: "date" })
+);
+const minDateEnd = computed(() => {
+  return formatISO(addDays(queryDateStore["start"].date, 1.5), {
+    representation: "date",
+  });
+});
+
+const refreshAvailability = () => {
+  availability.value = [];
+  console.log("Refreshing availability");
+};
 
 function search() {
-  //console.log("search");
+  console.log("search");
 
   axios
     .get(
