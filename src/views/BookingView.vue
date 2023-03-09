@@ -6,7 +6,7 @@
       <div class="flex flex-col justify-center items-center bg-secondary">
         <h2 class="font-title text-titleBase md:text-titleMed mt-[4vw] mb-[2vw]">Réservation</h2>
 
-        <form v-if="roomSelectionData" class="mb-[2vw] tracking-wider">
+        <form class="mb-[2vw] tracking-wider">
 
           <RoomPresentation class="mb-16"/>
 
@@ -15,10 +15,10 @@
             <!--  user roomSelection      -->
             <div class="mb-16" >
               <h3 class="font-title text-titleBase mb-4">Votre sélection</h3>
-              <p>Nombre de personne(s) : {{roomSelectionData.val.nOfPers}}</p>
-              <p>Arrivée : {{roomSelectionData.val.startDate}}</p>
-              <p>Départ : {{roomSelectionData.val.endDate}}</p>
-              <p>Prix de base : {{roomSelectionData.price}} €</p>
+              <p>Nombre de personne(s) : {{roomSelection.val.nOfPers}}</p>
+              <p>Arrivée : {{roomSelection.val.startDate}}</p>
+              <p>Départ : {{roomSelection.val.endDate}}</p>
+              <p>Prix de base : {{roomSelection.price}} €</p>
 
             </div>
 
@@ -27,7 +27,7 @@
             <div class="mb-16" >
               <h3 class="font-title text-titleBase mb-4">Sélectionnez des options</h3>
               <ul>
-                <li v-for="option in availableOptions" v-bind:key="option.id">
+                <li v-for="option in options" v-bind:key="option.id">
                   <label class="flex flex-row mb-2">
                     <input
                         type="checkbox"
@@ -50,7 +50,13 @@
             <div class="mb-16" >
               <h3 class="font-title text-titleBase mb-4">Prix du séjour</h3>
               <p>
-                {{totalPrice + selectedOptionsPrice}} €
+                {{totalPrice}} €
+              </p>
+              <p>
+                {{selectedOptions}}
+              </p>
+              <p>
+                {{selectedOptionsPrice}}
               </p>
             </div>
           </div>
@@ -78,11 +84,15 @@
   <FooterSection v-if="sections.length" :title="sections[7].title" :uri="sections[7].uri" />
 </template>
 
+<script>
+export default {
+  name: "SignUpView"
+}
+</script>
 
 <script setup>
 
 import HeaderSection from "../components/sections/HeaderSection.vue";
-import RoomPresentation from "../components/blocks/RoomPresentation.vue";
 import FooterSection from "../components/sections/FooterSection.vue";
 import router from "../router";
 import {computed, ref, toRaw} from "vue";
@@ -90,6 +100,7 @@ import { i18n } from "../utils/i18n";
 import { useLangStore } from "../stores/lang";
 import {error, log, warn} from "../utils/console";
 import axios from "axios";
+import RoomPresentation from "../components/blocks/RoomPresentation.vue";
 import {useRoomSelectionStore} from "../stores/roomSelection";
 import {useOptionsStore} from "../stores/options";
 
@@ -112,19 +123,16 @@ const langStore = useLangStore()
 const dico = i18n
 
 const optionStore = useOptionsStore();
-const availableOptions = ref()
+const options = ref()
 const selectedOptions = ref([])
 const totalPrice= ref(roomSelection.price)
 
-const roomSelectionData = ref()
 
 axios
     .get(`${import.meta.env.VITE_API_BASE_URL}/optional-services`)
     .then((resp) => {
-      log('AXIOS !!!!!!!')
       //log(resp.data)
-      availableOptions.value = toRaw(resp.data.map(i => i))
-      roomSelectionData.value = toRaw(roomSelection)
+      options.value = toRaw(resp.data.map(i => i))
     })
     .catch(err => {
       error(err)
@@ -132,51 +140,20 @@ axios
 
 
 const selectedOptionsPrice = computed(() => {
-  if (availableOptions.value) {
-    let listOfOptions = availableOptions.value.filter(opt => selectedOptions.value.includes(opt.id)).map(e => toRaw(e))
-    console.log(listOfOptions)
-    return listOfOptions.reduce((prev, cur) => {
-      // apply pricing rules
-      return prev + cur.u_price * (cur.by_person ? roomSelection.val.nOfPers : 1) * (cur.nb_day>0 ? Math.ceil(roomSelection.val.nOfNights/cur.nb_day) : 1)
-    },0)
-  }
-  return 0
+  let listOfOptions = options.value.filter(opt => selectedOptions.value.includes(opt.id)).map(e => toRaw(e))
+  console.log(listOfOptions)
+  return listOfOptions.reduce((prev, cur) => {
+    return prev + cur.u_price * (cur.by_person ? roomSelection.nOfPers : 1) * (cur.nb_day ? 1 : Math.floor(roomSelection.nOfNights/cur.nb_day))
+  },0)
 })
 
 
 function cancel() {
-  const eraseRoomSelection = new Promise((resolve, reject)=> {
-    resolve(
-        roomSelection.erase()
-    )
-  })
-
-  eraseRoomSelection
-      .then(()=> {
-        router.push("/selection")
-      })
-      .catch(e => error(e))
+  router.push("/selection")
 }
 function checkout() {
   //router.push("/checkout")
-  const payload = {
-    begin_date: roomSelection.val.startDate,
-    end_date: roomSelection.val.endDate,
-    rooms_id: roomSelection.val.roomId,
-    customers_id: 1
-  }
-
-  axios
-      .post(`${import.meta.env.VITE_API_BASE_URL}/booking`, payload, {
-    headers: {
-      'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
-    }
-  })
-      .then((resp)=>{
-    console.log(resp)
-  })
-      .catch(e => error(e))
-
+  router.push("/booking")
 }
 
 </script>
