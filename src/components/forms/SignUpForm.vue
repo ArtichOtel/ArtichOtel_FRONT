@@ -118,7 +118,7 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="***"
             />
-            <span class="font-content text-red-600">{{ data.confirm.err.display }}</span>
+            <span class="font-content text-red-600 max-w-fit">{{ data.confirm.err.display }}</span>
           </div>
         </div>
 
@@ -229,11 +229,7 @@ const checkInputs = function () {
   for (const [key, element] of Object.entries(data.value)) {
     element.err.display = null // resetting err display
     // checking errors
-    if (element.val === null) {
-      if (key === 'pseudo') { nbValidatedInputs++ } // optionnal pseudo handling
-
-      element.err.display = element.err.ifEmpty // display empty error msg
-    } else {
+    if (element.val !== null) {
       switch (key) {
 
         case 'last':
@@ -263,7 +259,7 @@ const checkInputs = function () {
           break;
 
         case 'confirm':
-          if (!element.val === data.value.password.val) {
+          if (element.val !== data.value.password.val) {
             element.err.display = element.err.ifBad
 
           } else { nbValidatedInputs++ }
@@ -272,6 +268,10 @@ const checkInputs = function () {
         default:
           break;
       }
+    } else {
+      if (key === 'pseudo') { nbValidatedInputs++ } // optionnal pseudo handling
+
+      element.err.display = element.err.ifEmpty // display empty error msg
     }
   }
 
