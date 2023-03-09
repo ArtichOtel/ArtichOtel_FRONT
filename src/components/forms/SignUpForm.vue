@@ -11,13 +11,13 @@
   >
 
     <div class="flex flex-col justify-center items-center bg-secondary">
-      <h2 class="font-title text-titleBase md:text-titleMed mt-[4vw] mb-[2vw]">
+      <h2 class="font-title text-titleBase sm:text-titleMed mt-[4vw] mb-[2vw]">
         {{ dico[langStore.lang].registration }}
       </h2>
 
       <form class="mb-[2vw] tracking-wider">
-        <div class="flex flex-wrap justify-center gap-[2vw] mb-[3vw]">
-          <div class="flex flex-col items-center">
+        <div class="flex flex-wrap justify-center gap-[2vw] mb-[3vw] ">
+          <div class="flex flex-col items-center max-w-min">
             <label
               for="last"
               class="block mb-4 after:content-['*'] after:ml-1 after:text-red-600"
@@ -31,10 +31,10 @@
               class="border border-primary py-2 px-4 bg-secondary"
               :placeholder="[dico[langStore.lang].lastname]"
             />
-            <span class="font-content text-red-600">{{ data.last.err.display }}</span>
+            <span class="font-content text-red-600 text-center">{{ data.last.err.display }}</span>
           </div>
 
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center max-w-min">
             <label
               for="first"
               class="block mb-4 after:content-['*'] after:ml-1 after:text-red-600"
@@ -48,12 +48,12 @@
               class="border border-primary py-2 px-4 bg-secondary"
               :placeholder="[dico[langStore.lang].firstname]"
             />
-            <span class="font-content text-red-600">{{ data.first.err.display }}</span>
+            <span class="font-content text-red-600 text-center">{{ data.first.err.display }}</span>
           </div>
         </div>
 
         <div class="flex flex-wrap justify-center gap-[2vw] mb-[3vw]">
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center max-w-min">
             <label
               for="email"
               class="block mb-4 after:content-['*'] after:ml-1 after:text-red-600"
@@ -67,10 +67,10 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="email@exemple.com"
             />
-            <span class="font-content text-red-600">{{ data.email.err.display }}</span>
+            <span class="font-content text-red-600 text-center">{{ data.email.err.display }}</span>
           </div>
 
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center max-w-min">
             <label for="pseudo" class="block mb-4">{{
               dico[langStore.lang].pseudo
             }}</label>
@@ -82,12 +82,12 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="Pseudo"
             />
-            <span class="font-content text-red-600">{{ data.pseudo.err.display }}</span>
+            <span class="font-content text-red-600 text-center">{{ data.pseudo.err.display }}</span>
           </div>
         </div>
 
         <div class="flex flex-wrap justify-center gap-[2vw] mb-[3vw]">
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center max-w-min">
             <label
               for="password"
               class="block mb-4 after:content-['*'] after:ml-1 after:text-red-600"
@@ -101,10 +101,10 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="***"
             />
-            <span class="font-content text-red-600">{{ data.password.err.display }}</span>
+            <span class="font-content text-red-600 text-center">{{ data.password.err.display }}</span>
           </div>
 
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center max-w-min">
             <label
               for="confirm"
               class="block mb-4 after:content-['*'] after:ml-1 after:text-red-600"
@@ -118,13 +118,13 @@
               class="border border-primary py-2 px-4 bg-secondary"
               placeholder="***"
             />
-            <span class="font-content text-red-600 max-w-fit">{{ data.confirm.err.display }}</span>
+            <span class="font-content text-red-600 text-center">{{ data.confirm.err.display }}</span>
           </div>
         </div>
 
-        <div class="mb-[3vw] text-sm">
+        <div class="mb-[3vw] text-sm text-center">
           <input type="checkbox" id="terms" v-model="data.terms.val" />
-          <label for="terms">{{ dico[langStore.lang].generalterms }}</label>
+          <label for="terms" class="ml-1">{{ dico[langStore.lang].generalterms }}</label>
           <div class="font-content text-red-600">{{ data.terms.err.display }}</div>
         </div>
 
