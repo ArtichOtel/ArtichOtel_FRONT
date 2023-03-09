@@ -103,7 +103,8 @@ function goBooking() {
           nOfPers: nbrPers.value,
           startDate: queryDate.start.iso,
           endDate: queryDate.end.iso,
-          nOfNights: queryDate.nOfNights
+          nOfNights: queryDate.nOfNights,
+          roomId: props.availability.room_id
         }))
   })
 
