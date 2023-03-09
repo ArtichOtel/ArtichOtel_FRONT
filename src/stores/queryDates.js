@@ -14,6 +14,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
         let today = new Date(Date.now()+1000*60*60*12)
         // now + 36h
         let tomorrow = new Date(Date.now()+1000*60*60*36)
+    
         
         return {
             start: {
@@ -22,7 +23,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                 dayNum: today.getDate().toString().padStart(2, "0"),
                 month: today.getMonth(),
                 year: today.getFullYear(),
-                iso: today.getFullYear()+'-'+today.getMonth().toString().padStart(2, "0")+'-'+today.getDate().toString().padStart(2, "0")
+                iso: formatISO(today,{ representation: 'date' })
             },
             end: {
                 date: tomorrow,
@@ -30,7 +31,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
                 dayNum: tomorrow.getDate().toString().padStart(2, "0"),
                 month: tomorrow.getMonth(),
                 year: tomorrow.getFullYear(),
-                iso: tomorrow.getFullYear()+'-'+tomorrow.getMonth().toString().padStart(2, "0")+'-'+tomorrow.getDate().toString().padStart(2, "0")
+                iso: formatISO(tomorrow,{ representation: 'date' })
             },
 
             nOfNights: 1,
@@ -53,7 +54,7 @@ export const useQueryDatesStore = defineStore('QueryDates', {
             switch (boundary) {
                 case 'start':
                     if (new Date(newDate) > new Date(Date.now()+1000*60*60*12)) {
-                        this.iso = newDate
+                        this.start.iso = newDate
                         this.start.date = new Date(newDate)
 
                         // deal with strings
