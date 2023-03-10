@@ -17,7 +17,7 @@
                     </div>
                     <div class="bg-primary font-title text-secondary text-center rounded
                                 mt-[0.8vw] h-[2.6vw] flex px-2">
-                        <span class="m-auto">Pseudo</span>
+                        <span class="m-auto">{{ userData.pseudo }}</span>
                     </div>
                     <div class="mt-[2.6vw] bg-primary text-tertiary font-content p-[0.8vw] flex flex-col gap-[0.8vw] mb-[10vw]">
                         <button class="bg-white flex rounded h-[2.6vw] flex px-2">
@@ -63,11 +63,24 @@ import { i18n } from '../utils/i18n';
 const langStore = useLangStore();
 const dico = i18n;
 const heroBg = ref();
+const userData = ref();
 
 axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
 .then((res) => {
     heroBg.value = res.data[0][0].url_image
 })
+.catch((err) => {
+    console.log(err)
+})
+
+axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('id')}`, {
+    headers: {
+        'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+    }
+})
+    .then((res) => {
+        userData.value = res.data
+    })
 
 
 </script>
