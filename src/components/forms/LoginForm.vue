@@ -108,6 +108,7 @@ const connect = function () {
       .then((response) => {
         //log(response.data)
         window.sessionStorage.setItem("token", response.data.token);
+        window.sessionStorage.setItem('id', response.data.id);
         emit("connectionStatus", {
           token: response.data.token,
           role: response.data.role,
