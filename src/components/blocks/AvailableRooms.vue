@@ -138,33 +138,33 @@ function initiateBooking() {
       );
     });
 
-    updateRoomSelectionStore
-        .then(() => {
-          console.log("ici : updateeee !");
-          const payload = {
-            begin_date: roomSelection.val.startDate,
-            end_date: roomSelection.val.endDate,
-            rooms_id: roomSelection.val.roomId,
-            customers_id: 1,
-            status: "pending",
-            nbrs_people: 1, // recup people
-          };
+  updateRoomSelectionStore
+    .then(() => {
+      console.log("ici : updateeee !");
+      const payload = {
+        begin_date: roomSelection.val.startDate,
+        end_date: roomSelection.val.endDate,
+        rooms_id: roomSelection.val.roomId,
+        customers_id: 1,
+        status: "pending",
+        nbrs_people: nbrPers.value,
+      };
 
-          return axios.post(
-              `${import.meta.env.VITE_API_BASE_URL}/booking`,
-              payload,
-              {
-                headers: {
-                  Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
-                },
-              }
-          );
-        })
-        .then((resp) => {
-          console.log(resp);
-          bookingStore.setId(resp.data.id);
-        })
-        .then(() => router.push("/booking"))
+      return axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/booking`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
+          },
+        }
+      );
+    })
+    .then((resp) => {
+      console.log(resp);
+      bookingStore.setId(resp.data.id);
+    })
+    .then(() => router.push("/booking"))
 
         .catch((err) => error(err));
 
@@ -173,5 +173,4 @@ function initiateBooking() {
   }
 
 }
-
 </script>
