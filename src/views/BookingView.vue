@@ -72,6 +72,7 @@
             <button
               type="button"
               v-on:click="checkout"
+              value="PUT"
               class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
             >
               Réserver
@@ -108,6 +109,7 @@ import { error, log, warn } from "../utils/console";
 import axios from "axios";
 import { useRoomSelectionStore } from "../stores/roomSelection";
 import { useOptionsStore } from "../stores/options";
+import { useBookingStore } from "../stores/booking";
 
 // check if booking can be performed : need data in roomStore
 const roomSelection = useRoomSelectionStore();
@@ -126,7 +128,7 @@ const props = defineProps({
 
 const langStore = useLangStore();
 const dico = i18n;
-
+const bookingStore = useBookingStore();
 const optionStore = useOptionsStore();
 const availableOptions = ref();
 const selectedOptions = ref([]);
@@ -188,15 +190,19 @@ function checkout() {
     begin_date: roomSelection.val.startDate,
     end_date: roomSelection.val.endDate,
     rooms_id: roomSelection.val.roomId,
-    customers_id: 1,
+    customers_id: 2,
   };
 
   axios
-    .put(`${import.meta.env.VITE_API_BASE_URL}/booking`, payload, {
-      headers: {
-        Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
-      },
-    })
+    .put(
+      `${import.meta.env.VITE_API_BASE_URL}/booking/${bookingStore.id}`,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
+        },
+      }
+    )
     .then((resp) => {
       console.log(resp);
     })
