@@ -1,7 +1,7 @@
 <template>
   <section
     id="login"
-    class="relative mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
+    class="static mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
     :style="{
       backgroundImage: 'url(' + ')',
       backgroundBlendMode: 'overlay',
@@ -9,7 +9,6 @@
       backgroundSize: 'cover',
     }"
   >
-    <nav></nav>
 
     <div class="flex flex-col justify-center items-center bg-secondary">
       <h2 class="font-title text-titleBase md:text-titleMed mt-[4vw] mb-[2vw]">
