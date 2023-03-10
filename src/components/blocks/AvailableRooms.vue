@@ -54,9 +54,9 @@
             class="flex flex-col md:justify-center items-center mt-5 w-full h-2/5"
           >
             <button
-                type="button"
-                class="w-3/5 h-15 text-xl tracking-wider text-tertiary font-semibold font-content uppercase text-titleSmall bg-accent px-6 pt-2.5 pb-2 leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                @click="goBooking"
+              type="button"
+              class="w-3/5 h-15 text-xl tracking-wider text-tertiary font-semibold font-content uppercase text-titleSmall bg-accent px-6 pt-2.5 pb-2 leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+              @click="initiateBooking()"
             >
               {{ dico[langStore.lang].book }}
             </button>
@@ -71,7 +71,6 @@
   </div>
 </template>
 
-
 <script setup>
 /* eslint-disable no-unused-vars */
 import { ref } from "vue";
@@ -80,9 +79,11 @@ import { useQueryDatesStore } from "../../stores/queryDates";
 import { i18n } from "../../utils/i18n";
 import Modal from "../Modal.vue";
 import RoomPresentation from "./RoomPresentation.vue";
-import {useRoomSelectionStore} from "../../stores/roomSelection";
-import {error, log} from "../../utils/console";
+import { useRoomSelectionStore } from "../../stores/roomSelection";
+import { error, log } from "../../utils/console";
 import router from "../../router";
+import axios from "axios";
+import { useBookingStore } from "../../stores/booking";
 
 const modalActive = ref(false);
 
@@ -94,6 +95,7 @@ const props = defineProps({
 const langStore = useLangStore();
 const queryDate = useQueryDatesStore();
 const roomSelection = useRoomSelectionStore();
+const bookingStore = useBookingStore();
 
 const totalPrice = ref(props.availability.price * queryDate.nOfNights);
 const nbrPers = ref(1);
@@ -111,27 +113,55 @@ const modalOpen = () => {
   modalActive.value = true;
 };
 
-
 function goBooking() {
-  log("go booking")
-  const updateRoomSelectionStore = new Promise((resolve, reject) => {
-    resolve(
-        roomSelection.set({
-          nightPrice: props.availability.price,
-          type: props.availability.type,
-          description: props.availability.description,
-          nOfPers: nbrPers.value,
-          startDate: queryDate.start.iso,
-          endDate: queryDate.end.iso,
-          nOfNights: queryDate.nOfNights,
-          roomId: props.availability.room_id
-        }))
-  })
-
-  updateRoomSelectionStore
-      .then(()=>router.push('/booking'))
-      .catch(err => error(err))
-
+  log("go booking");
 }
 
+function initiateBooking() {
+  //router.push("/checkout")
+  const updateRoomSelectionStore = new Promise((resolve, reject) => {
+    resolve(
+      roomSelection.set({
+        nightPrice: props.availability.price,
+        type: props.availability.type,
+        description: props.availability.description,
+        nOfPers: nbrPers.value,
+        startDate: queryDate.start.iso,
+        endDate: queryDate.end.iso,
+        nOfNights: queryDate.nOfNights,
+        roomId: props.availability.room_id,
+      })
+    );
+  });
+
+  updateRoomSelectionStore
+    .then(() => {
+      console.log("ici : updateeee !");
+      const payload = {
+        begin_date: roomSelection.val.startDate,
+        end_date: roomSelection.val.endDate,
+        rooms_id: roomSelection.val.roomId,
+        customers_id: 1,
+        status: "pending",
+        nbrs_people: 1, // recup people
+      };
+
+      return axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/booking`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
+          },
+        }
+      );
+    })
+    .then((resp) => {
+      console.log(resp);
+      bookingStore.setId(resp.data.id);
+    })
+    .then(() => router.push("/booking"))
+
+    .catch((err) => error(err));
+}
 </script>
