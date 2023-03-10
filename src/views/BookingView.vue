@@ -1,7 +1,7 @@
 <template >
   <HeaderSection />
   <main class="w-full overflow-hidden">
-    <div class="relative h-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]">
+    <div class="static h-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]">
 
       <div class="flex flex-col justify-center items-center bg-secondary">
         <h2 class="font-title text-titleBase md:text-titleMed mt-[4vw] mb-[2vw]">Réservation</h2>
@@ -102,8 +102,9 @@ import { i18n } from "../utils/i18n";
 import { useLangStore } from "../stores/lang";
 import {error, log, warn} from "../utils/console";
 import axios from "axios";
-import {useRoomSelectionStore} from "../stores/roomSelection";
-import {useOptionsStore} from "../stores/options";
+import { useRoomSelectionStore } from "../stores/roomSelection";
+import { useOptionsStore } from "../stores/options";
+import { useBookingStore } from "../stores/booking";
 
 // check if booking can be performed : need data in roomStore
 const roomSelection = useRoomSelectionStore()
@@ -120,9 +121,9 @@ const props = defineProps({
   sections: Array
 })
 
-const langStore = useLangStore()
-const dico = i18n
-
+const langStore = useLangStore();
+const dico = i18n;
+const bookingStore = useBookingStore();
 const optionStore = useOptionsStore();
 const availableOptions = ref()
 const selectedOptions = ref([])
@@ -145,23 +146,30 @@ axios
 
 const selectedOptionsPrice = computed(() => {
   if (availableOptions.value) {
-    let listOfOptions = availableOptions.value.filter(opt => selectedOptions.value.includes(opt.id)).map(e => toRaw(e))
-    console.log(listOfOptions)
+    let listOfOptions = availableOptions.value
+      .filter((opt) => selectedOptions.value.includes(opt.id))
+      .map((e) => toRaw(e));
+    console.log(listOfOptions);
     return listOfOptions.reduce((prev, cur) => {
       // apply pricing rules
-      return prev + cur.u_price * (cur.by_person ? roomSelection.val.nOfPers : 1) * (cur.nb_day>0 ? Math.ceil(roomSelection.val.nOfNights/cur.nb_day) : 1)
-    },0)
+      return (
+        prev +
+        cur.u_price *
+          (cur.by_person ? roomSelection.val.nOfPers : 1) *
+          (cur.nb_day > 0
+            ? Math.ceil(roomSelection.val.nOfNights / cur.nb_day)
+            : 1)
+      );
+    }, 0);
   }
   return 0
 })
 
 
 function cancel() {
-  const eraseRoomSelection = new Promise((resolve, reject)=> {
-    resolve(
-        roomSelection.erase()
-    )
-  })
+  const eraseRoomSelection = new Promise((resolve, reject) => {
+    resolve(roomSelection.erase());
+  });
 
   eraseRoomSelection
       .then(()=> {
@@ -177,14 +185,14 @@ function checkout() {
 
   //router.push("/checkout")
   const payload = {
-    begin_date: roomSelection.val.startDate,
-    end_date: roomSelection.val.endDate,
-    rooms_id: roomSelection.val.roomId,
-    customers_id: 1
+    status: 'confirmed'
   }
 
   axios
-      .update(`${import.meta.env.VITE_API_BASE_URL}/booking`, payload, {
+    .put(
+      `${import.meta.env.VITE_API_BASE_URL}/booking/${bookingStore.id}`,
+      payload,
+      {
         headers: {
           'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
         }

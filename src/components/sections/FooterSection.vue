@@ -1,7 +1,7 @@
 <template>
   <footer
     v-if="footerStore.getLinks()"
-    class="text-center md:text-left bg-primary text-secondary"
+    class="text-center md:text-left bg-primary text-secondary z-0"
   >
     <div
       class="py-8 px-8 md:py-[9vw] md:px-[8.6vw] flex flex-col md:justify-between md:flex-row gap-20"

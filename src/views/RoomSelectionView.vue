@@ -1,7 +1,7 @@
 <template>
   <HeaderSection />
   <main class="w-full overflow-hidden">
-    <div class="relative h-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]">
+    <div class="static h-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]">
 
       <div class="flex flex-col justify-center items-center bg-secondary">
         <h2 class="font-title text-titleBase md:text-titleMed mt-[4vw] mb-[2vw]">{{ dico[langStore.lang].roomSelectionTitle }}</h2>

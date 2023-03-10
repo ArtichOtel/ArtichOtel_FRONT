@@ -1,16 +1,5 @@
 <template>
-  <div class="max-w-[1024px]">
-    <div
-      class="bg-primary text-secondary text-titleBase p-[2.6vw] flex flex-row justify-between items-start"
-    >
-      <h2 class="font-title">Chambre Standard</h2>
-
-      <button class="svg-secondary" @click="$emit('close')">
-        <img :src="iconURL + '/closeBtn.svg'" alt="" />
-      </button>
-    </div>
-
-    <div class="p-[2.6vw] font-content text-tertiary flex flex-col">
+  <div class="p-[2.6vw] font-content text-tertiary flex flex-col">
       <div class="flex flex-col md:flex-row place-items-center">
         <img
           :src="imgUrl + '/roomView.jpg'"
@@ -127,7 +116,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>

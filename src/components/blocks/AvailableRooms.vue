@@ -1,8 +1,11 @@
 <template>
-  <Modal @close="modalClose()" :modalActive="modalActive">
-    <RoomPresentation @close="modalClose()" />
+  <Modal
+      @close="modalClose()"
+      :modalActive="modalActive"
+      :title="'Chambre standard'">
+    <RoomPresentation  />
   </Modal>
-  <div class="flex flex-col mt-5 h-full">
+  <div class="flex flex-col mt-5 static">
     <div class="flex md:h-full h-[50rem]">
       <div
         class="flex flex-col bg-secondary shadow-lg bg-secondary md:flex-row w-full"
@@ -113,26 +116,27 @@ const modalOpen = () => {
   modalActive.value = true;
 };
 
-function goBooking() {
-  log("go booking");
+const checkIfLogged = () => {
+  return !!window.sessionStorage.getItem('token')
 }
 
 function initiateBooking() {
-  //router.push("/checkout")
-  const updateRoomSelectionStore = new Promise((resolve, reject) => {
-    resolve(
-      roomSelection.set({
-        nightPrice: props.availability.price,
-        type: props.availability.type,
-        description: props.availability.description,
-        nOfPers: nbrPers.value,
-        startDate: queryDate.start.iso,
-        endDate: queryDate.end.iso,
-        nOfNights: queryDate.nOfNights,
-        roomId: props.availability.room_id,
-      })
-    );
-  });
+  if (checkIfLogged()) {
+    //router.push("/checkout")
+    const updateRoomSelectionStore = new Promise((resolve, reject) => {
+      resolve(
+          roomSelection.set({
+            nightPrice: props.availability.price,
+            type: props.availability.type,
+            description: props.availability.description,
+            nOfPers: nbrPers.value,
+            startDate: queryDate.start.iso,
+            endDate: queryDate.end.iso,
+            nOfNights: queryDate.nOfNights,
+            roomId: props.availability.room_id,
+          })
+      );
+    });
 
   updateRoomSelectionStore
     .then(() => {
@@ -143,7 +147,7 @@ function initiateBooking() {
         rooms_id: roomSelection.val.roomId,
         customers_id: 1,
         status: "pending",
-        nbrs_people: 1, // recup people
+        nbrs_people: nbrPers.value,
       };
 
       return axios.post(
@@ -162,6 +166,11 @@ function initiateBooking() {
     })
     .then(() => router.push("/booking"))
 
-    .catch((err) => error(err));
+        .catch((err) => error(err));
+
+  } else {
+    router.push("/login")
+  }
+
 }
 </script>
