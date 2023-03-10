@@ -11,10 +11,13 @@
             <main class="h-full w+full mx-[8.6vw] my-[4.6vw]
             bg-secondary">
             <div class="flex flex-row p-[2.6vw]">
-                <div>
-                    <div class="w-[10.4vw] h-[10.4vw] rounded-[50%] border-4 border-accent bg-no-repeat bg-cover bg-center"
+                <div class="flex flex-col items-center">
+                    <!-- <div class="w-[10.4vw] h-[10.4vw] rounded-[50%] border-4 border-accent bg-no-repeat bg-cover bg-center"
                         :style="{backgroundImage: 'url(' + 'http://127.0.0.1/img/green-rectangle-logo.jpg' + ')'}">
-                    </div>
+                    </div> -->
+                    <img :src="iconURL + 'artichaut-mobile-logo.svg'" alt=""
+                        class="w-[10.4vw] h-[10.4vw] rounded-[50%] border-4 border-accent
+                                bg-primary bg-no-repeat bg-cover bg-center align-center py-3">
                     <div class="bg-primary font-title text-secondary text-center rounded
                                 mt-[0.8vw] h-[2.6vw] flex px-2">
                         <span class="m-auto">{{ userData.pseudo }}</span>
@@ -64,6 +67,7 @@ const langStore = useLangStore();
 const dico = i18n;
 const heroBg = ref();
 const userData = ref();
+const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
 
 axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
 .then((res) => {
