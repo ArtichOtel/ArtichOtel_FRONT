@@ -117,7 +117,7 @@ const modalOpen = () => {
 };
 
 const checkIfLogged = () => {
-  return true
+  return !!window.sessionStorage.getItem('token')
 }
 
 function initiateBooking() {
