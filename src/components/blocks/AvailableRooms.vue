@@ -143,7 +143,7 @@ function initiateBooking() {
         rooms_id: roomSelection.val.roomId,
         customers_id: 1,
         status: "pending",
-        nbrs_people: 1, // recup people
+        nbrs_people: nbrPers.value, // recup people
       };
 
       return axios.post(
