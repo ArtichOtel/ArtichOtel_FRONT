@@ -144,7 +144,7 @@ function initiateBooking() {
           begin_date: roomSelection.val.startDate,
           end_date: roomSelection.val.endDate,
           rooms_id: roomSelection.val.roomId,
-          customers_id: 1,
+          customers_id: window.sessionStorage.getItem("id"),
           status: "pending",
           nbrs_people: nbrPers.value,
         };
