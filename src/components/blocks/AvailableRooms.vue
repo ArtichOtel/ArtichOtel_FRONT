@@ -164,9 +164,8 @@ function initiateBooking() {
       console.log(resp);
       bookingStore.setId(resp.data.id);
     })
-    .then(() => router.push("/booking"))
-
-        .catch((err) => error(err));
+      .then(() => router.push("/booking"))
+      .catch((err) => error(err));
 
   } else {
     router.push("/login")

@@ -34,7 +34,6 @@
                         :value="option.id"
                         class="mr-4"
                         v-model="selectedOptions"
-                        @input="test"
                     />
                     <span>{{option.name[langStore.lang]}}</span>
                     <span class="flex-1 border-b border-b-primary h-0 mt-auto mb-1 mx-1"></span>
@@ -54,7 +53,7 @@
                   type="text"
                   class="mr-4"
                   v-model="cb"
-                  @input="test($event.target.value)"
+                  @input="filterNum($event.target.value)"
               />
             </div>
 
@@ -128,6 +127,7 @@ const optionStore = useOptionsStore();
 const availableOptions = ref()
 const selectedOptions = ref([])
 const totalPrice= ref(roomSelection.price)
+const cb = ref()
 
 const roomSelectionData = ref()
 
@@ -204,8 +204,8 @@ function checkout() {
 
 }
 
-function test(num) {
-  log(num)
+function filterNum(num) {
+  cb.value = num.replace(/[^0-9]/g, '')
 }
 
 </script>
