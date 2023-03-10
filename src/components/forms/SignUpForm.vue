@@ -1,7 +1,7 @@
 <template>
   <section
     id="signup"
-    class="relative mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
+    class="static mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
     :style="{
       backgroundImage: 'url(' + ')',
       backgroundBlendMode: 'overlay',

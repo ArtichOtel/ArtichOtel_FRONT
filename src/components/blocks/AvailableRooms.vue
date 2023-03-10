@@ -1,8 +1,11 @@
 <template>
-  <Modal @close="modalClose()" :modalActive="modalActive">
-    <RoomPresentation @close="modalClose()" />
+  <Modal
+      @close="modalClose()"
+      :modalActive="modalActive"
+      :title="'Chambre standard'">
+    <RoomPresentation  />
   </Modal>
-  <div class="flex flex-col mt-5 h-full">
+  <div class="flex flex-col mt-5 static">
     <div class="flex md:h-full h-[50rem]">
       <div
         class="flex flex-col bg-secondary shadow-lg bg-secondary md:flex-row w-full"
