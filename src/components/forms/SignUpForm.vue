@@ -159,6 +159,10 @@ import { useLangStore } from "../../stores/lang";
 const langStore = useLangStore();
 const dico = i18n;
 
+const emit = defineEmits({
+  open: null
+})
+
 const data = ref({
   first: {
     val: null,
@@ -293,15 +297,13 @@ const signup = function () {
       lang: langStore.lang,
     }
     if (data.value.pseudo.val) { bodyJSON.pseudo = data.value.pseudo.val }
-    console.log(bodyJSON)
 
     // Request POST to register
     axios
       .post(`${import.meta.env.VITE_API_BASE_URL}/user/register`, bodyJSON)
       // confirmation and return to login page
       .then(() => {
-        alert("Merci de votre inscription !\nNous vous avons envoyé un e-mail de confirmation.")
-        // TODO : Go login
+        emit('open')
       })
       // error handling
       .catch((e) => {
