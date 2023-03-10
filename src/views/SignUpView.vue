@@ -4,7 +4,7 @@
     <Modal
       @close="modalClose()"
       :modalActive="modalActive"
-      :title="'blblblbl'">
+      :title="'Inscription réussie'">
         <SignedUpModal />
     </Modal>
     <SignUpForm
