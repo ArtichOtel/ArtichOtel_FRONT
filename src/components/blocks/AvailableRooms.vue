@@ -116,55 +116,62 @@ const modalOpen = () => {
   modalActive.value = true;
 };
 
-function goBooking() {
-  log("go booking");
+const checkIfLogged = () => {
+  return true
 }
 
 function initiateBooking() {
-  //router.push("/checkout")
-  const updateRoomSelectionStore = new Promise((resolve, reject) => {
-    resolve(
-      roomSelection.set({
-        nightPrice: props.availability.price,
-        type: props.availability.type,
-        description: props.availability.description,
-        nOfPers: nbrPers.value,
-        startDate: queryDate.start.iso,
-        endDate: queryDate.end.iso,
-        nOfNights: queryDate.nOfNights,
-        roomId: props.availability.room_id,
-      })
-    );
-  });
-
-  updateRoomSelectionStore
-    .then(() => {
-      console.log("ici : updateeee !");
-      const payload = {
-        begin_date: roomSelection.val.startDate,
-        end_date: roomSelection.val.endDate,
-        rooms_id: roomSelection.val.roomId,
-        customers_id: 1,
-        status: "pending",
-        nbrs_people: 1, // recup people
-      };
-
-      return axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/booking`,
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
-          },
-        }
+  if (checkIfLogged()) {
+    //router.push("/checkout")
+    const updateRoomSelectionStore = new Promise((resolve, reject) => {
+      resolve(
+          roomSelection.set({
+            nightPrice: props.availability.price,
+            type: props.availability.type,
+            description: props.availability.description,
+            nOfPers: nbrPers.value,
+            startDate: queryDate.start.iso,
+            endDate: queryDate.end.iso,
+            nOfNights: queryDate.nOfNights,
+            roomId: props.availability.room_id,
+          })
       );
-    })
-    .then((resp) => {
-      console.log(resp);
-      bookingStore.setId(resp.data.id);
-    })
-    .then(() => router.push("/booking"))
+    });
 
-    .catch((err) => error(err));
+    updateRoomSelectionStore
+        .then(() => {
+          console.log("ici : updateeee !");
+          const payload = {
+            begin_date: roomSelection.val.startDate,
+            end_date: roomSelection.val.endDate,
+            rooms_id: roomSelection.val.roomId,
+            customers_id: 1,
+            status: "pending",
+            nbrs_people: 1, // recup people
+          };
+
+          return axios.post(
+              `${import.meta.env.VITE_API_BASE_URL}/booking`,
+              payload,
+              {
+                headers: {
+                  Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
+                },
+              }
+          );
+        })
+        .then((resp) => {
+          console.log(resp);
+          bookingStore.setId(resp.data.id);
+        })
+        .then(() => router.push("/booking"))
+
+        .catch((err) => error(err));
+
+  } else {
+    router.push("/login")
+  }
+
 }
+
 </script>
