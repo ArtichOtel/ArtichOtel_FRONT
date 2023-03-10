@@ -1,9 +1,10 @@
 <template>
   <Modal
-      @close="modalClose()"
-      :modalActive="modalActive"
-      :title="'Chambre standard'">
-    <RoomPresentation  />
+    @close="modalClose()"
+    :modalActive="modalActive"
+    :title="'Chambre standard'"
+  >
+    <RoomPresentation />
   </Modal>
   <div class="flex flex-col mt-5 static">
     <div class="flex md:h-full h-[50rem]">
@@ -16,7 +17,7 @@
           alt=""
         />
         <div
-          class="flex flex-col items-center md:w-full p-6 md:gap-8 md:gap-2 mt-2 mb-2"
+          class="flex flex-col items-center justify-center md:w-full p-6 md:gap-8 md:gap-2 mx-auto"
         >
           <h2 class="font-title text-titleSmall font-bold">
             {{ availability.title[langStore.lang] }}
@@ -53,9 +54,7 @@
             </p>
           </div>
 
-          <div
-            class="flex flex-col md:justify-center items-center mt-5 w-full h-2/5"
-          >
+          <div class="flex flex-col md:justify-center items-center mt-5 w-full">
             <button
               type="button"
               class="w-3/5 h-15 text-xl tracking-wider text-tertiary font-semibold font-content uppercase text-titleSmall bg-accent px-6 pt-2.5 pb-2 leading-normal shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
@@ -117,59 +116,58 @@ const modalOpen = () => {
 };
 
 const checkIfLogged = () => {
-  return !!window.sessionStorage.getItem('token')
-}
+  return !!window.sessionStorage.getItem("token");
+};
 
 function initiateBooking() {
   if (checkIfLogged()) {
     //router.push("/checkout")
     const updateRoomSelectionStore = new Promise((resolve, reject) => {
       resolve(
-          roomSelection.set({
-            nightPrice: props.availability.price,
-            type: props.availability.type,
-            description: props.availability.description,
-            nOfPers: nbrPers.value,
-            startDate: queryDate.start.iso,
-            endDate: queryDate.end.iso,
-            nOfNights: queryDate.nOfNights,
-            roomId: props.availability.room_id,
-          })
+        roomSelection.set({
+          nightPrice: props.availability.price,
+          type: props.availability.type,
+          description: props.availability.description,
+          nOfPers: nbrPers.value,
+          startDate: queryDate.start.iso,
+          endDate: queryDate.end.iso,
+          nOfNights: queryDate.nOfNights,
+          roomId: props.availability.room_id,
+        })
       );
     });
 
-  updateRoomSelectionStore
-    .then(() => {
-      console.log("ici : updateeee !");
-      const payload = {
-        begin_date: roomSelection.val.startDate,
-        end_date: roomSelection.val.endDate,
-        rooms_id: roomSelection.val.roomId,
-        customers_id: 1,
-        status: "pending",
-        nbrs_people: nbrPers.value,
-      };
+    updateRoomSelectionStore
+      .then(() => {
+        console.log("ici : updateeee !");
+        const payload = {
+          begin_date: roomSelection.val.startDate,
+          end_date: roomSelection.val.endDate,
+          rooms_id: roomSelection.val.roomId,
+          customers_id: 1,
+          status: "pending",
+          nbrs_people: nbrPers.value,
+        };
 
-      return axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/booking`,
-        payload,
-        {
-          headers: {
-            Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
-          },
-        }
-      );
-    })
-    .then((resp) => {
-      console.log(resp);
-      bookingStore.setId(resp.data.id);
-    })
+        return axios.post(
+          `${import.meta.env.VITE_API_BASE_URL}/booking`,
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${window.sessionStorage.getItem("token")}`,
+            },
+          }
+        );
+      })
+      .then((resp) => {
+        console.log(resp);
+        bookingStore.setId(resp.data.id);
+      })
       .then(() => router.push("/booking"))
+
       .catch((err) => error(err));
-
   } else {
-    router.push("/login")
+    router.push("/login");
   }
-
 }
 </script>
