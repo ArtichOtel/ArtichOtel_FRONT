@@ -1,7 +1,7 @@
 <template>
   <HeaderSection />
   <main class="w-full overflow-hidden">
-    <div class="relative h-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]">
+    <div class="static mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]">
 
       <div class="flex flex-col justify-center items-center bg-secondary">
         <h2 class="font-title text-titleBase md:text-titleMed mt-[4vw] mb-[2vw]">{{ dico[langStore.lang].roomSelectionTitle }}</h2>
@@ -17,6 +17,7 @@
               v-bind:svgColor="'svg-tertiary'"
               v-bind:maxDate="''"
               v-bind:minDate="minDateStart"
+              @changeDate="refreshAvailability()"
             />
 
             <!--    right picker        -->
@@ -26,11 +27,13 @@
               v-bind:svgColor="'svg-tertiary'"
               v-bind:maxDate="''"
               v-bind:minDate="minDateEnd"
+              @changeDate="refreshAvailability()"
             />
 
             <NOfNights
               v-bind:dateStore="queryDateStore"
               v-bind:svgColor="'svg-tertiary'"
+              @changeDate="refreshAvailability()"
             />
 
 
@@ -86,13 +89,22 @@ const dico = i18n;
 const availability = ref([]);
 const loaded = ref(false);
 
-const minDateStart = ref(formatISO(addDays(new Date(), 0.5),{ representation: 'date' }))
-const minDateEnd = computed(()=> {
-  return formatISO(addDays(queryDateStore['start'].date, 1.5),{ representation: 'date' })
-})
+const minDateStart = ref(
+  formatISO(addDays(new Date(), 0.5), { representation: "date" })
+);
+const minDateEnd = computed(() => {
+  return formatISO(addDays(queryDateStore["start"].date, 1.5), {
+    representation: "date",
+  });
+});
+
+const refreshAvailability = () => {
+  availability.value = [];
+  //console.log("Refreshing availability");
+};
 
 function search() {
-  console.log("search");
+  //console.log("search");
 
   axios
     .get(

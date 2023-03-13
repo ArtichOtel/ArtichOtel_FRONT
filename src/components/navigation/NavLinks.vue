@@ -9,7 +9,7 @@
     <a href="/#news">{{ dico[langStore.lang].news }}</a>
   </li>
   <li class="hover:text-tertiary">
-    <a href="/#login">{{ dico[langStore.lang].account }}</a>
+    <a href="/profile">{{ dico[langStore.lang].account }}</a>
   </li>
 </template>
 

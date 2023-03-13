@@ -6,7 +6,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+#app {
+    position: relative;
+    overflow: hidden;
+}
 
 /*
 Pour créer les filter qui vont bien

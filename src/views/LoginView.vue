@@ -6,11 +6,6 @@
   <FooterSection v-if="sections.length"  :title="sections[7].title" :uri="sections[7].uri" />
 </template>
 
-<script>
-export default {
-  name: "LoginView"
-}
-</script>
 
 <script setup>
 
@@ -42,7 +37,7 @@ function sayHello(data) {
     console.log("redirect to admin panel")
     router.push("/admin")
   } else {
-    router.push("/")
+    router.back();
   }
 }
 
