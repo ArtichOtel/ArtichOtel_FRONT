@@ -23,19 +23,19 @@
                         <span class="m-auto">{{ userData.pseudo }}</span>
                     </div>
                     <div class="mt-[2.6vw] bg-primary text-tertiary font-content p-[0.8vw] flex flex-col gap-[0.8vw] mb-[10vw]">
-                        <button class="bg-white flex rounded h-[2.6vw] flex px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2">
                             <span class="m-auto">Coordonées</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] flex px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2">
                             <span class="m-auto">Fidélité</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] flex px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2">
                             <span class="m-auto">Historique</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] flex px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2">
                             <span class="m-auto">Préférences</span>
                         </button>
-                        <button class="bg-orange-700 flex rounded h-[2.6vw] flex px-2 mt-[2.6vw] text-white">
+                        <button class="bg-orange-700 flex rounded h-[2.6vw] px-2 mt-[2.6vw] text-white">
                             <span class="m-auto">Supprimer mon compte</span>
                         </button>
                     </div>
