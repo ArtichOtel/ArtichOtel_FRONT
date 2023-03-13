@@ -10,6 +10,10 @@
             <NavBar />
             <main class="h-full mx-[8.6vw] lg:my-[4.6vw] mt-20 mb-[4.6vw]
             bg-secondary">
+            <Modal
+                @close="modalClose()">
+
+            </Modal>
             <div v-if="!userData"> <!-- TODO : no userData -->
                 sdfsd
             </div>
@@ -160,10 +164,26 @@ const data = ref({
 
 let activeSection = ref('coordinates')
 
+
+// ===== FUNCTIONS ===== //
+
 const changeActive = (value) => {
     activeSection.value = value
 }
 
+/**
+ * Checks the form's inputs
+ * 
+ * For eache element stored in const data:
+ * if value === null : display the empty error
+ * else: check condition of the value to be good
+ * if yes : increments nbValidatedInputs
+ * else: display the bad error
+ * 
+ * Checks if nbValidatedInputs is equals to lenght of const data.values
+ * 
+ * @return void
+ */
 const checkInputs = function () {
     let nbValidatedInputs = 0
 
@@ -194,6 +214,20 @@ const checkInputs = function () {
     return nbValidatedInputs === Object.keys(data.value).length
 }
 
+    // ===== AXIOS REQUESTS ===== //
+
+/** 
+ * Change the User's password
+ * 
+ * Checks the form's input stored in const 'data' in checkInputs func,
+ * PUT api.artichotel.fr/api/user/{id} :
+ * Authorization: Bearer with user's token in sessionStorage
+ * body: json with 'password' key and its value from input 'password' stored in data
+ * 
+ * Open a modal of confirmation and reset the input values at closing
+ * 
+ * @return void
+*/
 const changePwd = function () {
     console.log("changing pwd")
     if (checkInputs()) { // checking inputs
@@ -227,6 +261,13 @@ const deleteAccount = function () { // TODO : Add to the delete btn
     })
 }
 
+/**
+ * Gets the Hero url image
+ * 
+ * Store it in const heroBG
+ * 
+ * @return void
+ */
 axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
 .then((res) => {
     heroBg.value = res.data[0][0].url_image
@@ -235,6 +276,15 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
     console.log(err)
 })
 
+/**
+ * Gets the user's datas from DB's table 'Users'
+ * Stores it in const userData
+ * 
+ * GET api.artichotel.fr/api/user/{id}
+ * Authorization: Bearer with user's token in sessionStorage
+ * 
+ * @return void
+ */
 axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('id')}`, {
     headers: {
         'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
