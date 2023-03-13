@@ -87,6 +87,7 @@
                                         name="confirm"
                                         placeholder="***"
                                         v-model="data.confirm.val"
+                                        @keypress.enter="changePwd"
                                         class="border border-primary py-2 px-4 bg-secondary">
                                     <span class="font-content text-red-600 text-center">{{ data.confirm.err.display }}</span>
                                 </div>
@@ -241,6 +242,9 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.get
 })
     .then((res) => {
         userData.value = res.data
+    })
+    .catch((e) => {
+        console.log("User Datas error:", e)
     })
 
 
