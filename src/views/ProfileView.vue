@@ -5,15 +5,17 @@
         <div v-if="heroBg"
         class="h-full w-full overflow-hidden scroll-smooth bg-tertiary/50"
         :style="{backgroundImage: 'url(' + heroBg + ')', backgroundBlendMode: 'overlay', backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }">
-
+        <Modal
+            @close="modalToggle()"
+            :modalActive="modalActive"
+            :title="'Mot de passe modifié'">
+            <PwdModifiedModal />
+            <!-- TODO : Confirmation Modal -->
+        </Modal>
         <div class="relative mt-12">
             <NavBar />
             <main class="h-full mx-[8.6vw] lg:my-[4.6vw] mt-20 mb-[4.6vw]
             bg-secondary">
-            <Modal
-                @close="modalClose()">
-
-            </Modal>
             <div v-if="!userData"> <!-- TODO : no userData -->
                 sdfsd
             </div>
@@ -59,7 +61,7 @@
                     </div>
                 </div>
 
-                <div class="mt-[2.6vw] md:ml-[2.6vw] md:mt-0 bg-primary md:w-full p-3">
+                <div class="mt-[2.6vw] md:ml-[2.6vw] md:mt-0 bg-primary md:w-full p-5">
                     <div v-if="activeSection === 'coordinates'"
                         class="bg-secondary p-3">
                         
@@ -130,6 +132,7 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import Modal from '../components/Modal.vue';
+import PwdModifiedModal from '../components/blocks/PwdModifiedModal.vue';
 import NavBar from '../components/navigation/NavBar.vue';
 import FooterSection from '../components/sections/FooterSection.vue';
 import HeaderSection from '../components/sections/HeaderSection.vue';
@@ -142,6 +145,7 @@ const heroBg = ref();
 const userData = ref();
 const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
 const pwdREGEX = /^(?=.{8,})(?=.*[?!@#$%^&*=|£²³`"'ø§€])/
+const modalActive = ref(false)
 
 const data = ref({
     password: {
@@ -169,6 +173,10 @@ let activeSection = ref('coordinates')
 
 const changeActive = (value) => {
     activeSection.value = value
+}
+
+const modalToggle = () => {
+    modalActive.value = !modalActive.value
 }
 
 /**
@@ -224,7 +232,7 @@ const checkInputs = function () {
  * Authorization: Bearer with user's token in sessionStorage
  * body: json with 'password' key and its value from input 'password' stored in data
  * 
- * Open a modal of confirmation and reset the input values at closing
+ * Open a modal of confirmation and reset the input values
  * 
  * @return void
 */
@@ -241,8 +249,11 @@ const changePwd = function () {
             }
         })
         .then((res) => {
-            // TODO : Modal de confirmation (+rechargement de la page ?)
-            console.log(res)
+            // Resetting input values
+            for (const [key, element] of Object.entries(data.value)) {
+                element.val = null
+            }
+            modalToggle() // Open the confirmation modal
         })
         .catch((e) => {
             console.log("changePwd error:", e)
