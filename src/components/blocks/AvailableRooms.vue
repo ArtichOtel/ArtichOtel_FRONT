@@ -76,16 +76,20 @@
 <script setup>
 /* eslint-disable no-unused-vars */
 import { ref } from "vue";
-import { useLangStore } from "../../stores/lang";
-import { useQueryDatesStore } from "../../stores/queryDates";
+import axios from "axios";
+import router from "../../router";
+
 import { i18n } from "../../utils/i18n";
+import { error, log } from "../../utils/console";
+
 import Modal from "../Modal.vue";
 import RoomPresentation from "./RoomPresentation.vue";
-import { useRoomSelectionStore } from "../../stores/roomSelection";
-import { error, log } from "../../utils/console";
-import router from "../../router";
-import axios from "axios";
+
+import { useLangStore } from "../../stores/lang";
+import { useQueryDatesStore } from "../../stores/queryDates";
 import { useBookingStore } from "../../stores/booking";
+import { useRoomSelectionStore } from "../../stores/roomSelection";
+
 
 const modalActive = ref(false);
 
@@ -140,6 +144,7 @@ function initiateBooking() {
     updateRoomSelectionStore
       .then(() => {
         console.log("ici : updateeee !");
+
         const payload = {
           begin_date: roomSelection.val.startDate,
           end_date: roomSelection.val.endDate,
