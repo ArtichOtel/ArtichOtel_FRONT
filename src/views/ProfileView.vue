@@ -8,40 +8,107 @@
 
         <div class="relative mt-12">
             <NavBar />
-            <main class="h-full mx-[8.6vw] lg:my-[4.6vw] mt-[13.8vw] mb-[4.6vw]
+            <main class="h-full mx-[8.6vw] lg:my-[4.6vw] mt-20 mb-[4.6vw]
             bg-secondary">
-            <div class="flex flex-row p-[2.6vw]">
+            <div v-if="!userData"> <!-- TODO : no userData -->
+                sdfsd
+            </div>
+            <div v-else class="flex flex-col md:flex-row p-[2.6vw]">
                 <div class="flex flex-col items-center">
                     <!-- <div class="w-[10.4vw] h-[10.4vw] rounded-[50%] border-4 border-accent bg-no-repeat bg-cover bg-center"
                         :style="{backgroundImage: 'url(' + 'http://127.0.0.1/img/green-rectangle-logo.jpg' + ')'}">
                     </div> -->
-                    <img :src="iconURL + 'artichaut-mobile-logo.svg'" alt=""
-                        class="w-[10.4vw] aspect-square rounded-[50%] border-4 border-accent
+                    <div class="flex flex-col w-1/3 md:w-full items-center">
+                        <img :src="iconURL + 'artichaut-mobile-logo.svg'" alt=""
+                            class="w-full aspect-square rounded-[50%] border-4 border-accent
                                 bg-primary bg-no-repeat bg-cover bg-center align-center py-3">
-                    <div class="bg-primary font-title text-secondary text-center rounded
-                                mt-[0.8vw] h-[2.6vw] w-[10.4vw] flex px-2">
-                        <span class="m-auto">{{ userData.pseudo }}</span>
+                        <div class="bg-primary font-title text-secondary text-center rounded
+                                    mt-[0.8vw] h-full w-full p-2">
+                            <span v-if="userData" class="m-auto py-2">{{ userData.pseudo }}</span>
+                        </div>
                     </div>
-                    <div class="mt-[2.6vw] bg-primary text-tertiary font-content p-[0.8vw] flex flex-col gap-[0.8vw] mb-[10vw]">
-                        <button class="bg-white flex rounded h-[2.6vw] px-2  hover:bg-tertiary hover:text-white">
+                    
+                    <div class="mt-[2.6vw] bg-primary text-tertiary font-content p-3 hidden md:flex flex-col gap-3 mb-[10vw]">
+                        <button class="flex rounded h-full p-2  hover:bg-tertiary hover:text-white"
+                                :class="activeSection === 'coordinates' ? 'bg-accent' : 'bg-white'"
+                                @click="changeActive('coordinates')">
                             <span class="m-auto">Coordonées</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] px-2 hover:bg-tertiary hover:text-white">
+                        <button class="flex rounded h-full p-2 hover:bg-tertiary hover:text-white"
+                                :class="activeSection === 'fidelity' ? 'bg-accent' : 'bg-white'"
+                                @click="changeActive('fidelity')">
                             <span class="m-auto">Fidélité</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] px-2 hover:bg-tertiary hover:text-white">
+                        <button class="flex rounded h-full p-2 hover:bg-tertiary hover:text-white"
+                                :class="activeSection === 'history' ? 'bg-accent' : 'bg-white'"
+                                @click="changeActive('history')">
                             <span class="m-auto">Historique</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] px-2 hover:bg-tertiary hover:text-white">
+                        <button class="flex rounded h-full p-2 hover:bg-tertiary hover:text-white"
+                                :class="activeSection === 'preferences' ? 'bg-accent' : 'bg-white'"
+                                @click="changeActive('preferences')">
                             <span class="m-auto">Préférences</span>
                         </button>
-                        <button class="bg-orange-700 flex rounded min-h-fit px-2 mt-[2.6vw] text-white hover:bg-accent">
+                        <button class="bg-orange-700 flex rounded min-h-fit p-2 mt-6 text-white hover:bg-accent">
                             <span class="m-auto">Supprimer mon compte</span>
                         </button>
                     </div>
                 </div>
-                <div class="ml-[2.6vw] bg-primary w-full">
-                    
+
+                <div class="mt-[2.6vw] md:ml-[2.6vw] md:mt-0 bg-primary md:w-full p-3">
+                    <div v-if="activeSection === 'coordinates'"
+                        class="bg-secondary p-3">
+                        
+                        <h2 class="text-center font-title text-titleBase">Changement de mot de passe</h2>
+                        
+                        <form class="my-5 flex flex-col justify-center gap-10 font-content">
+                            <div class="flex flex-col lg:flex-row justify-center gap-10">
+                                <div class="flex flex-col w-fit self-center">
+                                    <label for="password"
+                                        class="text-center block mb-4 after:content-['*'] after:ml-1 after:text-red-600">
+                                            Mot de passe
+                                    </label>
+                                    <input type="password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="***"
+                                        v-model="data.password.val"
+                                        class="border border-primary py-2 px-4 bg-secondary">
+                                    <span class="font-content text-red-600 text-center">{{ data.password.err.display }}</span>
+                                </div>
+
+                                <div class="flex flex-col w-fit self-center">
+                                    <label for="confirm"
+                                        class="text-center block mb-4 after:content-['*'] after:ml-1 after:text-red-600">
+                                            Confirmation
+                                    </label>
+                                    <input type="password"
+                                        id="confirm"
+                                        name="confirm"
+                                        placeholder="***"
+                                        v-model="data.confirm.val"
+                                        class="border border-primary py-2 px-4 bg-secondary">
+                                    <span class="font-content text-red-600 text-center">{{ data.confirm.err.display }}</span>
+                                </div>
+                            </div>
+                            
+
+                            <div class="flex flex-col items-center gap-4">
+                                <button
+                                    type="button"
+                                    @click="changePwd"
+                                    class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider
+                                        text-tertiary font-semibold font-content uppercase"
+                                >
+                                {{ dico[langStore.lang].confirm }}
+
+                                </button>
+                            </div>    
+                        </form>
+                    </div>
+                    <div v-else class="text-center bg-secondary font-content text-titleSmall w-fit m-auto p-5">
+                        Fonctionnalité pas encore présente.
+                    </div>
                 </div>
             </div>
         </main>
@@ -57,6 +124,7 @@
 
 import axios from 'axios';
 import { ref } from 'vue';
+import Modal from '../components/Modal.vue';
 import NavBar from '../components/navigation/NavBar.vue';
 import FooterSection from '../components/sections/FooterSection.vue';
 import HeaderSection from '../components/sections/HeaderSection.vue';
@@ -68,6 +136,95 @@ const dico = i18n;
 const heroBg = ref();
 const userData = ref();
 const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
+const pwdREGEX = /^(?=.{8,})(?=.*[?!@#$%^&*=|£²³`"'ø§€])/
+
+const data = ref({
+    password: {
+        val: null,
+        err: {
+            ifEmpty: "Veuillez entrer un mot de passe",
+            ifBad: "Le mot de passe doit contenir 8 caractères dont au moins 1 spécial",
+            display: null,
+        },
+    },
+    confirm: {
+        val: null,
+        err: {
+            ifEmpty: "Veuillez entrer un mot de passe",
+            ifBad: "La confirmation ne corresponds pas au mot de passe",
+            display: null
+        }
+    }
+})
+
+let activeSection = ref('coordinates')
+
+const changeActive = (value) => {
+    activeSection.value = value
+}
+
+const checkInputs = function () {
+    let nbValidatedInputs = 0
+
+    for (const [key, element] of Object.entries(data.value)) {
+        element.err.display = null // resetting err display
+        // checking errors
+        if (element.val !== null) {
+            switch (key) {
+
+                case 'password':
+                    if (!element.val.match(pwdREGEX)) {
+                        element.err.display = element.err.ifBad
+                    } else { nbValidatedInputs++ }
+                    break;
+
+                case 'confirm':
+                    if (element.val !== data.value.password.val) {
+                        element.err.display = element.err.ifBad
+                    } else { nbValidatedInputs++ }
+                    break;
+                
+                default:
+                    break;
+            }
+        } else { element.err.display = element.err.ifEmpty } // display empty error msg
+    }
+
+    return nbValidatedInputs === Object.keys(data.value).length
+}
+
+const changePwd = function () {
+    console.log("changing pwd")
+    if (checkInputs()) { // checking inputs
+        console.log("checkInputs passed")
+        const bodyJSON = {
+            password: data.value.password.val
+        }
+        axios.put(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('id')}`,bodyJSON , {
+            headers: {
+                'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+            }
+        })
+        .then((res) => {
+            // TODO : Modal de confirmation (+rechargement de la page ?)
+            console.log(res)
+        })
+        .catch((e) => {
+            console.log("changePwd error:", e)
+        })
+    }
+}
+
+const deleteAccount = function () { // TODO : Add to the delete btn
+    axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('id')}`, {
+        headers: {
+            'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+        }
+    })
+    .then((res) => {
+        // TODO : Modal de suppression + retour à HomePage
+    })
+}
 
 axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
 .then((res) => {
