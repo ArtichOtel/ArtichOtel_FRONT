@@ -148,8 +148,8 @@ function initiateBooking() {
         const payload = {
           begin_date: roomSelection.val.startDate,
           end_date: roomSelection.val.endDate,
-          rooms_id: roomSelection.val.roomId,
-          customers_id: window.sessionStorage.getItem("id"),
+          room_id: roomSelection.val.roomId,
+          customer_id: window.sessionStorage.getItem("id"),
           status: "pending",
           nbrs_people: nbrPers.value,
         };
