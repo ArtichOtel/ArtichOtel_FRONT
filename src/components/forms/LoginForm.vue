@@ -103,6 +103,7 @@ const connect = function () {
     axios
       .post(`${import.meta.env.VITE_API_BASE_URL}/user/login`, {
         pseudo: pseudo.value,
+        email: pseudo.value,
         password: password.value,
       })
       .then((response) => {
