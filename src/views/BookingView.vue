@@ -178,29 +178,32 @@ function cancel() {
       .catch(e => error(e))
 }
 function checkout() {
+  if (cb.value.length !== 16) {
+    alert("Veuillez fournir votre numéro de CB")
+  } else {
+    // confirm booking with options and bank card
+    const payload = {
+      status: 'confirmed',
+      optionalServices_id : selectedOptions.value,
+      bankCard: cb.value
+    }
 
-  /*
-  * UPDATE BOOKING : PENDING => VALIDATED
-  * */
+    axios
+        .put(
+            `${import.meta.env.VITE_API_BASE_URL}/booking/${bookingStore.id}`,
+            payload,
+            {
+              headers: {
+                'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+              }
+            })
+        .then((resp)=>{
+          console.log(resp)
+        })
+        .catch(e => error(e))
 
-  //router.push("/checkout")
-  const payload = {
-    status: 'confirmed'
   }
 
-  axios
-    .put(
-      `${import.meta.env.VITE_API_BASE_URL}/booking/${bookingStore.id}`,
-      payload,
-      {
-        headers: {
-          'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
-        }
-      })
-      .then((resp)=>{
-        console.log(resp)
-      })
-      .catch(e => error(e))
 
 }
 
