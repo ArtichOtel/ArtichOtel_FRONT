@@ -8,7 +8,7 @@
 
         <div class="relative mt-12">
             <NavBar />
-            <main class="h-full w+full mx-[8.6vw] my-[4.6vw]
+            <main class="h-full mx-[8.6vw] lg:my-[4.6vw] mt-[13.8vw] mb-[4.6vw]
             bg-secondary">
             <div class="flex flex-row p-[2.6vw]">
                 <div class="flex flex-col items-center">
@@ -16,26 +16,26 @@
                         :style="{backgroundImage: 'url(' + 'http://127.0.0.1/img/green-rectangle-logo.jpg' + ')'}">
                     </div> -->
                     <img :src="iconURL + 'artichaut-mobile-logo.svg'" alt=""
-                        class="w-[10.4vw] h-[10.4vw] rounded-[50%] border-4 border-accent
+                        class="w-[10.4vw] aspect-square rounded-[50%] border-4 border-accent
                                 bg-primary bg-no-repeat bg-cover bg-center align-center py-3">
                     <div class="bg-primary font-title text-secondary text-center rounded
-                                mt-[0.8vw] h-[2.6vw] flex px-2">
+                                mt-[0.8vw] h-[2.6vw] w-[10.4vw] flex px-2">
                         <span class="m-auto">{{ userData.pseudo }}</span>
                     </div>
                     <div class="mt-[2.6vw] bg-primary text-tertiary font-content p-[0.8vw] flex flex-col gap-[0.8vw] mb-[10vw]">
-                        <button class="bg-white flex rounded h-[2.6vw] px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2  hover:bg-tertiary hover:text-white">
                             <span class="m-auto">Coordonées</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2 hover:bg-tertiary hover:text-white">
                             <span class="m-auto">Fidélité</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2 hover:bg-tertiary hover:text-white">
                             <span class="m-auto">Historique</span>
                         </button>
-                        <button class="bg-white flex rounded h-[2.6vw] px-2">
+                        <button class="bg-white flex rounded h-[2.6vw] px-2 hover:bg-tertiary hover:text-white">
                             <span class="m-auto">Préférences</span>
                         </button>
-                        <button class="bg-orange-700 flex rounded h-[2.6vw] px-2 mt-[2.6vw] text-white">
+                        <button class="bg-orange-700 flex rounded min-h-fit px-2 mt-[2.6vw] text-white hover:bg-accent">
                             <span class="m-auto">Supprimer mon compte</span>
                         </button>
                     </div>
