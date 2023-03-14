@@ -1,6 +1,6 @@
 <template>
     <div class="my-auto flex flex-row relative font-title">
-        <label for="locale"><img :src="'/public/icon/icon-' + langStore.lang + '.jpg'" alt=""></label>
+        <label for="locale"><img :src="'/icon/icon-' + langStore.lang + '.jpg'" alt=""></label>
         <select v-model="langStore.lang"
                 @change="langStore.setLanguage($event.target.value)"
                 class="text-transparent h-full bg-transparent w-full absolute text-xl" id="locale">
