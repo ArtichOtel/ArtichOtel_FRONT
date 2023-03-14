@@ -3,10 +3,10 @@
     <RouterLink :to="'/#offers'">{{ dico[langStore.lang].offers }}</RouterLink>
   </li>
   <li class="hover:text-tertiary">
-    <a href="/#rooms">{{ dico[langStore.lang].rooms }}</a>
+    <RouterLink :to="'/#rooms'">{{ dico[langStore.lang].rooms }}</RouterLink>
   </li>
   <li class="hover:text-tertiary">
-    <a href="/#news">{{ dico[langStore.lang].news }}</a>
+    <RouterLink :to="'/#news'">{{ dico[langStore.lang].news }}</RouterLink>
   </li>
   <li class="hover:text-tertiary">
     <RouterLink :to="'/profile'">{{ dico[langStore.lang].account }}</RouterLink>
