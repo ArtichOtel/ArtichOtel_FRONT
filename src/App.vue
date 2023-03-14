@@ -1,4 +1,4 @@
-<template class="font-content scroll-smooth">
+<template>
   <LoginButton @logoutRequest="logout" v-bind:isLogged="isLogged" />
 
   <SwitchModeButton v-if="role === 'admin'" v-bind:isEditing="isEditing" />
