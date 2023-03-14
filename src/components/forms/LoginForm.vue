@@ -48,6 +48,7 @@
         </div>
 
         <div class="flex flex-col items-center gap-[1.2vw]">
+          <span class="font-content text-red-600">{{ connectionError }}</span>
           <button
             type="button"
             v-on:click="lostPW"
@@ -92,6 +93,7 @@ import { i18n } from "../../utils/i18n";
 
 const pseudo = ref("");
 const password = ref("");
+const connectionError = ref(null);
 const langStore = useLangStore();
 const dico = i18n;
 
@@ -123,6 +125,7 @@ const connect = function () {
       })
       .catch((err) => {
         log("connection error :", err);
+        connectionError.value = err.response.data.message
       });
   } else {
     warn("Missing input");

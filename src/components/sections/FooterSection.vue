@@ -22,7 +22,7 @@
             :class="[link.footer_id === i + 1 ? 'block' : 'hidden']"
             :key="link.title"
           >
-            <a>
+            <RouterLink :to="link.url">
               <img
                 class="inline invert mr-3"
                 v-if="link.icon"
@@ -30,7 +30,7 @@
               />
 
               <span>{{ link.text[langStore.lang] }} </span>
-            </a>
+            </RouterLink>
           </div>
         </div>
       </div>
@@ -48,6 +48,7 @@ import { ref } from "vue";
 import { error, log } from "../../utils/console";
 import { useLangStore } from "../../stores/lang";
 import { useFooterStore } from "../../stores/sections";
+import { RouterLink } from "vue-router";
 
 const apiIconURL = ref(import.meta.env.VITE_API_ICON_URL);
 const langStore = useLangStore();
