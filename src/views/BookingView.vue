@@ -1,6 +1,6 @@
 <template>
   <HeaderSection />
-  <main class="w-full overflow-hidden">
+  <main class="w-full overflow-hidden accent-primary">
     <div
       class="static h-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
     >

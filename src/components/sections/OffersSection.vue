@@ -12,7 +12,8 @@
 
         <img :src="offer.url_image" alt="">
         <button @click="$router.push('booking')"
-        class="bg-accent rounded-lg py-2 px-12 text-2xl text-tertiary font-content tracking-wider">
+        class="bg-accent rounded-lg py-2 px-12 text-2xl text-tertiary font-content tracking-wider bg-[length:1000px] bg-left hover:bg-center transition-all duration-300
+            bg-gradient-to-r from-transparent via-[rgba(255,255,254,0.001)] via-[rgba(255,255,254,0.01)] via-[rgba(255,255,254,0.01)] via-white/50 to-transparent">
           {{ dico[langStore.lang].offersCTA }}
         </button>
 

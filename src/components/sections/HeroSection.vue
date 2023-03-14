@@ -44,7 +44,7 @@
 
           </div>
           <button
-              class="bg-tertiary rounded-lg py-2 px-12 text-3xl tracking-wider text-accent font-content uppercase"
+              class="bg-tertiary rounded-lg py-2 px-12 text-3xl tracking-wider text-accent font-content uppercase outline outline-transparent transition-all hover:outline-accent hover:outline-1"
               role="link" v-on:click="goTo(heroCTA[0].url)"
           >
             {{ heroCTA[0].text[langStore.lang] }}
@@ -53,7 +53,7 @@
 
 
         <button
-          class="bg-primary rounded-lg py-2 px-12 text-2xl tracking-wider text-secondary font-content"
+          class="bg-primary rounded-lg py-2 px-12 text-2xl tracking-wider text-secondary font-content outline outline-transparent transition-all hover:outline-secondary hover:outline-1"
           role="link" v-on:click="goTo(heroCTA[1].url)"
         >
           {{ heroCTA[1].text[langStore.lang] }}

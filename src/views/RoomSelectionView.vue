@@ -44,7 +44,8 @@
             <button
               type="button"
               v-on:click="search()"
-              class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
+              class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase bg-[length:1000px] bg-left hover:bg-center transition-all duration-300
+            bg-gradient-to-r from-transparent via-[rgba(255,255,254,0.001)] via-[rgba(255,255,254,0.01)] via-[rgba(255,255,254,0.01)] via-white/50 to-transparent"
             >
               {{ dico[langStore.lang].roomSelectionCTA }}
             </button>

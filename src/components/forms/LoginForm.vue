@@ -1,7 +1,7 @@
 <template>
   <section
     id="login"
-    class="static mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
+    class="static mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw] accent-primary"
     :style="{
       backgroundImage: 'url(' + ')',
       backgroundBlendMode: 'overlay',
@@ -58,14 +58,15 @@
           <button
             type="button"
             v-on:click="connect"
-            class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
+            class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase bg-[length:1000px] bg-left hover:bg-center transition-all duration-300
+            bg-gradient-to-r from-transparent via-[rgba(255,255,254,0.001)] via-[rgba(255,255,254,0.01)] via-[rgba(255,255,254,0.01)] via-white/50 to-transparent"
           >
             {{ dico[langStore.lang].connect }}
           </button>
           <button
             type="button"
             v-on:click="goSignup"
-            class="bg-primary flex justify-center items-center w-64 h-9 text-base tracking-wider text-secondary font-semibold font-content uppercase"
+            class="bg-primary flex justify-center items-center w-64 h-9 text-base tracking-wider text-secondary font-semibold font-content uppercase hover:underline"
           >
             {{ dico[langStore.lang].register }}
           </button>

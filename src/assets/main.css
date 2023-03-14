@@ -9,6 +9,8 @@
 #app {
     position: relative;
     overflow: hidden;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 
 /*
