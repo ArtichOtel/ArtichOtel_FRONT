@@ -1,8 +1,14 @@
 <template>
   <HeaderSection />
   <main class="w-full overflow-hidden accent-primary">
+    <Modal
+        @close="modalClose()"
+        :modalActive="modalActive"
+        :title="'Confirmation de réservation'">
+      <BookingConfModal />
+    </Modal>
     <div
-      class="static h-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
+      class="static kh-full mt-12 bg-primary/40 py-8 px-8 md:py-[4vw] md:px-[8.6vw]"
     >
       <div class="flex flex-col justify-center items-center bg-secondary">
         <h2
@@ -54,7 +60,7 @@
               <p>Numéro de carte bleu :</p>
               <input
                 type="text"
-                class="mr-4"
+                class="mr-4 px-2 py-1 border border-primary"
                 v-model="cb"
                 @input="filterNum($event.target.value)"
               />
@@ -71,15 +77,15 @@
             <button
               type="button"
               v-on:click="checkout"
-              class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
-            >
+              class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase bg-[length:1000px] bg-left hover:bg-center transition-all duration-300
+            bg-gradient-to-r from-transparent via-[rgba(255,255,254,0.001)] via-[rgba(255,255,254,0.01)] via-[rgba(255,255,254,0.01)] via-white/50 to-transparent"            >
               Réserver
             </button>
 
             <button
               type="button"
               v-on:click="cancel"
-              class="bg-red-200 flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
+              class="bg-primary flex justify-center items-center w-64 h-9 text-base tracking-wider text-secondary font-semibold font-content uppercase hover:underline"
             >
               Annuler
             </button>
@@ -108,6 +114,8 @@ import axios from "axios";
 import { useRoomSelectionStore } from "../stores/roomSelection";
 import { useOptionsStore } from "../stores/options";
 import { useBookingStore } from "../stores/booking";
+import BookingConfModal from "../components/blocks/BookingConfModal.vue";
+import Modal from "../components/Modal.vue";
 
 // check if booking can be performed : need data in roomStore
 const roomSelection = useRoomSelectionStore();
@@ -131,8 +139,8 @@ const optionStore = useOptionsStore();
 const availableOptions = ref();
 const selectedOptions = ref([]);
 const totalPrice = ref(roomSelection.price);
-const cb = ref("1234123412341234");
-
+const cb = ref("");
+const modalActive = ref(false);
 const roomSelectionData = ref();
 
 axios
@@ -202,6 +210,8 @@ function checkout() {
       )
       .then((resp) => {
         console.log(resp);
+        window.scrollTo({top:0, left:0})
+        modalActive.value = true
       })
       .catch((e) => error(e));
   }
@@ -209,5 +219,10 @@ function checkout() {
 
 function filterNum(num) {
   cb.value = num.replace(/[^0-9]/g, "");
+}
+
+
+const modalClose = () => {
+  router.push('/')
 }
 </script>

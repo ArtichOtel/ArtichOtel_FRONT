@@ -7,11 +7,3 @@
         </div>
     </div>
 </template>
-<script setup>
-
-const props = defineProps({
-    title: String,
-    modalActive: Boolean
-})
-
-</script>

@@ -8,7 +8,6 @@
         <SignedUpModal />
     </Modal>
     <SignUpForm
-      @connectionStatus="(data) => {sayHello(data)}"
       @open="modalOpen()"/>
   </main>
   <FooterSection v-if="sections.length"  :title="sections[7].title" :uri="sections[7].uri" />

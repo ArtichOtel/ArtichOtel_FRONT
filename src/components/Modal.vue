@@ -1,6 +1,6 @@
 <template>
   <div
-    v-show="modalActive"
+    v-if="modalActive"
     class="absolute backdrop-blur-md fixed top-0 left-0 z-90 w-screen h-full xpx-[2.6vw]
     flebx flex-col justify-center items-center py-8 md:py-16 "
   >
@@ -29,6 +29,6 @@ const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
 
 const props = defineProps({
   title: String,
-  modalActive: false,
+  modalActive: Boolean,
 });
 </script>
