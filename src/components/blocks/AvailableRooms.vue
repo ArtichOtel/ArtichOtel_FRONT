@@ -47,7 +47,7 @@
               max="3"
               value="1"
               @change="setTotalPrice($event.target.value)"
-              class="w-2/5 h-2 bg-secondary mx-auto rounded-lg appearance-none cursor-pointer dark:bg-primary"
+              class="w-2/5 h-2 bg-primary mx-auto rounded-lg appearance-none cursor-pointer"
             />
             <p class="text-center text-titleSmall" id="totalPrice">
               {{ totalPrice }} €
