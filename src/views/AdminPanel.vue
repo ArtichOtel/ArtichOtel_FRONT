@@ -46,8 +46,8 @@ function setCurrentSection(index) {
   currentSection.value = listOfSections.value[index]
 }
 
-// check if user is admin by its token : any method on api/user need admin token
-axios.get(`${import.meta.env.VITE_API_BASE_URL}/user`, {
+// check if user is admin by its token : get method on api/user/{user_id} need admin token
+axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('user')}`, {
   headers: {
     'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
   }
