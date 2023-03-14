@@ -131,7 +131,7 @@ const optionStore = useOptionsStore();
 const availableOptions = ref();
 const selectedOptions = ref([]);
 const totalPrice = ref(roomSelection.price);
-const cb = ref(0);
+const cb = ref("1234123412341234");
 
 const roomSelectionData = ref();
 
