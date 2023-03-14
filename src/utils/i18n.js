@@ -28,6 +28,7 @@ export const i18n = {
     nightNbr: "Nights nbr.",
     roomSelectionTitle: "Room selection",
     roomSelectionCTA: "SEARCH",
+    notLogged: "Please log in or sign up to access to your profile page.",
     monthsShort: [
       "jan.",
       "feb.",
@@ -74,6 +75,7 @@ export const i18n = {
     nightNbr: "Nbr. nuits",
     roomSelectionTitle: "Séléction de chambre",
     roomSelectionCTA: "Rechercher",
+    notLogged: "Veuillez vous connecter ou vous inscrire pour accéder à votre compte.",
     monthsShort: [
       "jan.",
       "fév.",

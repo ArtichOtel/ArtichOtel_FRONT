@@ -16,8 +16,22 @@
             <NavBar />
             <main class="h-full mx-[8.6vw] lg:my-[4.6vw] mt-20 mb-[4.6vw]
             bg-secondary">
-            <div v-if="!userData"> <!-- TODO : no userData -->
-                sdfsd
+            <div v-if="!userData" class="flex flex-col justify-center items-center gap-[1.2vw] p-4 md:p-8 lg:p-16">
+              <p class="m-4 p-4">{{dico[langStore.lang].notLogged}}</p>
+              <button
+                type="button"
+                v-on:click="goLogin"
+                class="bg-accent flex justify-center items-center w-64 h-9 text-xl tracking-wider text-tertiary font-semibold font-content uppercase"
+            >
+              {{ dico[langStore.lang].alreadyregistered }}
+            </button>
+              <button
+                  type="button"
+                  v-on:click="goSignup"
+                  class="bg-primary flex justify-center items-center w-64 h-9 text-base tracking-wider text-secondary font-semibold font-content uppercase"
+              >
+                {{ dico[langStore.lang].register }}
+              </button>
             </div>
             <div v-else class="flex flex-col md:flex-row p-[2.6vw]">
                 <div class="flex flex-col items-center">
@@ -138,6 +152,7 @@ import FooterSection from '../components/sections/FooterSection.vue';
 import HeaderSection from '../components/sections/HeaderSection.vue';
 import { useLangStore } from '../stores/lang';
 import { i18n } from '../utils/i18n';
+import router from "../router";
 
 const langStore = useLangStore();
 const dico = i18n;
@@ -287,26 +302,34 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
     console.log(err)
 })
 
-/**
- * Gets the user's datas from DB's table 'Users'
- * Stores it in const userData
- * 
- * GET api.artichotel.fr/api/user/{id}
- * Authorization: Bearer with user's token in sessionStorage
- * 
- * @return void
- */
-axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('user')}`, {
+if (window.sessionStorage.getItem('user')) {
+  /**
+   * Gets the user's datas from DB's table 'Users'
+   * Stores it in const userData
+   *
+   * GET api.artichotel.fr/api/user/{id}
+   * Authorization: Bearer with user's token in sessionStorage
+   *
+   * @return void
+   */
+  axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('user')}`, {
     headers: {
-        'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
+      'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
     }
-})
-    .then((res) => {
+  })
+      .then((res) => {
         userData.value = res.data
-    })
-    .catch((e) => {
+      })
+      .catch((e) => {
         console.log("User Datas error:", e)
-    })
+      })
+}
 
+const goSignup = function () {
+  router.push("/signup");
+};
+const goLogin = function () {
+  router.push("/login");
+};
 
 </script>
