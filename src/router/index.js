@@ -9,7 +9,7 @@ import BookingView from "../views/BookingView.vue";
 import ProfileView from "../views/ProfileView.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.VITE_API_BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: "",
