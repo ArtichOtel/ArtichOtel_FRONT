@@ -8,9 +8,9 @@
       >
         <!-- Logo -->
         <div class="svg-secondary">
-          <button @click="goToHome">
+          <RouterLink :to="'/'">
             <img :src="iconURL + 'artichaut-mobile-logo.svg'" alt="">
-          </button>
+          </RouterLink>
         </div>
 
         <div class="hidden md:flex flex-row pl-[6vw] items-center gap-5">
@@ -66,6 +66,7 @@ import { useContactStore } from '../../stores/contact';
 import { useLangStore } from '../../stores/lang';
 import LangSelect from '../navigation/LangSelect.vue';
 import NavLinks from '../navigation/NavLinks.vue';
+import { RouterLink } from "vue-router";
 
 const langStore = useLangStore()
 const contactStore = useContactStore()
@@ -75,12 +76,6 @@ const currentPage = ref(router.currentRoute)
 
 function toggleBurgerMenu() {
   hiddenMenu.value = !hiddenMenu.value
-}
-
-function goToHome() {
-  if (currentPage.value.path != '/') {
-    router.push('/')
-  }
 }
 
 </script>
