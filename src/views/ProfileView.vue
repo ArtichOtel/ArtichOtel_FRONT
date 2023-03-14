@@ -243,7 +243,7 @@ const changePwd = function () {
         const bodyJSON = {
             password: data.value.password.val
         }
-        axios.put(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('id')}`,bodyJSON , {
+        axios.put(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('user')}`,bodyJSON , {
             headers: {
                 'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
             }
@@ -262,7 +262,7 @@ const changePwd = function () {
 }
 
 const deleteAccount = function () { // TODO : Add to the delete btn
-    axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('id')}`, {
+    axios.delete(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('user')}`, {
         headers: {
             'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
         }
@@ -296,7 +296,7 @@ axios.get(`${import.meta.env.VITE_API_BASE_URL}/hero`)
  * 
  * @return void
  */
-axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('id')}`, {
+axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('user')}`, {
     headers: {
         'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
     }
