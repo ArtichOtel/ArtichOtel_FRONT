@@ -1,7 +1,7 @@
 <template>
-  <div id="reviews" class="bg-tertiary text-secondary py-8 px-8 md:py-[9vw] md:px-[8.6vw]">
+  <section id="reviews" class="bg-tertiary text-secondary py-8 px-8 md:py-[9vw] md:px-[8.6vw]">
 
-    <div class="font-title text-titleBase md:text-titleMed mb-4">{{title}}</div>
+    <h2 class="font-title text-titleBase md:text-titleMed mb-[8vw]">{{title[langStore.lang]}}</h2>
     <div v-if="reviews.length" class="flex flex-col md:flex-row justify-between">
 
 <!--this div 3 times-->
@@ -12,7 +12,7 @@
             <img src="https://picsum.photos/50/50" alt="user name">
           </div>
           <div class="flex justify-start items-center">
-            <p class="flex-none pl-4 font-content">USER NAME</p></div>
+            <p class="flex-none pl-4 font-content tracking-wider">USER NAME</p></div>
         </div>
 
         <div class="flex mb-3">
@@ -22,11 +22,11 @@
           </div>
         </div>
 
-        <div class="font-content">{{review.description}}</div>
+        <div class="font-content tracking-wider">{{review.description}}</div>
       </div>
 
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -35,12 +35,14 @@ import StarNotation from "../StarNotation/StarNotation.vue";
 
 import {ref} from "vue";
 import axios from "axios";
+import {useLangStore} from "../../stores/lang";
 const props = defineProps({
-  title: String,
+  title: Object,
   uri: String
 })
 
 const reviews = ref([])
+const langStore = useLangStore()
 
 axios({
   method: "get",

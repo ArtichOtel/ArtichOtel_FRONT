@@ -1,61 +1,60 @@
 <template>
+  <section
+    id="news"
+    class="relative px-[8.6vw] py-[9vw] text-tertiary overflow-hidden"
+  >
+    <div class="flex flex-col">
+      <h2 class="font-title text-titleBase md:text-titleMed mb-[4vw]">
+        {{ title[langStore.lang] }}
+      </h2>
 
-<section id="news" class="px-[8.6vw] py-[9vw]  text-tertiary">
+      <div
+        v-if="newsInfos.length"
+        class="flex flex-col md:flex-row justify-between items-center md:items-end gap-[3vw] tracking-wider"
+      >
+        <div v-for="n in 3" :key="n" class="relative bg-red-200 h-fit">
+          <div class="font-content absolute inset-x-0 bottom-0 h-fit">
+            <h3 class="bg-tertiary text-secondary text-xl w-fit p-[1vw]">
+              {{ newsInfos[n - 1].title[langStore.lang] }}
+            </h3>
 
-  <div class="flex flex-col gap-[8vw]">
+            <p class="bg-secondary/60 p-[1vw]">
+              {{ newsInfos[n - 1].description[langStore.lang] }}
+            </p>
+          </div>
 
-    <h2 class="font-title text-titleBase">{{ title }}</h2>
-
-    <div class="flex flex-col lg:flex-row justify-between gap-[1vw]">
-
-      <div v-for="n in 3" v-if="newsInfos.length" class="relative h-fit">
-
-        <div class="font-content absolute inset-x-0 bottom-0">
-
-          <h3 class="bg-tertiary text-secondary text-xl w-fit">
-            <span style="margin: 1vw;">{{ newsInfos[n-1].title }}</span>
-          </h3>
-
-          <p class="bg-secondary/60">
-            <span style="margin: 1vw;">{{ newsInfos[n-1].description }}</span>
-          </p>
+          <div class="">
+            <img :src="newsInfos[n - 1].url_image" alt="" />
+          </div>
         </div>
-
-        <img :src="newsInfos[n-1].url_image" alt="">
       </div>
-
     </div>
-  </div>
-</section>
-
+  </section>
 </template>
 
 <script setup>
-import axios from 'axios';
-import { ref } from 'vue';
+import axios from "axios";
+import { ref } from "vue";
+import { error, log } from "../../utils/console";
+import { useLangStore } from "../../stores/lang";
 
-
-const newsInfos = ref([])
+const langStore = useLangStore();
+const newsInfos = ref([]);
 
 const props = defineProps({
-  title: String,
-  uri: String
-})
+  title: Object,
+  uri: String,
+});
 
 axios({
-  method: 'get',
-  url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`
+  method: "get",
+  url: `${import.meta.env.VITE_API_BASE_URL}${props.uri}`,
 })
   .then((response) => {
-    console.log('newInfos', response.data)
-    newsInfos.value = response.data
+    //log('newInfos', response.data)
+    newsInfos.value = response.data;
   })
-  .catch((error) => {
-    console.error('Error: ', error);
-  })
-
+  .catch((err) => {
+    error("Error: ", err);
+  });
 </script>
-
-<style scoped>
-
-</style>

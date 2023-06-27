@@ -1,9 +1,10 @@
 <template>
-  <img src="/src/assets/icons/filledStar.svg" alt="étoile pleine">
+  <img :src="iconURL + 'filledStar.svg'" alt="étoile pleine">
 </template>
 
-<script>
-export default {
-  name: "filledStar"
-}
+<script setup>
+import { ref } from 'vue';
+
+
+const iconURL = ref(import.meta.env.VITE_API_ICON_URL)
 </script>

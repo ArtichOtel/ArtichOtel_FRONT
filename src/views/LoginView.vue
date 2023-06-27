@@ -1,16 +1,11 @@
 <template >
-  <main v-if="sections.length" class="h-full w-full overflow-hidden">
-    <HeaderSection :title="sections[0].title" :uri="sections[0].uri" />
+  <HeaderSection />
+  <main class="h-full w-full overflow-hidden">
     <LoginForm @connectionStatus="(data) => {sayHello(data)}"/>
-    <FooterSection :title="sections[7].title" :uri="sections[7].uri" />
   </main>
+  <FooterSection v-if="sections.length"  :title="sections[7].title" :uri="sections[7].uri" />
 </template>
 
-<script>
-export default {
-  name: "LoginView"
-}
-</script>
 
 <script setup>
 
@@ -24,7 +19,9 @@ const props = defineProps({
 })
 
 const emit = defineEmits(
-    {'login': {}}
+    {'login': {},
+      'isAdmin':{}
+    }
 )
 
 function sayHello(data) {
@@ -36,10 +33,11 @@ function sayHello(data) {
   }
 
   if (data.role.toString() === "admin") {
+    emit('isAdmin')
     console.log("redirect to admin panel")
     router.push("/admin")
   } else {
-    router.push("/")
+    router.back();
   }
 }
 

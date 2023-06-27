@@ -5,7 +5,7 @@
         @clickOnBtn="(index) => setCurrentSection(index)" :list-of-sections="listOfSections"
     />
     <div v-if="currentSection" >
-      {{currentSection}}
+      {{currentSection.name}}
     </div>
     <component v-if="currentIndex" :is="listOfSections[currentIndex].comp" />
   </main>
@@ -41,19 +41,19 @@ const currentSection = ref({})
 const isAdmin = ref(false)
 
 function setCurrentSection(index) {
-  console.log(index)
+  //console.log(index)
   currentIndex.value = index
   currentSection.value = listOfSections.value[index]
 }
 
-// check if user is admin by its token : any method on api/user need admin token
-axios.get(`${import.meta.env.VITE_API_BASE_URL}/user`, {
+// check if user is admin by its token : get method on api/user/{user_id} need admin token
+axios.get(`${import.meta.env.VITE_API_BASE_URL}/user/${window.sessionStorage.getItem('user')}`, {
   headers: {
     'Authorization': `Bearer ${window.sessionStorage.getItem('token')}`
   }
 })
     .then((response) => {
-      console.log(response.data)
+      //console.log(response.data)
 
       if (response.status === 200) {
         isAdmin.value = true

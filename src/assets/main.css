@@ -6,6 +6,26 @@
 @tailwind components;
 @tailwind utilities;
 
+#app {
+    position: relative;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+/*
+Pour créer les filter qui vont bien
+    https://codepen.io/sosuke/pen/Pjoqqp
+ */
+
+.svg-accent {
+    filter: invert(94%) sepia(15%) saturate(4420%) hue-rotate(329deg) brightness(90%) contrast(96%);
+}
+
 .svg-secondary {
     filter: invert(92%) sepia(15%) saturate(348%) hue-rotate(21deg) brightness(109%) contrast(115%);
+}
+
+.svg-secondary-light {
+    filter: invert(100%) sepia(14%) saturate(1390%) hue-rotate(326deg) brightness(104%) contrast(110%);
 }
