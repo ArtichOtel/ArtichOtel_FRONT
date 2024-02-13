@@ -16,7 +16,7 @@
     <div v-if="data" class="flex flex-col md:flex-row items-center w-full">
       <iframe
         class="flex-1 w-1/2 aspect-4/3 my-[4vw]"
-        src="https://www.youtube.com/embed/p7YXXieghto"
+        :src=embedVideoURL
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
@@ -48,7 +48,13 @@ const props = defineProps({
 
 const data = ref([]);
 const loaded = ref(false);
-//const videoId = ref(getIdFromURL("https://www.youtube.com/watch?v=24C8r8JupYY"))
+const embedVideoURL = ref("")
+
+function embedVideoFromURL(url) {
+  const embedBaseURL = "https://www.youtube.com/embed/"
+  const videoId = url.split('watch?v=').pop()
+  return embedBaseURL + videoId
+}
 
 axios({
   method: "get",
@@ -57,6 +63,7 @@ axios({
   .then((response) => {
     //log(response.data[0])
     data.value = response.data[0];
+    embedVideoURL.value = embedVideoFromURL(response.data[0].url_video)
   })
   .then(() => {
     loaded.value = true;
