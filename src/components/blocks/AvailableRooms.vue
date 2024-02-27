@@ -13,8 +13,8 @@
       >
         <img
           class="h-2/4 w-full object-cover md:h-auto md:w-1/2"
-          src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.jpg"
-          alt=""
+          :src="'/images/room-preview.png'"
+          alt="Room preview"
         />
         <div
           class="flex flex-col items-center justify-center md:w-full p-6 md:gap-8 md:gap-2 mx-auto"
